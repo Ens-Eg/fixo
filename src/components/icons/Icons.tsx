@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "@iconify/react";
 
 interface IconProps {
   size?: number;
@@ -6,413 +7,62 @@ interface IconProps {
   color?: string;
 }
 
-export const Globe: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    translate
-  </i>
-);
+// Material Symbols icon mappings to @iconify/react
+// This removes the 3.4MB Material Symbols font dependency
+const createIcon = (iconName: string) => {
+  return ({ size = 20, className = "", color }: IconProps) => (
+    <Icon
+      icon={`material-symbols:${iconName}`}
+      width={size}
+      height={size}
+      className={className}
+      style={{ color }}
+    />
+  );
+};
 
-export const Moon: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    dark_mode
-  </i>
-);
-
-export const Sun: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    light_mode
-  </i>
-);
-
-export const Menu: React.FC<IconProps> = ({ size = 24, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    menu
-  </i>
-);
-
-export const ArrowRight: React.FC<IconProps> = ({
-  size = 20,
-  className = "",
-}) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    arrow_forward
-  </i>
-);
-
-export const ArrowLeft: React.FC<IconProps> = ({
-  size = 20,
-  className = "",
-}) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    arrow_back
-  </i>
-);
-
-export const X: React.FC<IconProps> = ({ size = 24, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    close
-  </i>
-);
-
-export const Check: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    check
-  </i>
-);
-
-export const Sparkles: React.FC<IconProps> = ({ size = 20, className = "", color }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size, color }}
-  >
-    auto_awesome
-  </i>
-);
-
-export const Palette: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    palette
-  </i>
-);
-
-export const BarChart3: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    bar_chart
-  </i>
-);
-
-export const CreditCard: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    credit_card
-  </i>
-);
-
-export const HeadphonesIcon: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    headphones
-  </i>
-);
-
-export const Building2: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    apartment
-  </i>
-);
-
-export const TrendingUp: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    trending_up
-  </i>
-);
-
-export const Settings: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    settings
-  </i>
-);
-
-export const Languages: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    language
-  </i>
-);
-
-export const Package: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    inventory_2
-  </i>
-);
-
-export const ListPlus: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    playlist_add
-  </i>
-);
-
-export const Share2: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    share
-  </i>
-);
-
-export const Star: React.FC<IconProps> = ({ size = 20, className = "", color }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size, color }}
-  >
-    star
-  </i>
-);
-
-export const MessageCircle: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    chat_bubble
-  </i>
-);
-
-export const Send: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    send
-  </i>
-);
-
-export const Mail: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    mail
-  </i>
-);
-
-export const Phone: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    phone
-  </i>
-);
-
-export const MapPin: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    location_on
-  </i>
-);
-
-export const Heart: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    favorite
-  </i>
-);
-
-export const QrCode: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    qr_code_2
-  </i>
-);
-
-export const Cpu: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    memory
-  </i>
-);
-
-export const Tag: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    sell
-  </i>
-);
-
-export const ShoppingCart: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    shopping_cart
-  </i>
-);
-
-export const Coffee: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    coffee
-  </i>
-);
-
-export const Users: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    group
-  </i>
-);
-
-export const Wallet: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    account_balance_wallet
-  </i>
-);
-
-export const LineChart: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    show_chart
-  </i>
-);
-
-export const CheckCircle2: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    check_circle
-  </i>
-);
-
-export const Zap: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    bolt
-  </i>
-);
-
-export const Smartphone: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    smartphone
-  </i>
-);
-
-export const ShieldCheck: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    verified_user
-  </i>
-);
-
-export const Layers: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    layers
-  </i>
-);
-
-export const ExternalLink: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    open_in_new
-  </i>
-);
-
-export const Rocket: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    rocket_launch
-  </i>
-);
-
-export const Crown: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    workspace_premium
-  </i>
-);
-
-export const ChevronDown: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    keyboard_arrow_down
-  </i>
-);
-
-export const HelpCircle: React.FC<IconProps> = ({ size = 20, className = "" }) => (
-  <i
-    className={`material-symbols-outlined ${className}`}
-    style={{ fontSize: size }}
-  >
-    help
-  </i>
-);
+export const Globe = createIcon("translate");
+export const Moon = createIcon("dark-mode");
+export const Sun = createIcon("light-mode");
+export const Menu = createIcon("menu");
+export const ArrowRight = createIcon("arrow-forward");
+export const ArrowLeft = createIcon("arrow-back");
+export const X = createIcon("close");
+export const Check = createIcon("check");
+export const Sparkles = createIcon("auto-awesome");
+export const Palette = createIcon("palette");
+export const BarChart3 = createIcon("bar-chart");
+export const CreditCard = createIcon("credit-card");
+export const HeadphonesIcon = createIcon("headphones");
+export const Building2 = createIcon("apartment");
+export const TrendingUp = createIcon("trending-up");
+export const Settings = createIcon("settings");
+export const Languages = createIcon("language");
+export const Package = createIcon("inventory-2");
+export const ListPlus = createIcon("playlist-add");
+export const Share2 = createIcon("share");
+export const Star = createIcon("star");
+export const MessageCircle = createIcon("chat-bubble");
+export const Send = createIcon("send");
+export const Mail = createIcon("mail");
+export const Phone = createIcon("phone");
+export const MapPin = createIcon("location-on");
+export const Heart = createIcon("favorite");
+export const QrCode = createIcon("qr-code-2");
+export const Cpu = createIcon("memory");
+export const Tag = createIcon("sell");
+export const ShoppingCart = createIcon("shopping-cart");
+export const Coffee = createIcon("coffee");
+export const Users = createIcon("group");
+export const Wallet = createIcon("account-balance-wallet");
+export const LineChart = createIcon("show-chart");
+export const CheckCircle2 = createIcon("check-circle");
+export const Zap = createIcon("bolt");
+export const Smartphone = createIcon("smartphone");
+export const ShieldCheck = createIcon("verified-user");
+export const Layers = createIcon("layers");
+export const ExternalLink = createIcon("open-in-new");
+export const Rocket = createIcon("rocket-launch");
+export const Crown = createIcon("workspace-premium");
+export const ChevronDown = createIcon("keyboard-arrow-down");
+export const HelpCircle = createIcon("help");

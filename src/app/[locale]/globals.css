@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Material Symbols moved to component-level imports to reduce initial CSS bundle */
-/* Only components that use material-symbols will load its CSS */
+/* Material Symbols font removed - replaced with @iconify/react SVG icons */
+/* This eliminates the 3.4MB font file from the critical path */
 
 @custom-variant dark (&:where([class=dark], [class=dark] *));
 
@@ -243,26 +243,8 @@
   --sidebar-ring: 263 84% 70%;
 }
 
-/* Material Symbols Font Optimization */
-/* The @import "material-symbols" above handles font loading */
-/* Ensure Material Symbols class has proper fallback fonts */
-.material-symbols-outlined {
-  font-family: "Material Symbols Outlined", "system-ui", -apple-system, sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: "liga";
-  -webkit-font-smoothing: antialiased;
-  /* Fallback to prevent invisible text during font load */
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
+/* Material Symbols font removed - using @iconify/react SVG icons */
+/* No font file needed, icons load as inline SVG (much smaller) */
 
 /** Body */
 html,

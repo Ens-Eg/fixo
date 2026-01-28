@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale } from "next-intl";
+import Image from "next/image";
 import {
   Coffee,
   Users,
@@ -171,11 +172,17 @@ export const UsageShowcase = () => {
                 </div>
 
                 <div className="relative group overflow-hidden rounded-[40px] shadow-2xl border-4 border-white dark:border-[#0d1117] aspect-[16/9]">
-                  <img
+                  {/* LCP image optimization: next/image with priority, WebP/AVIF, responsive sizes */}
+                  <Image
                     src={activeTabData.image}
                     alt={isRTL ? activeTabData.titleAr : activeTabData.titleEn}
-                    loading="lazy"
+                    width={1200}
+                    height={662}
+                    priority={activeTab === 0} // Priority for LCP image (first tab)
+                    loading={activeTab === 0 ? undefined : "lazy"}
                     className="w-full h-full object-cover"
+                    sizes="(max-width: 768px) 100vw, 590px"
+                    quality={85}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-end p-10">
                     <div className="flex items-center gap-4">

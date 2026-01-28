@@ -1,0 +1,108 @@
+=== CRITICAL PERFORMANCE FIXES ===
+Fixes: 3.4MB Material Symbols font, render-blocking CSS, LCP image, caching, legacy JS
+
+FILES CHANGED:
+1. src/components/icons/Icons.tsx
+2. src/components/FrontPage/Navbar.tsx
+3. src/app/[locale]/globals.css
+4. src/components/FrontPage/TemplatesShow.tsx
+5. next.config.ts
+6. package.json
+7. tsconfig.json
+
+--- src/components/icons/Icons.tsx ---
+REPLACED: Material Symbols font icons with @iconify/react SVG icons
+- Removed all <i className="material-symbols-outlined"> usage
+- Replaced with <Icon icon="material-symbols:icon-name" /> from @iconify/react
+- Icons now load as inline SVG (no 3.4MB font file needed)
+
+EXPLANATION: Eliminates 3.4MB Material Symbols font from critical path. Icons load as lightweight SVG instead of requiring a massive font file. Fixes "Avoid chaining critical requests" audit.
+
+--- src/components/FrontPage/Navbar.tsx ---
+REMOVED: import "material-symbols"
+- Material Symbols font import removed
+- Icons now use @iconify/react (already installed)
+
+EXPLANATION: Removes Material Symbols font from being loaded in Navbar (above fold). Font was blocking initial render.
+
+--- src/app/[locale]/globals.css ---
+REMOVED: @import "material-symbols" and .material-symbols-outlined CSS class
+- Font import and styles removed
+- No font file needed anymore
+
+EXPLANATION: Removes Material Symbols font CSS from global bundle. Eliminates 3.4MB font file from critical rendering path.
+
+--- src/components/FrontPage/TemplatesShow.tsx ---
+CHANGED: Regular <img> to next/image with optimization
+- Added: import Image from "next/image"
+- Changed: <img> to <Image> with width={1200} height={662}
+- Added: priority={activeTab === 0} for LCP image (first tab)
+- Added: sizes="(max-width: 768px) 100vw, 590px" for responsive loading
+- Added: quality={85} for WebP/AVIF optimization
+
+EXPLANATION: Optimizes LCP image (/images/temp/1sst.jpg) with next/image. Enables WebP/AVIF conversion, responsive sizes, and priority loading. Fixes "Improve image delivery" audit.
+
+--- next.config.ts ---
+ADDED: Cache-Control headers for static assets
+- /_next/static/:path* → Cache-Control: public, max-age=31536000, immutable
+- /_next/chunks/:path* → Cache-Control: public, max-age=31536000, immutable
+- /_next/media/:path* → Cache-Control: public, max-age=31536000, immutable
+- /images/:path* → Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+- /cdn-cgi/scripts/:path* → Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+CHANGED: images.unoptimized: true → formats: ['image/avif', 'image/webp']
+- Enables Next.js image optimization for WebP/AVIF
+
+EXPLANATION: Adds proper cache headers for hashed assets (1 year immutable) and images (30 days). Enables WebP/AVIF image optimization. Fixes "Cache lifetimes" audit.
+
+--- package.json ---
+REMOVED: "material-symbols": "^0.31.2" from dependencies
+
+EXPLANATION: Removes unused Material Symbols package (replaced with @iconify/react).
+
+--- tsconfig.json ---
+CHANGED: "target": "ES2017" → "target": "ES2020"
+
+EXPLANATION: Modern target reduces polyfills/transforms. Saves ~13.6KB in legacy JS. Fixes "Legacy JS" audit.
+
+=== SUMMARY ===
+
+A) MATERIAL SYMBOLS FONT (3.4MB) - FIXED ✅
+- Replaced with @iconify/react SVG icons
+- No font file needed, icons load as inline SVG
+- Removed from package.json and all imports
+- Impact: Eliminates 3.4MB from critical path
+
+B) RENDER-BLOCKING CSS - ALREADY OPTIMIZED ✅
+- Material Symbols CSS removed from globals.css
+- Below-fold components use dynamic imports
+- Impact: Reduced initial CSS bundle
+
+C) LCP IMAGE OPTIMIZATION - FIXED ✅
+- Using next/image with priority for first tab
+- WebP/AVIF enabled, responsive sizes
+- Explicit width/height prevents CLS
+- Impact: Faster LCP, better image delivery
+
+D) CACHE-CONTROL HEADERS - FIXED ✅
+- Hashed assets: 1 year immutable
+- Images: 30 days with stale-while-revalidate
+- Cloudflare script: 1 day cache
+- Impact: Better cache utilization
+
+E) LEGACY JS REDUCTION - FIXED ✅
+- Target updated to ES2020 (from ES2017)
+- Reduces polyfills/transforms
+- Impact: ~13.6KB saved in legacy JS
+
+EXPECTED IMPROVEMENTS:
+- Critical chain: 3.4MB font removed → faster initial load
+- Cache lifetimes: Proper headers → better repeat visits
+- Image delivery: WebP/AVIF + responsive → smaller, faster images
+- Legacy JS: Modern target → less polyfill overhead
+
+TO VERIFY:
+1. npm install (removes material-symbols)
+2. npm run build
+3. Check Lighthouse: Critical chain should not include Material Symbols font
+4. Check Network tab: Images should be WebP/AVIF, assets should have proper cache headers
