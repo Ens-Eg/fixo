@@ -2,11 +2,6 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 import path from "path";
 
-// Bundle analyzer setup
-const withBundleAnalyzer = process.env.ANALYZE === "true"
-  ? require("@next/bundle-analyzer")({ enabled: true })
-  : (config: NextConfig) => config;
-
 const nextConfig: NextConfig = {
   // Enable standalone output for Docker production builds
   output: 'standalone',
@@ -62,4 +57,4 @@ const nextConfig: NextConfig = {
 };
 
 const withNextIntl = createNextIntlPlugin();
-export default withBundleAnalyzer(withNextIntl(nextConfig));
+export default withNextIntl(nextConfig);
