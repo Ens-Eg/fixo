@@ -16,11 +16,13 @@ const FAQ = dynamic(() => import("@/components/FrontPage/FAQ"), {
   ssr: true,
 });
 // Below-the-fold components - load after initial paint
+// Note: ssr: false is not allowed in Server Components, so we use default (ssr: true)
+// The components themselves are Client Components and will hydrate on the client
 const ContactSection = dynamic(() => import("@/components/FrontPage/ContactSection"), {
-  ssr: false, // Purely client component, no SEO impact
+  ssr: true, // Keep SSR for initial render, component will hydrate on client
 });
 const Footer = dynamic(() => import("@/components/FrontPage/Footer"), {
-  ssr: false, // Purely client component, no SEO impact
+  ssr: true, // Keep SSR for initial render, component will hydrate on client
 });
 
 export default function Home() {

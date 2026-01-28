@@ -244,23 +244,8 @@
 }
 
 /* Material Symbols Font Optimization */
-/* Override @font-face with font-display: swap to prevent render-blocking */
-/* This @font-face will override the one from material-symbols package */
-@font-face {
-  font-family: "Material Symbols Outlined";
-  font-style: normal;
-  font-weight: 100 700;
-  font-display: swap; /* Critical: prevents render-blocking, shows fallback immediately */
-  src: url("material-symbols/dist/material-symbols-outlined.woff2") format("woff2");
-  /* Font metric overrides to reduce Cumulative Layout Shift (CLS) */
-  /* These values help match system-ui/Arial metrics to prevent layout shift */
-  ascent-override: 75%;
-  descent-override: 25%;
-  line-gap-override: 0%;
-  size-adjust: 100%;
-}
-
-/* Ensure Material Symbols class has proper fallback */
+/* The @import "material-symbols" above handles font loading */
+/* Ensure Material Symbols class has proper fallback fonts */
 .material-symbols-outlined {
   font-family: "Material Symbols Outlined", "system-ui", -apple-system, sans-serif;
   font-weight: normal;
