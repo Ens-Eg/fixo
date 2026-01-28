@@ -1,4 +1,3 @@
-import "material-symbols";
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { getApiKeyHeaders } from "@/lib/api-helpers";

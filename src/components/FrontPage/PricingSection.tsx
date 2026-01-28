@@ -1,6 +1,5 @@
 "use client";
 
-import "material-symbols";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Star, Sparkles } from "@/components/icons/Icons";

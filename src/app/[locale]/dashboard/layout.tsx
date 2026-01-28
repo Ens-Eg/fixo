@@ -1,6 +1,5 @@
 "use client";
 
-import "material-symbols";
 import "remixicon/fonts/remixicon.css";
 import LayoutProvider from "@/providers/LayoutProvider";
 import React from "react";

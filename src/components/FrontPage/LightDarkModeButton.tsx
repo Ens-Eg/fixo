@@ -1,7 +1,5 @@
 "use client";
 
-import "material-symbols";
-
 import React, { useState, useEffect } from "react";
 
 const LightDarkModeButton: React.FC = () => {

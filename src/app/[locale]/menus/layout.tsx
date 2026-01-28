@@ -1,6 +1,5 @@
 "use client";
 
-import "material-symbols";
 import "remixicon/fonts/remixicon.css";
 import React from "react";
 import Navbar from "@/components/Layout/menus_layout/Navbar";
