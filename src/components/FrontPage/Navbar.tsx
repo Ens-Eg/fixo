@@ -1,6 +1,7 @@
 "use client";
 
 import "remixicon/fonts/remixicon.css";
+import "material-symbols"; // Material symbols used in Navbar (above fold)
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

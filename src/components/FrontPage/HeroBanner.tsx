@@ -98,7 +98,10 @@ const InteractivePhone = () => {
     : ["All", "Drinks", "Bakery", "Desserts"];
 
   return (
-    <div className="relative w-full max-w-[340px] h-[680px] bg-slate-900 dark:bg-slate-950 rounded-[50px] border-[12px] border-slate-800 dark:border-slate-900 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3),0_30px_60px_-30px_rgba(124,58,237,0.3)] overflow-hidden">
+    <div 
+      className="relative w-full max-w-[340px] bg-slate-900 dark:bg-slate-950 rounded-[50px] border-[12px] border-slate-800 dark:border-slate-900 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3),0_30px_60px_-30px_rgba(124,58,237,0.3)] overflow-hidden"
+      style={{ height: "680px", minHeight: "680px", aspectRatio: "340/680" }}
+    >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 dark:bg-slate-900 rounded-b-2xl z-50"></div>
       <div className="relative h-full bg-white dark:bg-gray-50 overflow-hidden w-full">
         <>
@@ -171,6 +174,7 @@ const InteractivePhone = () => {
                       height={56}
                       loading="lazy"
                       className="w-14 h-14 rounded-xl object-cover shadow-sm"
+                      style={{ aspectRatio: "1/1" }}
                     />
                     <div className="flex-1">
                       <h4 className="!text-md !font-black !text-slate-800">

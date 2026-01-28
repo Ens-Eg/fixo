@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Material Symbols - Optimized font loading with font-display: swap and metric overrides */
-@import "material-symbols";
+/* Material Symbols moved to component-level imports to reduce initial CSS bundle */
+/* Only components that use material-symbols will load its CSS */
 
 @custom-variant dark (&:where([class=dark], [class=dark] *));
 

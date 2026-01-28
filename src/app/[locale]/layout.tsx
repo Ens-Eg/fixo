@@ -17,6 +17,8 @@ const tajawal = Tajawal({
   variable: "--font-body",
   subsets: ["arabic", "latin"],
   weight: ["200", "300", "400", "500", "700", "800", "900"],
+  display: "swap", // Prevent render-blocking, show fallback immediately
+  preload: true, // Preload for faster LCP
 });
 
 export const metadata: Metadata = {
