@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "@/components/common/Logo";
+import { IoCheckmarkDone, IoLogInOutline } from "react-icons/io5";
 
 const ConfirmEmailContent: React.FC = () => {
   return (
@@ -34,7 +35,7 @@ const ConfirmEmailContent: React.FC = () => {
               </div>
 
               <div className="flex items-center justify-center bg-[#f5f7f8] text-success-600 rounded-full w-[120px] h-[120px] dark:bg-[#15203c]">
-                <i className="material-symbols-outlined !text-[55px]">done</i>
+                <IoCheckmarkDone className="!text-[55px]" />
               </div>
 
               <span className="block font-medium text-black dark:text-white md:text-md mt-[20px]">
@@ -47,7 +48,7 @@ const ConfirmEmailContent: React.FC = () => {
                 className="md:text-md block w-full text-center transition-all rounded-md font-medium mt-[20px] md:mt-[25px] lg:mt-[30px] py-[12px] px-[25px] text-white bg-primary-500 hover:bg-primary-400"
               >
                 <span className="flex items-center justify-center gap-[5px]">
-                  <i className="material-symbols-outlined">login</i>
+                  <IoLogInOutline />
                   Back To Home
                 </span>
               </Link>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { Menu } from "@/services/api.types";
+import { IoWarningOutline, IoRestaurant, IoInformationCircleOutline, IoCloseCircleOutline, IoCheckmarkCircle, IoTrashOutline } from "react-icons/io5";
 
 interface DeleteConfirmModalProps {
   menu: Menu;
@@ -36,9 +37,7 @@ export default function DeleteConfirmModal({
         {/* Warning Icon */}
         <div className="flex justify-center mb-4">
           <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-            <i className="material-symbols-outlined text-red-600 dark:text-red-400 !text-[40px]">
-              warning
-            </i>
+            <IoWarningOutline className="text-red-600 dark:text-red-400 !text-[40px]" />
           </div>
         </div>
 
@@ -66,9 +65,7 @@ export default function DeleteConfirmModal({
               </div>
             ) : (
               <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/50 dark:to-red-800/50 flex items-center justify-center flex-shrink-0">
-                <i className="material-symbols-outlined text-red-600 dark:text-red-400 !text-[24px]">
-                  restaurant_menu
-                </i>
+                <IoRestaurant className="text-red-600 dark:text-red-400 !text-[24px]" />
               </div>
             )}
             <div className="flex-1 min-w-0">
@@ -81,9 +78,7 @@ export default function DeleteConfirmModal({
             </div>
           </div>
           <p className="text-sm text-red-700 dark:text-red-300 font-medium flex items-start gap-2">
-            <i className="material-symbols-outlined !text-[18px] mt-0.5 flex-shrink-0">
-              info
-            </i>
+            <IoInformationCircleOutline className="!text-[18px] mt-0.5 flex-shrink-0" />
             <span>{t("warning")}</span>
           </p>
         </div>
@@ -115,15 +110,13 @@ export default function DeleteConfirmModal({
             />
             {confirmText && !isConfirmValid && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
-                <i className="material-symbols-outlined !text-[16px]">error</i>
+                <IoCloseCircleOutline className="!text-[16px]" />
                 {t("errorInvalid")}
               </p>
             )}
             {isConfirmValid && (
               <p className="mt-2 text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
-                <i className="material-symbols-outlined !text-[16px]">
-                  check_circle
-                </i>
+                <IoCheckmarkCircle className="!text-[16px]" />
                 {t("successConfirmed")}
               </p>
             )}
@@ -151,9 +144,7 @@ export default function DeleteConfirmModal({
                 </>
               ) : (
                 <>
-                  <i className="material-symbols-outlined !text-[20px]">
-                    delete_forever
-                  </i>
+                  <IoTrashOutline className="!text-[20px]" />
                   {t("delete")}
                 </>
               )}

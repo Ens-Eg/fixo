@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useAuth } from "@/contexts/AuthContext";
 import { Logo } from "@/components/common/Logo";
+import { IoClose, IoGrid, IoApps, IoRestaurant, IoMegaphone, IoSettings, IoPerson, IoPeople, IoCard, IoHelpCircle } from "react-icons/io5";
 
 interface SidebarMenuProps {
   toggleActive: () => void;
@@ -44,6 +45,25 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
   const isProfilePage = pathname.includes("/profile/");
   const menuId =
     currentMenuId || (isProfilePage && lastMenuId && user?.role !== "admin" ? lastMenuId : null);
+
+  // Icon mapping function
+  const getIcon = (iconName: string, className: string) => {
+    const iconMap: { [key: string]: React.ReactNode } = {
+      close: <IoClose className={className} />,
+      dashboard: <IoGrid className={className} />,
+      category: <IoApps className={className} />,
+      restaurant_menu: <IoRestaurant className={className} />,
+      ads_click: <IoMegaphone className={className} />,
+      settings: <IoSettings className={className} />,
+      account_circle: <IoPerson className={className} />,
+      group: <IoPeople className={className} />,
+      credit_card: <IoCard className={className} />,
+      campaign: <IoMegaphone className={className} />,
+      admin_panel_settings: <IoSettings className={className} />,
+      help_outline: <IoHelpCircle className={className} />,
+    };
+    return iconMap[iconName] || <IoGrid className={className} />;
+  };
 
   // Determine menu items based on context
   const menuItems = menuId
@@ -130,7 +150,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
             className="burger-menu inline-block absolute z-[3] top-[24px] ltr:right-[25px] rtl:left-[25px] transition-all hover:text-primary-500"
             onClick={toggleActive}
           >
-            <i className="material-symbols-outlined">close</i>
+            <IoClose />
           </button>
         </div>
 
@@ -165,8 +185,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                           : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-[#15203c]"
                       }`}
                     >
-                      <i
-                        className={`material-symbols-outlined transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
+                      <span className={`transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
                           isSpecialItem
                             ? isActive
                               ? "text-amber-600 dark:text-amber-400"
@@ -174,10 +193,9 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                             : isActive
                             ? "text-primary-500"
                             : "text-gray-500 dark:text-gray-400"
-                        }`}
-                      >
-                        {item.icon}
-                      </i>
+                        }`}>
+                        {getIcon(item.icon, "!text-[22px]")}
+                      </span>
                       <span className="title leading-none">{item.title}</span>
                       {item.badge && (
                         <span className={`rounded-full font-medium inline-block text-center min-w-[20px] h-[20px] px-[6px] text-[11px] leading-[20px] ltr:ml-auto rtl:mr-auto ${
@@ -216,8 +234,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                         : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
-                    <i
-                      className={`material-symbols-outlined transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
+                    <span className={`transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
                         pathname === `/${locale}/admin` &&
                         !pathname.includes("/admin/users") &&
                         !pathname.includes("/admin/plans") &&
@@ -225,10 +242,9 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                         !pathname.includes("/admin/admins")
                           ? "text-primary-500"
                           : "text-gray-500 dark:text-gray-400"
-                      }`}
-                    >
-                      dashboard
-                    </i>
+                      }`}>
+                      {getIcon("dashboard", "!text-[22px]")}
+                    </span>
                     <span className="title leading-none">
                       {t("adminDashboard")}
                     </span>
@@ -243,15 +259,13 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                         : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
-                    <i
-                      className={`material-symbols-outlined transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
+                    <span className={`transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
                         pathname.includes("/admin/users")
                           ? "text-primary-500"
                           : "text-gray-500 dark:text-gray-400"
-                      }`}
-                    >
-                      group
-                    </i>
+                      }`}>
+                      {getIcon("group", "!text-[22px]")}
+                    </span>
                     <span className="title leading-none">
                       {t("adminUsers")}
                     </span>
@@ -266,15 +280,13 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                         : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
-                    <i
-                      className={`material-symbols-outlined transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
+                    <span className={`transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
                         pathname.includes("/admin/plans")
                           ? "text-primary-500"
                           : "text-gray-500 dark:text-gray-400"
-                      }`}
-                    >
-                      credit_card
-                    </i>
+                      }`}>
+                      {getIcon("credit_card", "!text-[22px]")}
+                    </span>
                     <span className="title leading-none">
                       {t("adminPlans")}
                     </span>
@@ -289,15 +301,13 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                         : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
-                    <i
-                      className={`material-symbols-outlined transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
+                    <span className={`transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
                         pathname.includes("/admin/ads")
                           ? "text-primary-500"
                           : "text-gray-500 dark:text-gray-400"
-                      }`}
-                    >
-                      campaign
-                    </i>
+                      }`}>
+                      {getIcon("campaign", "!text-[22px]")}
+                    </span>
                     <span className="title leading-none">{t("adminAds")}</span>
                   </Link>
                 </li>
@@ -310,15 +320,13 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                         : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
-                    <i
-                      className={`material-symbols-outlined transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
+                    <span className={`transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
                         pathname.includes("/admin/admins")
                           ? "text-primary-500"
                           : "text-gray-500 dark:text-gray-400"
-                      }`}
-                    >
-                      admin_panel_settings
-                    </i>
+                      }`}>
+                      {getIcon("admin_panel_settings", "!text-[22px]")}
+                    </span>
                     <span className="title leading-none">
                       {t("adminAdmins")}
                     </span>
@@ -345,15 +353,13 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
                         : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
-                    <i
-                      className={`material-symbols-outlined transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
+                    <span className={`transition-all ltr:mr-[10px] rtl:ml-[10px] !text-[22px] leading-none relative -top-px ${
                         pathname === `/${locale}/dashboard/profile/edit`
                           ? "text-primary-500"
                           : "text-gray-500 dark:text-gray-400"
-                      }`}
-                    >
-                      settings
-                    </i>
+                      }`}>
+                      {getIcon("settings", "!text-[22px]")}
+                    </span>
                     <span className="title leading-none">
                       {t("accountSettings")}
                     </span>
@@ -367,9 +373,7 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({ toggleActive }) => {
           <div className="mt-auto pt-6">
             <div className="bg-primary-50 dark:bg-[#15203c] rounded-lg p-4">
               <div className="flex items-center mb-2">
-                <i className="material-symbols-outlined text-primary-500 !text-[28px]">
-                  help_outline
-                </i>
+                {getIcon("help_outline", "text-primary-500 !text-[28px]")}
               </div>
               <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
                 {t("needHelp")}

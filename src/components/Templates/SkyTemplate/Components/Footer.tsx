@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useLanguage } from "../../DefaultTemplate/context";
+import { IoLocationOutline, IoCallOutline } from "react-icons/io5";
 
 interface FooterProps {
     menuName: string;
@@ -160,9 +161,7 @@ export default function Footer({
                             <div className="space-y-3 mt-4">
                                 {address && (
                                     <div className="flex items-start gap-2">
-                                        <i className="material-symbols-outlined text-sky-600 !text-[20px] mt-0.5">
-                                            location_on
-                                        </i>
+                                        <IoLocationOutline className="text-sky-600 !text-[20px] mt-0.5" />
                                         <p
                                             className="text-gray-600 text-sm"
                                             dir={isArabic ? "rtl" : "ltr"}
@@ -173,9 +172,7 @@ export default function Footer({
                                 )}
                                 {phone && (
                                     <div className="flex items-center gap-2">
-                                        <i className="material-symbols-outlined text-sky-600 !text-[20px]">
-                                            phone
-                                        </i>
+                                        <IoCallOutline className="text-sky-600 !text-[20px]" />
                                         <a
                                             href={`tel:${phone}`}
                                             className="text-gray-600 text-sm hover:text-sky-600 transition-colors"

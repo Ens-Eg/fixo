@@ -2,6 +2,7 @@
 
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
+import { IoStarOutline, IoArrowUpOutline, IoCheckmarkCircle, IoRocketOutline } from "react-icons/io5";
 
 interface UpgradePlanModalProps {
   onClose: () => void;
@@ -29,9 +30,7 @@ export function UpgradePlanModal({
         {/* Icon */}
         <div className="flex justify-center mb-6">
           <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 rounded-full flex items-center justify-center shadow-lg">
-            <i className="material-symbols-outlined text-amber-600 dark:text-amber-400 !text-[48px]">
-              workspace_premium
-            </i>
+            <IoStarOutline className="text-amber-600 dark:text-amber-400 !text-[48px]" />
           </div>
         </div>
 
@@ -80,16 +79,12 @@ export function UpgradePlanModal({
         {/* Benefits */}
         <div className="mb-6 space-y-3">
           <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-            <i className="material-symbols-outlined text-primary-600 !text-[20px]">
-              upgrade
-            </i>
+            <IoArrowUpOutline className="text-primary-600 !text-[20px]" />
             {locale === "ar" ? "قم بالترقية للحصول على:" : "Upgrade to get:"}
           </p>
           <ul className="space-y-2">
             <li className="flex items-start gap-2 text-gray-700 dark:text-gray-300 text-sm">
-              <i className="material-symbols-outlined text-green-600 dark:text-green-400 !text-[20px] mt-0.5">
-                check_circle
-              </i>
+              <IoCheckmarkCircle className="text-green-600 dark:text-green-400 !text-[20px] mt-0.5" />
               <span>
                 {locale === "ar"
                   ? "مزيد من القوائم (حتى 3 أو غير محدود)"
@@ -97,9 +92,7 @@ export function UpgradePlanModal({
               </span>
             </li>
             <li className="flex items-start gap-2 text-gray-700 dark:text-gray-300 text-sm">
-              <i className="material-symbols-outlined text-green-600 dark:text-green-400 !text-[20px] mt-0.5">
-                check_circle
-              </i>
+              <IoCheckmarkCircle className="text-green-600 dark:text-green-400 !text-[20px] mt-0.5" />
               <span>
                 {locale === "ar"
                   ? "مزيد من المنتجات لكل قائمة"
@@ -107,9 +100,7 @@ export function UpgradePlanModal({
               </span>
             </li>
             <li className="flex items-start gap-2 text-gray-700 dark:text-gray-300 text-sm">
-              <i className="material-symbols-outlined text-green-600 dark:text-green-400 !text-[20px] mt-0.5">
-                check_circle
-              </i>
+              <IoCheckmarkCircle className="text-green-600 dark:text-green-400 !text-[20px] mt-0.5" />
               <span>
                 {locale === "ar"
                   ? "تخصيص شامل وبدون إعلانات"
@@ -125,9 +116,7 @@ export function UpgradePlanModal({
             onClick={handleUpgrade}
             className="flex-1 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all font-semibold shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
           >
-            <i className="material-symbols-outlined !text-[20px]">
-              rocket_launch
-            </i>
+            <IoRocketOutline className="!text-[20px]" />
             {locale === "ar" ? "ترقية الخطة" : "Upgrade Plan"}
           </button>
           <button

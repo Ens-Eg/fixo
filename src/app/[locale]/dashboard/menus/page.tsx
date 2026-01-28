@@ -13,6 +13,7 @@ import {
 import { checkSlugAvailability, Menu } from "@/services/menu.service";
 import { getMenuPublicUrl } from "@/lib/menuUrl";
 import toast from "react-hot-toast";
+import { IoAddOutline, IoRestaurant, IoCloseOutline, IoPricetagOutline, IoDocumentTextOutline, IoLinkOutline, IoCheckmarkCircle, IoCloseCircle, IoInformationCircleOutline, IoAddCircleOutline } from "react-icons/io5";
 
 export default function MenusPage() {
   const { user, loading } = useAuth();
@@ -77,7 +78,7 @@ export default function MenusPage() {
               onClick={() => setShowCreateModal(true)}
               className="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors flex items-center gap-2 shadow-lg"
             >
-              <i className="material-symbols-outlined !text-[20px]">add</i>
+              <IoAddOutline className="!text-[20px]" />
               {t("createMenu")}
             </button>
           </div>
@@ -282,9 +283,7 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-3 ">
             <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg">
-              <i className="material-symbols-outlined text-white !text-[28px]">
-                restaurant_menu
-              </i>
+              <IoRestaurant className="text-white !text-[28px]" />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white ">
               {t("title")}
@@ -294,9 +293,7 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
             onClick={onClose}
             className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
-            <i className="material-symbols-outlined text-gray-500 dark:text-gray-400">
-              close
-            </i>
+            <IoCloseOutline className="text-gray-500 dark:text-gray-400" />
           </button>
         </div>
 
@@ -304,9 +301,7 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
           {/* Names Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-3">
-              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
-                label
-              </i>
+              <IoPricetagOutline className="text-primary-500 !text-[20px]" />
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white !mb-0">
                 {t("menuNames")}
               </h3>
@@ -355,9 +350,7 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
           {/* Descriptions Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-3">
-              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
-                description
-              </i>
+              <IoDocumentTextOutline className="text-primary-500 !text-[20px]" />
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {t("descriptions")}
               </h3>
@@ -400,9 +393,7 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
           {/* Slug Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-3">
-              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
-                link
-              </i>
+              <IoLinkOutline className="text-primary-500 !text-[20px]" />
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {t("urlSettings")}
               </h3>
@@ -441,16 +432,12 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
                 )}
                 {!slugStatus.checking && slugStatus.available === true && (
                   <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <i className="material-symbols-outlined text-green-500 !text-[20px]">
-                      check_circle
-                    </i>
+                    <IoCheckmarkCircle className="text-green-500 !text-[20px]" />
                   </div>
                 )}
                 {!slugStatus.checking && slugStatus.available === false && (
                   <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <i className="material-symbols-outlined text-red-500 !text-[20px]">
-                      cancel
-                    </i>
+                    <IoCloseCircle className="text-red-500 !text-[20px]" />
                   </div>
                 )}
               </div>
@@ -463,17 +450,13 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
               )}
               {!slugStatus.checking && slugStatus.available === true && (
                 <p className="mt-2 text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
-                  <i className="material-symbols-outlined !text-[16px]">
-                    check_circle
-                  </i>
+                  <IoCheckmarkCircle className="!text-[16px]" />
                   هذا الرابط متاح
                 </p>
               )}
               {!slugStatus.checking && slugStatus.available === false && (
                 <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-2">
-                  <i className="material-symbols-outlined !text-[16px]">
-                    cancel
-                  </i>
+                  <IoCloseCircle className="!text-[16px]" />
                   هذا الرابط مستخدم بالفعل
                 </p>
               )}
@@ -503,9 +486,7 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
 
               <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <div className="flex items-start gap-2">
-                  <i className="material-symbols-outlined text-blue-500 !text-[18px] mt-0.5">
-                    info
-                  </i>
+                  <IoInformationCircleOutline className="text-blue-500 !text-[18px] mt-0.5" />
                   <div className="flex-1">
                     <p className="text-xs text-blue-700 dark:text-blue-300 font-medium mb-1">
                       {t("slugHint")}
@@ -543,9 +524,7 @@ function CreateMenuModal({ onClose }: CreateMenuModalProps) {
                 </>
               ) : (
                 <>
-                  <i className="material-symbols-outlined !text-[20px]">
-                    add_circle
-                  </i>
+                  <IoAddCircleOutline className="!text-[20px]" />
                   {t("create")}
                 </>
               )}

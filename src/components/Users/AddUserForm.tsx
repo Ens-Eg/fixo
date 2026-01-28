@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { IoAddOutline } from "react-icons/io5";
 
 const AddUserForm: React.FC = () => {
   // Upload image
@@ -293,9 +294,7 @@ const AddUserForm: React.FC = () => {
               className="font-medium inline-block transition-all rounded-md md:text-md py-[10px] md:py-[12px] px-[20px] md:px-[22px] bg-primary-500 text-white hover:bg-primary-400"
             >
               <span className="inline-block relative ltr:pl-[29px] rtl:pr-[29px]">
-                <i className="material-symbols-outlined ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2">
-                  add
-                </i>
+                <IoAddOutline className="ltr:left-0 rtl:right-0 absolute top-1/2 -translate-y-1/2" />
                 Add User
               </span>
             </button>

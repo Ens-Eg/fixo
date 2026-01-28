@@ -8,6 +8,7 @@ import { getTemplateById, getDefaultTemplate } from "@/components/Templates";
 import { MenuData } from "@/components/Templates/types";
 import { useLocale } from "next-intl";
 import { getClientApiKeyHeaders } from "@/lib/api-helpers";
+import { IoCloseCircleOutline, IoConstructOutline } from "react-icons/io5";
 
 interface MenuClientWrapperProps {
   slug: string;
@@ -109,9 +110,7 @@ export default function MenuClientWrapper({
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
         <div className="max-w-md w-full bg-white dark:bg-[#0c1427] rounded-2xl shadow-xl p-8 text-center">
           <div className="w-20 h-20 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i className="material-symbols-outlined text-red-600 dark:text-red-400 !text-[48px]">
-              error
-            </i>
+            <IoCloseCircleOutline className="text-red-600 dark:text-red-400 !text-[48px]" />
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -141,9 +140,7 @@ export default function MenuClientWrapper({
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
         <div className="max-w-md w-full bg-white dark:bg-[#0c1427] rounded-2xl shadow-xl p-8 text-center">
           <div className="w-20 h-20 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i className="material-symbols-outlined text-yellow-600 dark:text-yellow-400 !text-[48px]">
-              construction
-            </i>
+            <IoConstructOutline className="text-yellow-600 dark:text-yellow-400 !text-[48px]" />
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">

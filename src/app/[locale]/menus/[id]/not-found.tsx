@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
+import { IoCloseCircleOutline, IoArrowBack, IoHomeOutline, IoInformationCircleOutline } from "react-icons/io5";
 
 export default function NotFound() {
   const router = useRouter();
@@ -13,9 +14,7 @@ export default function NotFound() {
         {/* 404 Icon */}
         <div className="mb-8">
           <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 rounded-full shadow-lg">
-            <i className="material-symbols-outlined text-red-600 dark:text-red-400 !text-[80px]">
-              error
-            </i>
+            <IoCloseCircleOutline className="text-red-600 dark:text-red-400 !text-[80px]" />
           </div>
         </div>
 
@@ -38,16 +37,14 @@ export default function NotFound() {
             onClick={() => router.push(`/${locale}/menus`)}
             className="px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all shadow-lg hover:shadow-xl font-semibold flex items-center justify-center gap-2"
           >
-            <i className="material-symbols-outlined !text-[24px]">
-              arrow_back
-            </i>
+            <IoArrowBack className="!text-[24px]" />
             {locale === "ar" ? "العودة للقوائم" : "Back to Menus"}
           </button>
           <button
             onClick={() => router.push(`/${locale}/dashboard`)}
             className="px-8 py-4 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all font-semibold flex items-center justify-center gap-2"
           >
-            <i className="material-symbols-outlined !text-[24px]">home</i>
+            <IoHomeOutline className="!text-[24px]" />
             {locale === "ar" ? "الصفحة الرئيسية" : "Home"}
           </button>
         </div>
@@ -55,9 +52,7 @@ export default function NotFound() {
         {/* Additional Info */}
         <div className="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-200 dark:border-blue-800 inline-block">
           <div className="flex items-start gap-3 text-left">
-            <i className="material-symbols-outlined text-blue-500 !text-[24px] mt-0.5">
-              info
-            </i>
+            <IoInformationCircleOutline className="text-blue-500 !text-[24px] mt-0.5" />
             <div>
               <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-2">
                 {locale === "ar" ? "ملاحظة" : "Note"}

@@ -1,5 +1,6 @@
 "use client";
 
+import { IoArrowForwardOutline, IoCheckmarkOutline } from "react-icons/io5";
 import React from "react";
 
 const pricingPlans = [
@@ -59,9 +60,7 @@ const PricingStyle1: React.FC = () => {
                     className="inline-block rounded-md font-medium transition-all md:text-md md:mt-[5px] py-[12px] px-[20px] text-white bg-primary-500 hover:bg-primary-400"
                   >
                     <span className="inline-block relative ltr:pl-[25px] rtl:pr-[25px]">
-                      <i className="material-symbols-outlined !text-md absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
-                        arrow_forward_ios
-                      </i>
+                      <IoArrowForwardOutline className="!text-md absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
                       Buy Now
                     </span>
                   </button>
@@ -79,9 +78,7 @@ const PricingStyle1: React.FC = () => {
                       key={idx}
                       className="relative ltr:pl-[30px] ltr:md:pl-[38px] rtl:pr-[30px] rtl:md:pr-[38px] mb-[15px] last:mb-0"
                     >
-                      <i className="material-symbols-outlined text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
-                        check
-                      </i>
+                      <IoCheckmarkOutline className="text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
                       {feature}
                     </li>
                   ))}

@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { getAdminPlans, updateAdminPlan } from "../actions";
+import { IoCheckmarkOutline, IoCloseOutline, IoPencilOutline, IoInformationCircleOutline } from "react-icons/io5";
 
 interface Plan {
   id: number;
@@ -164,9 +165,7 @@ export default function PlansManagementContent({
 
                     <ul className="mt-[20px] md:mt-[28px] ltr:text-left rtl:text-right">
                       <li className="relative ltr:pl-[30px] ltr:md:pl-[38px] rtl:pr-[30px] rtl:md:pr-[38px] mb-[15px]">
-                        <i className="material-symbols-outlined text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
-                          check
-                        </i>
+                        <IoCheckmarkOutline className="text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
                         {plan.maxMenus === -1
                           ? t("features.unlimitedMenus")
                           : `${plan.maxMenus} ${
@@ -176,9 +175,7 @@ export default function PlansManagementContent({
                             }`}
                       </li>
                       <li className="relative ltr:pl-[30px] ltr:md:pl-[38px] rtl:pr-[30px] rtl:md:pr-[38px] mb-[15px]">
-                        <i className="material-symbols-outlined text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
-                          check
-                        </i>
+                        <IoCheckmarkOutline className="text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
                         {plan.maxProductsPerMenu === -1
                           ? t("features.unlimitedProducts")
                           : `${plan.maxProductsPerMenu} ${t(
@@ -186,25 +183,19 @@ export default function PlansManagementContent({
                             )}`}
                       </li>
                       <li className="relative ltr:pl-[30px] ltr:md:pl-[38px] rtl:pr-[30px] rtl:md:pr-[38px] mb-[15px]">
-                        <i
-                          className={`material-symbols-outlined ${
-                            plan.allowCustomDomain
-                              ? "text-success-600"
-                              : "text-red-500"
-                          } absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2`}
-                        >
-                          {plan.allowCustomDomain ? "check" : "close"}
-                        </i>
+                        {plan.allowCustomDomain ? (
+                          <IoCheckmarkOutline className="text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
+                        ) : (
+                          <IoCloseOutline className="text-red-500 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
+                        )}
                         {t("features.customDomain")}
                       </li>
                       <li className="relative ltr:pl-[30px] ltr:md:pl-[38px] rtl:pr-[30px] rtl:md:pr-[38px] mb-[15px] last:mb-0">
-                        <i
-                          className={`material-symbols-outlined ${
-                            !plan.hasAds ? "text-success-600" : "text-red-500"
-                          } absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2`}
-                        >
-                          {!plan.hasAds ? "check" : "close"}
-                        </i>
+                        {!plan.hasAds ? (
+                          <IoCheckmarkOutline className="text-success-600 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
+                        ) : (
+                          <IoCloseOutline className="text-red-500 absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
+                        )}
                         {t("features.noAds")}
                       </li>
                     </ul>
@@ -215,9 +206,7 @@ export default function PlansManagementContent({
                       className="block w-full rounded-md font-medium transition-all md:text-md mt-[20px] md:mt-[20px] py-[12px] px-[20px] text-white bg-primary-500 hover:bg-primary-400"
                     >
                       <span className="inline-block relative ltr:pl-[25px] rtl:pr-[25px]">
-                        <i className="material-symbols-outlined !text-md absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
-                          edit
-                        </i>
+                        <IoPencilOutline className="!text-md absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2" />
                         {t("actions.edit")}
                       </span>
                     </button>
@@ -263,9 +252,7 @@ export default function PlansManagementContent({
 
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md p-3 mb-6">
                 <p className="text-sm text-blue-800 dark:text-blue-300">
-                  <i className="material-symbols-outlined !text-[16px] align-middle">
-                    info
-                  </i>{" "}
+                  <IoInformationCircleOutline className="!text-[16px] align-middle" />{" "}
                   {locale === "ar"
                     ? "يمكنك تعديل الأسعار وعدد القوائم والمنتجات فقط"
                     : "You can only edit prices, menus count, and products count"}

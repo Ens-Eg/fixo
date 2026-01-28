@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import RTLMode from "./RTLMode";
+import { IoIosSettings } from "react-icons/io";
 
 export default function Settings() {
   const [active, setActive] = useState<boolean>(false);
@@ -43,10 +44,8 @@ export default function Settings() {
           className={`leading-none inline-block transition-all relative top-[2px] hover:text-primary-500 ${
             active ? "active" : ""
           }`}
-        >
-          <i className="material-symbols-outlined !text-[22px] md:!text-[24px]">
-            settings
-          </i>
+        > 
+          <IoIosSettings className=" !text-[22px] md:!text-[24px]" />
         </button>
 
         {active && ( // Conditionally render the dropdown based on the `active` state

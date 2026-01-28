@@ -1,5 +1,6 @@
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import { IoLocationOutline, IoCallOutline } from "react-icons/io5";
 
 interface FooterProps {
   menuName?: string;
@@ -166,9 +167,7 @@ const Footer = ({
               <div className="space-y-2 mt-4">
                 {address && (
                   <div className="flex items-start gap-2">
-                    <i className="material-symbols-outlined text-[#F2B705] !text-[18px] mt-0.5">
-                      location_on
-                    </i>
+                    <IoLocationOutline className="text-[#F2B705] !text-[18px] mt-0.5" />
                     <p
                       className="text-[#B6AA99] text-sm"
                       dir={isArabic ? "rtl" : "ltr"}
@@ -179,9 +178,7 @@ const Footer = ({
                 )}
                 {phone && (
                   <div className="flex items-center gap-2">
-                    <i className="material-symbols-outlined text-[#F2B705] !text-[18px]">
-                      phone
-                    </i>
+                    <IoCallOutline className="text-[#F2B705] !text-[18px]" />
                     <a
                       href={`tel:${phone}`}
                       className="text-[#B6AA99] text-sm hover:text-[#F2B705] transition-colors"

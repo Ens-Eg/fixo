@@ -10,6 +10,7 @@ import DarkMode from "../Header/DarkMode";
 import Fullscreen from "../Header/Fullscreen";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/common/Logo";
+import { IoIosGlobe } from "react-icons/io";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -58,9 +59,7 @@ const Navbar: React.FC = () => {
                   locale === "ar" ? "Switch to English" : "التبديل إلى العربية"
                 }
               >
-                <i className="material-symbols-outlined !text-[20px] md:!text-[22px]">
-                  translate
-                </i>
+                <IoIosGlobe className=" !text-[20px] md:!text-[22px]" />
               </button>
             </div>
 

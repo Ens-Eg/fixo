@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useAuth } from "@/contexts/AuthContext";
 import UserAvatar from "@/components/UserAvatar";
+import { IoIosCard, IoIosLogOut, IoIosPerson, IoIosRestaurant, IoIosSettings, IoIosStar } from "react-icons/io";
 
 interface ProfileMenuProps {
   context?: "menus" | "dashboard";
@@ -114,9 +115,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ context }) => {
                   {user?.name || "User"}
                 </span>
                 {!isFreePlan && showPlanBadge && (
-                  <i className="material-symbols-outlined text-amber-500 !text-[14px] flex-shrink-0">
-                    workspace_premium
-                  </i>
+                  <IoIosStar className="text-amber-500 !text-[14px] flex-shrink-0" />
                 )}
               </div>
               <span className="block text-xs text-gray-500 dark:text-gray-400 truncate">
@@ -136,9 +135,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ context }) => {
                 }`}
                 onClick={() => setActive(false)}
               >
-                <i className="material-symbols-outlined top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]">
-                  account_circle
-                </i>
+                <IoIosPerson className="top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]" />
                 {t("myProfile")}
               </Link>
             </li>
@@ -153,9 +150,8 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ context }) => {
                 }`}
                 onClick={() => setActive(false)}
               >
-                <i className="material-symbols-outlined top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]">
-                  credit_card
-                </i>
+                <IoIosCard className="top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]" />
+                
                 {t("billing")}
               </Link>
             </li>
@@ -168,12 +164,10 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ context }) => {
               <li>
                 <Link
                   href={`/${locale}/admin`}
-                  className="w-full text-left block relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-blue-600 dark:text-blue-400 transition-all hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                  className="w-full text-start block relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-blue-600 dark:text-blue-400 transition-all hover:text-blue-700 dark:hover:text-blue-300 font-medium"
                   onClick={() => setActive(false)}
                 >
-                  <i className="material-symbols-outlined top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]">
-                    admin_panel_settings
-                  </i>
+                  <IoIosSettings className="top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]" />
                   {t("adminPanel")}
                 </Link>
               </li>
@@ -183,12 +177,10 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ context }) => {
               <li>
                 <Link
                   href={`/${locale}/menus`}
-                  className="w-full text-left block relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-black dark:text-white transition-all hover:text-primary-500  "
+                  className="w-full text-start block relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-black dark:text-white transition-all hover:text-primary-500  "
                   onClick={() => setActive(false)}
                 >
-                  <i className="material-symbols-outlined top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]">
-                    restaurant_menu
-                  </i>
+                  <IoIosRestaurant className="top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]" />
                   {t("manageMenus")}
                 </Link>
               </li>
@@ -196,11 +188,9 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ context }) => {
             <li>
               <button
                 onClick={handleLogout}
-                className="w-full text-left block relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-black dark:text-white transition-all hover:text-primary-500"
+                className="w-full text-start block relative py-[7px] ltr:pl-[50px] ltr:pr-[20px] rtl:pr-[50px] rtl:pl-[20px] text-black dark:text-white transition-all hover:text-primary-500"
               >
-                <i className="material-symbols-outlined top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]">
-                  logout
-                </i>
+                <IoIosLogOut className="top-1/2 -translate-y-1/2 !text-[22px] absolute ltr:left-[20px] rtl:right-[20px]" />
                 {t("logout")}
               </button>
             </li>

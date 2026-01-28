@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { IoIosSunny } from "react-icons/io";
 
 const DarkMode: React.FC = () => {
   // Light/Dark Mode
@@ -40,9 +41,7 @@ const DarkMode: React.FC = () => {
         className="light-dark-toggle leading-none inline-block transition-all text-[#fe7a36] absolute top-[20px] md:top-[25px] ltr:right-[20px] rtl:left-[20px] ltr:md:right-[25px] rtl:md:left-[25px]"
         onClick={handleToggle}
       >
-        <i className="material-symbols-outlined !text-[20px] md:!text-[22px]">
-          light_mode
-        </i>
+        <IoIosSunny className=" !text-[20px] md:!text-[22px]" />
       </button>
     </>
   );

@@ -11,6 +11,8 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { getMenuPublicUrl } from "@/lib/menuUrl";
 import { QRCodeSVG } from "qrcode.react";
+import { IoIosArrowBack, IoIosArrowForward, IoIosCheckmarkCircle, IoIosDownload, IoIosList, IoIosSettings, IoIosStats, IoIosTime } from "react-icons/io";
+import { IoOpenOutline } from "react-icons/io5";
 
 interface MenuDashboardClientProps {
   menu: any;
@@ -92,7 +94,7 @@ export default function MenuDashboardClient({
             onClick={() => router.push(`/${locale}/dashboard/menus`)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
           >
-            <i className="material-symbols-outlined">arrow_back</i>
+            <IoIosArrowBack className=" !text-[22px] md:!text-[24px] rotate-180" />
           </button>
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
@@ -111,28 +113,28 @@ export default function MenuDashboardClient({
               href={`/${locale}/dashboard/menus/${menu.id}`}
               className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors flex items-center gap-2"
             >
-              <i className="material-symbols-outlined !text-[18px]">dashboard</i>
+              <IoIosStats className=" !text-[18px]" />
               {t("navigation.overview")}
             </Link>
             <Link
               href={`/${locale}/dashboard/menus/${menu.id}/categories`}
               className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center gap-2"
             >
-              <i className="material-symbols-outlined !text-[18px]">category</i>
+              <IoIosList className=" !text-[18px]" />
               {t("navigation.categories")}
             </Link>
             <Link
               href={`/${locale}/dashboard/menus/${menu.id}/products`}
               className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center gap-2"
             >
-              <i className="material-symbols-outlined !text-[18px]">restaurant_menu</i>
+              <IoOpenOutline className=" !text-[18px]" />
               {t("navigation.products")}
             </Link>
             <Link
               href={`/${locale}/dashboard/menus/${menu.id}/settings`}
               className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center gap-2"
             >
-              <i className="material-symbols-outlined !text-[18px]">settings</i>
+              <IoIosSettings className=" !text-[18px]" />
               {t("settings")}
             </Link>
             {menuSlug && (
@@ -142,7 +144,7 @@ export default function MenuDashboardClient({
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors flex items-center gap-2"
               >
-                <i className="material-symbols-outlined !text-[18px]">open_in_new</i>
+                <IoOpenOutline className=" !text-[18px]" />
                 {t("viewPublic")}
               </a>
             )}
@@ -163,9 +165,7 @@ export default function MenuDashboardClient({
               </p>
             </div>
             <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-              <i className="material-symbols-outlined text-blue-600 dark:text-blue-400 !text-[28px]">
-                restaurant_menu
-              </i>
+              <IoOpenOutline className=" !text-[28px] text-blue-600 dark:text-blue-400" />
             </div>
           </div>
         </div>
@@ -181,9 +181,7 @@ export default function MenuDashboardClient({
               </p>
             </div>
             <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
-              <i className="material-symbols-outlined text-green-600 dark:text-green-400 !text-[28px]">
-                check_circle
-              </i>
+              <IoIosCheckmarkCircle className=" !text-[28px] text-green-600 dark:text-green-400" />
             </div>
           </div>
         </div>
@@ -199,9 +197,7 @@ export default function MenuDashboardClient({
               </p>
             </div>
             <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-              <i className="material-symbols-outlined text-purple-600 dark:text-purple-400 !text-[28px]">
-                category
-              </i>
+              <IoIosList className=" !text-[28px] text-purple-600 dark:text-purple-400" />
             </div>
           </div>
         </div>
@@ -236,7 +232,7 @@ export default function MenuDashboardClient({
                 onClick={handleDownloadQR}
                 className="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors flex items-center gap-2 mx-auto md:mx-0"
               >
-                <i className="material-symbols-outlined">download</i>
+                <IoIosDownload className=" !text-[18px]" />
                 {t("qrCode.download") || "تحميل كصورة"}
               </button>
             </div>
@@ -252,9 +248,7 @@ export default function MenuDashboardClient({
         >
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <i className="material-symbols-outlined text-white !text-[32px]">
-                restaurant_menu
-              </i>
+              <IoOpenOutline className=" !text-[32px] text-white" />
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
@@ -264,9 +258,7 @@ export default function MenuDashboardClient({
                 {t("quickLinks.itemsDesc")}
               </p>
             </div>
-            <i className="material-symbols-outlined text-gray-400 group-hover:text-primary-500 transition-colors">
-              arrow_forward
-            </i>
+            <IoIosArrowForward className=" !text-[28px] text-gray-400 group-hover:text-primary-500 transition-colors" />
           </div>
         </Link>
 
@@ -276,9 +268,7 @@ export default function MenuDashboardClient({
         >
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-              <i className="material-symbols-outlined text-white !text-[32px]">
-                settings
-              </i>
+              <IoIosSettings className=" !text-[32px] text-white" />
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
@@ -288,9 +278,7 @@ export default function MenuDashboardClient({
                 {t("quickLinks.settingsDesc")}
               </p>
             </div>
-            <i className="material-symbols-outlined text-gray-400 group-hover:text-primary-500 transition-colors">
-              arrow_forward
-            </i>
+            <IoIosArrowForward className=" !text-[28px] text-gray-400 group-hover:text-primary-500 transition-colors" />
           </div>
         </Link>
 
@@ -303,9 +291,7 @@ export default function MenuDashboardClient({
           >
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <i className="material-symbols-outlined text-white !text-[32px]">
-                  public
-                </i>
+                <IoOpenOutline className=" !text-[32px] text-white" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
@@ -315,9 +301,7 @@ export default function MenuDashboardClient({
                   {t("quickLinks.previewDesc")}
                 </p>
               </div>
-              <i className="material-symbols-outlined text-gray-400 group-hover:text-primary-500 transition-colors">
-                open_in_new
-              </i>
+              <IoOpenOutline className=" !text-[28px] text-gray-400 group-hover:text-primary-500 transition-colors" />
             </div>
           </a>
         )}
@@ -330,9 +314,7 @@ export default function MenuDashboardClient({
         </h2>
         {recentItems.length === 0 ? (
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 border border-gray-200 dark:border-gray-700 text-center">
-            <i className="material-symbols-outlined text-gray-400 !text-[48px] mb-3">
-              history
-            </i>
+            <IoIosTime className=" !text-[48px] text-gray-400 mb-3" />
             <p className="text-gray-600 dark:text-gray-400">
               {t("recentActivity.noActivity")}
             </p>
@@ -354,21 +336,15 @@ export default function MenuDashboardClient({
                       />
                     ) : (
                       <div
-                        className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                          item.type === "product"
-                            ? "bg-blue-100 dark:bg-blue-900/30"
-                            : "bg-purple-100 dark:bg-purple-900/30"
-                        }`}
+                        className={`w-12 h-12 rounded-lg flex items-center justify-center ${item.type === "product"
+                          ? "bg-blue-100 dark:bg-blue-900/30"
+                          : "bg-purple-100 dark:bg-purple-900/30"
+                          }`}
                       >
-                        <i
-                          className={`material-symbols-outlined ${
-                            item.type === "product"
-                              ? "text-blue-600 dark:text-blue-400"
-                              : "text-purple-600 dark:text-purple-400"
-                          } !text-[24px]`}
-                        >
-                          {item.type === "product" ? "restaurant_menu" : "category"}
-                        </i>
+                        <IoOpenOutline className={` !text-[24px] ${item.type === "product"
+                          ? "text-blue-600 dark:text-blue-400"
+                          : "text-purple-600 dark:text-purple-400"
+                          }`} />
                       </div>
                     )}
                   </div>
@@ -378,11 +354,10 @@ export default function MenuDashboardClient({
                         {locale === "ar" ? item.nameAr : item.nameEn}
                       </h3>
                       <span
-                        className={`text-xs px-2 py-0.5 rounded-full ${
-                          item.type === "product"
-                            ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
-                            : "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
-                        }`}
+                        className={`text-xs px-2 py-0.5 rounded-full ${item.type === "product"
+                          ? "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                          : "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400"
+                          }`}
                       >
                         {item.type === "product"
                           ? t("recentActivity.product")
@@ -402,9 +377,8 @@ export default function MenuDashboardClient({
                     </p>
                   </div>
                   <Link
-                    href={`/${locale}/dashboard/menus/${menu.id}/${
-                      item.type === "product" ? "products" : "categories"
-                    }`}
+                    href={`/${locale}/dashboard/menus/${menu.id}/${item.type === "product" ? "products" : "categories"
+                      }`}
                     className="text-primary-500 hover:text-primary-600 text-sm font-medium"
                   >
                     {t("recentActivity.view")}

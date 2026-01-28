@@ -12,6 +12,7 @@ import {
 import { useProAccess } from "@/hooks/useProAccess";
 
 import { MenuCustomizations } from "@/services/customization.service";
+import { IoArrowBack, IoArrowForward, IoColorPaletteOutline, IoColorFillOutline, IoCheckmarkOutline, IoColorWandOutline, IoTextOutline, IoSaveOutline, IoRefreshOutline, IoEyeOutline, IoRestaurant, IoInformationCircleOutline } from "react-icons/io5";
 
 const DEFAULT_CUSTOMIZATIONS: MenuCustomizations = {
   primaryColor: "#14b8a6",
@@ -208,17 +209,17 @@ export default function CustomizeMenuPage({
             onClick={() => router.back()}
             className="group inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium mb-6 transition-colors"
           >
-            <i className="material-symbols-outlined !text-[20px] group-hover:-translate-x-1 transition-transform">
-              {locale === "ar" ? "arrow_forward" : "arrow_back"}
-            </i>
+            {locale === "ar" ? (
+              <IoArrowForward className="!text-[20px] group-hover:-translate-x-1 transition-transform" />
+            ) : (
+              <IoArrowBack className="!text-[20px] group-hover:-translate-x-1 transition-transform" />
+            )}
             {locale === "ar" ? "رجوع للإعدادات" : "Back to Settings"}
           </button>
 
           <div className="flex items-center gap-4 mb-4">
             <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
-              <i className="material-symbols-outlined text-white !text-[32px]">
-                palette
-              </i>
+              <IoColorPaletteOutline className="text-white !text-[32px]" />
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
@@ -242,9 +243,7 @@ export default function CustomizeMenuPage({
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-gradient-to-br from-teal-100 to-cyan-100 dark:from-teal-900/30 dark:to-cyan-900/30 rounded-xl flex items-center justify-center">
-                  <i className="material-symbols-outlined text-teal-600 dark:text-teal-400 !text-[24px]">
-                    format_color_fill
-                  </i>
+                  <IoColorFillOutline className="text-teal-600 dark:text-teal-400 !text-[24px]" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {locale === "ar" ? "الألوان الجاهزة" : "Color Presets"}
@@ -264,9 +263,7 @@ export default function CustomizeMenuPage({
                     >
                       {isActive && (
                         <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center shadow-lg">
-                          <i className="material-symbols-outlined text-white !text-[16px]">
-                            check
-                          </i>
+                          <IoCheckmarkOutline className="text-white !text-[16px]" />
                         </div>
                       )}
                       <div className="flex items-center gap-2 mb-3">
@@ -294,9 +291,7 @@ export default function CustomizeMenuPage({
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl flex items-center justify-center">
-                  <i className="material-symbols-outlined text-purple-600 dark:text-purple-400 !text-[24px]">
-                    colorize
-                  </i>
+                  <IoColorWandOutline className="text-purple-600 dark:text-purple-400 !text-[24px]" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {locale === "ar" ? "الألوان المخصصة" : "Custom Colors"}
@@ -305,7 +300,7 @@ export default function CustomizeMenuPage({
               <div className="space-y-5">
                 <div>
                   <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                    <i className="material-symbols-outlined !text-[18px]">looks_one</i>
+                    <span className="!text-[18px] font-bold">1</span>
                     {locale === "ar" ? "اللون الأساسي" : "Primary Color"}
                   </label>
                   <div className="flex items-center gap-3">
@@ -340,7 +335,7 @@ export default function CustomizeMenuPage({
                 {!isSkyTemplate && (
                   <div>
                     <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
-                      <i className="material-symbols-outlined !text-[18px]">looks_two</i>
+                      <span className="!text-[18px] font-bold">2</span>
                       {locale === "ar" ? "اللون الثانوي" : "Secondary Color"}
                     </label>
                     <div className="flex items-center gap-3">
@@ -379,9 +374,7 @@ export default function CustomizeMenuPage({
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl flex items-center justify-center">
-                  <i className="material-symbols-outlined text-blue-600 dark:text-blue-400 !text-[24px]">
-                    title
-                  </i>
+                  <IoTextOutline className="text-blue-600 dark:text-blue-400 !text-[24px]" />
                 </div>
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   {locale === "ar" ? "النصوص" : "Texts"}
@@ -483,7 +476,7 @@ export default function CustomizeMenuPage({
                     </>
                   ) : (
                     <>
-                      <i className="material-symbols-outlined !text-[24px]">save</i>
+                      <IoSaveOutline className="!text-[24px]" />
                       {locale === "ar" ? "حفظ التغييرات" : "Save Changes"}
                     </>
                   )}
@@ -493,7 +486,7 @@ export default function CustomizeMenuPage({
                   disabled={deleteMutation.isPending}
                   className="px-6 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition-all flex items-center gap-2 disabled:opacity-50"
                 >
-                  <i className="material-symbols-outlined !text-[20px]">restart_alt</i>
+                  <IoRefreshOutline className="!text-[20px]" />
                   {locale === "ar" ? "إعادة تعيين" : "Reset"}
                 </button>
               </div>
@@ -505,9 +498,7 @@ export default function CustomizeMenuPage({
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
               <div className="bg-gradient-to-r from-teal-500 to-cyan-500 px-6 py-4">
                 <div className="flex items-center gap-3">
-                  <i className="material-symbols-outlined text-white !text-[28px]">
-                    visibility
-                  </i>
+                  <IoEyeOutline className="text-white !text-[28px]" />
                   <h2 className="text-xl font-bold text-white">
                     {locale === "ar" ? "معاينة مباشرة" : "Live Preview"}
                   </h2>
@@ -569,9 +560,7 @@ export default function CustomizeMenuPage({
                           : `linear-gradient(135deg, ${customizations.primaryColor}, ${customizations.secondaryColor})`,
                       }}
                     >
-                      <i className="material-symbols-outlined !text-[20px]">
-                        restaurant_menu
-                      </i>
+                      <IoRestaurant className="!text-[20px]" />
                       {locale === "ar" ? "عنصر من القائمة" : "Menu Item"}
                     </button>
                   </div>
@@ -579,9 +568,7 @@ export default function CustomizeMenuPage({
 
                 <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
                   <div className="flex items-start gap-3">
-                    <i className="material-symbols-outlined text-blue-600 dark:text-blue-400 !text-[20px] mt-0.5">
-                      info
-                    </i>
+                    <IoInformationCircleOutline className="text-blue-600 dark:text-blue-400 !text-[20px] mt-0.5" />
                     <p className="text-xs text-blue-700 dark:text-blue-300">
                       {locale === "ar"
                         ? "المعاينة تحديثية فورية. احفظ التغييرات لتطبيقها على قائمتك."

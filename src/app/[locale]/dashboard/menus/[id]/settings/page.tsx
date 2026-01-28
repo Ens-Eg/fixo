@@ -10,6 +10,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { uploadImage } from "@/services/upload.service";
 import CurrencySelector from "@/components/CurrencySelector";
 import { getMenuSettings, updateMenuSettings, deleteMenu } from "./actions";
+import { IoArrowBack, IoSettings, IoColorPaletteOutline, IoGlobeOutline, IoInformationCircleOutline, IoLanguageOutline, IoDocumentTextOutline, IoNewspaperOutline, IoLinkOutline, IoLockClosedOutline, IoCashOutline, IoToggleOutline, IoCheckmarkCircle, IoCloseCircle, IoImageOutline, IoCloudUploadOutline, IoCloseOutline, IoTrashOutline, IoRestaurant, IoEyeOutline, IoCheckmarkOutline, IoWarningOutline, IoArrowUpOutline, IoStarOutline, IoBulbOutline, IoSparklesOutline, IoShareSocialOutline, IoAddOutline, IoRemoveOutline, IoSaveOutline, IoCallOutline, IoTimeOutline, IoArrowForwardOutline, IoMailOutline, IoHandLeftOutline, IoRefreshOutline, IoPauseCircleOutline } from "react-icons/io5";
 
 export default function MenuSettingsPage({
   params,
@@ -114,7 +115,7 @@ export default function MenuSettingsPage({
       try {
         const result = await getMenuSettings(id, locale);
         const menu = result?.menu;
-        
+
         if (!menu || !menu.id) {
           setNotFoundError(true);
           return;
@@ -174,19 +175,19 @@ export default function MenuSettingsPage({
         setFormData(initialData);
         setOriginalData(initialData);
         setLogoPreview(menu.logo || null);
-        } catch (error: any) {
-          if (error.message?.includes("not found") || error.message?.includes("404")) {
-            setNotFoundError(true);
-          } else {
-            toast.error("حدث خطأ في جلب إعدادات القائمة");
-            setNotFoundError(true);
-          }
-        } finally {
-          setLoading(false);
+      } catch (error: any) {
+        if (error.message?.includes("not found") || error.message?.includes("404")) {
+          setNotFoundError(true);
+        } else {
+          toast.error("حدث خطأ في جلب إعدادات القائمة");
+          setNotFoundError(true);
         }
-      },
-      [id, locale]
-    );
+      } finally {
+        setLoading(false);
+      }
+    },
+    [id, locale]
+  );
 
   // Trigger notFound() when error is detected
   if (notFoundError) {
@@ -257,21 +258,21 @@ export default function MenuSettingsPage({
       try {
         const uploadResponse = await uploadImage(file, "logos");
         const logoUrl = uploadResponse.url || "";
-        
+
         if (!logoUrl) {
           throw new Error("فشل رفع الشعار: لم يتم الحصول على رابط الصورة");
         }
-        
+
         // Update form data
         setFormData((prev) => ({ ...prev, logo: logoUrl }));
         setLogoPreview(logoUrl);
-        
+
         // Save logo to database immediately
         try {
           await updateMenuSettings(id, { logo: logoUrl });
           setOriginalData((prev) => ({ ...prev, logo: logoUrl }));
           toast.success(t("messages.logoUploaded"));
-          
+
           // Refresh to show updated data
           router.refresh();
         } catch (saveError: any) {
@@ -286,7 +287,7 @@ export default function MenuSettingsPage({
         console.error("Error uploading logo:", error);
         const errorMessage = error?.message || error?.error || t("messages.logoUploadFailed");
         toast.error(
-          locale === "ar" 
+          locale === "ar"
             ? errorMessage || "فشل رفع الشعار"
             : errorMessage || "Failed to upload logo"
         );
@@ -305,7 +306,7 @@ export default function MenuSettingsPage({
       setOriginalData((prev) => ({ ...prev, logo: "" }));
       setLogoPreview(null);
       toast.success(t("messages.logoRemoved"));
-      
+
       // Refresh to show updated data
       router.refresh();
     } catch (error: any) {
@@ -359,7 +360,7 @@ export default function MenuSettingsPage({
         updates.workingHours = formData.workingHours;
       }
 
-    
+
 
       setSaving(true);
 
@@ -368,12 +369,12 @@ export default function MenuSettingsPage({
 
         toast.success(t("saveSuccess"));
         setOriginalData({ ...formData });
-        
+
         // إذا تغيرت الـ currency، invalidate الـ cache
         if (updates.currency) {
           queryClient.invalidateQueries({ queryKey: ["menu-data", Number(id)] });
         }
-        
+
         router.refresh(); // Refresh to show updated data
         // Stay on settings page instead of redirecting
         // router.push(`/${locale}/dashboard/menus/${id}`);
@@ -478,7 +479,7 @@ export default function MenuSettingsPage({
             onClick={() => router.push(`/${locale}/dashboard/menus`)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
           >
-            <i className="material-symbols-outlined">arrow_back</i>
+            <IoArrowBack />
           </button>
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
@@ -497,13 +498,12 @@ export default function MenuSettingsPage({
           <button
             type="button"
             onClick={() => setActiveTab("general")}
-            className={`flex-1 px-6 py-4 font-semibold text-base transition-all flex items-center justify-center gap-2 ${
-              activeTab === "general"
+            className={`flex-1 px-6 py-4 font-semibold text-base transition-all flex items-center justify-center gap-2 ${activeTab === "general"
                 ? "bg-primary-500 text-white shadow-lg"
                 : "bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-            }`}
+              }`}
           >
-            <i className="material-symbols-outlined !text-[24px]">settings</i>
+            <IoSettings className="!text-[24px]" />
             <span>
               {" "}
               {locale === "ar" ? "الإعدادات العامة" : "General Settings"}
@@ -512,46 +512,37 @@ export default function MenuSettingsPage({
           <button
             type="button"
             onClick={() => setActiveTab("appearance")}
-            className={`flex-1 px-6 py-4 font-semibold text-base transition-all flex items-center justify-center gap-2 ${
-              activeTab === "appearance"
+            className={`flex-1 px-6 py-4 font-semibold text-base transition-all flex items-center justify-center gap-2 ${activeTab === "appearance"
                 ? "bg-primary-500 text-white shadow-lg"
                 : "bg-gray-50 dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-            }`}
+              }`}
           >
-            <i className="material-symbols-outlined !text-[24px]">palette</i>
+            <IoColorPaletteOutline className="!text-[24px]" />
             <span>{t("tabs.appearance")}</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab("footer")}
-            className={`flex-1 px-6 py-4 font-bold text-base transition-all duration-300 flex items-center justify-center gap-3 relative overflow-hidden group ${
-              activeTab === "footer"
+            className={`flex-1 px-6 py-4 font-bold text-base transition-all duration-300 flex items-center justify-center gap-3 relative overflow-hidden group ${activeTab === "footer"
                 ? "bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white shadow-2xl scale-105 border-2 border-amber-400"
                 : "bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-700 dark:text-gray-300 hover:from-amber-50 hover:via-orange-50 hover:to-amber-50 dark:hover:from-amber-900/20 dark:hover:via-orange-900/20 dark:hover:to-amber-900/20 hover:shadow-lg border-2 border-transparent hover:border-amber-300 dark:hover:border-amber-700"
-            }`}
+              }`}
           >
             {/* Background Animation */}
             <div
-              className={`absolute inset-0 ${
-                activeTab === "footer" ? "opacity-20" : "opacity-0"
-              } transition-opacity duration-300`}
+              className={`absolute inset-0 ${activeTab === "footer" ? "opacity-20" : "opacity-0"
+                } transition-opacity duration-300`}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-shimmer"></div>
             </div>
 
             {/* Icon with special effect */}
             <div
-              className={`relative ${
-                activeTab === "footer" ? "animate-bounce-slow" : ""
-              }`}
-            >
-              <i
-                className={`material-symbols-outlined !text-[28px] ${
-                  activeTab === "footer" ? "drop-shadow-lg" : ""
+              className={`relative ${activeTab === "footer" ? "animate-bounce-slow" : ""
                 }`}
-              >
-                web
-              </i>
+            >
+
+              <IoGlobeOutline className="!text-[28px]" />
               {activeTab === "footer" && (
                 <span className="absolute -top-1 -right-1 flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -562,9 +553,8 @@ export default function MenuSettingsPage({
 
             {/* Text with gradient on hover */}
             <span
-              className={`relative ${
-                activeTab === "footer" ? "drop-shadow-md" : ""
-              }`}
+              className={`relative ${activeTab === "footer" ? "drop-shadow-md" : ""
+                }`}
             >
               {locale === "ar" ? "إعدادات الميديا" : "Media Settings"}
             </span>
@@ -591,9 +581,7 @@ export default function MenuSettingsPage({
             {/* General Settings */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-primary-500">
-                  info
-                </i>
+                <IoInformationCircleOutline className="text-primary-500" />
                 {t("sections.general")}
               </h2>
 
@@ -601,9 +589,7 @@ export default function MenuSettingsPage({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                      <i className="material-symbols-outlined !text-[18px] text-primary-500">
-                        language
-                      </i>
+                      <IoLanguageOutline className="!text-[18px] text-primary-500" />
                       {t("fields.nameEn")}
                     </label>
                     <input
@@ -619,9 +605,7 @@ export default function MenuSettingsPage({
 
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                      <i className="material-symbols-outlined !text-[18px] text-primary-500">
-                        translate
-                      </i>
+                      <IoLanguageOutline className="!text-[18px] text-primary-500" />
                       {t("fields.nameAr")}
                     </label>
                     <input
@@ -639,9 +623,7 @@ export default function MenuSettingsPage({
 
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                    <i className="material-symbols-outlined !text-[18px] text-primary-500">
-                      description
-                    </i>
+                    <IoDocumentTextOutline className="!text-[18px] text-primary-500" />
                     {t("fields.descriptionEn")}
                   </label>
                   <textarea
@@ -660,9 +642,7 @@ export default function MenuSettingsPage({
 
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                    <i className="material-symbols-outlined !text-[18px] text-primary-500">
-                      article
-                    </i>
+                    <IoNewspaperOutline className="!text-[18px] text-primary-500" />
                     {t("fields.descriptionAr")}
                   </label>
                   <textarea
@@ -682,9 +662,7 @@ export default function MenuSettingsPage({
 
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                    <i className="material-symbols-outlined !text-[18px] text-blue-500">
-                      link
-                    </i>
+                    <IoLinkOutline className="!text-[18px] text-blue-500" />
                     {t("fields.slug")}
                   </label>
                   <div className="relative">
@@ -694,15 +672,11 @@ export default function MenuSettingsPage({
                       className="form-input pl-12 cursor-not-allowed"
                       disabled
                     />
-                    <i className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 !text-[20px]">
-                      lock
-                    </i>
+                    <IoLockClosedOutline className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 !text-[20px]" />
                   </div>
                   <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
                     <p className="text-xs text-blue-700 dark:text-blue-300 flex items-center gap-2">
-                      <i className="material-symbols-outlined !text-[16px]">
-                        info
-                      </i>
+                      <IoInformationCircleOutline className="!text-[16px]" />
                       {t("fields.slugHint")} - لا يمكن تغيير الرابط بعد الإنشاء
                     </p>
                   </div>
@@ -713,9 +687,7 @@ export default function MenuSettingsPage({
             {/* Currency Settings */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-green-500">
-                  payments
-                </i>
+                <IoCashOutline className="text-green-500" />
                 {t("sections.currency")}
               </h2>
 
@@ -741,9 +713,7 @@ export default function MenuSettingsPage({
 
                 <div className="mt-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
                   <div className="flex items-start gap-3">
-                    <i className="material-symbols-outlined text-blue-500 !text-[24px] mt-0.5">
-                      info
-                    </i>
+                    <IoInformationCircleOutline className="text-blue-500 !text-[24px] mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-1">
                         {t("tips.note")}
@@ -762,9 +732,7 @@ export default function MenuSettingsPage({
             {/* Status Settings */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-green-500">
-                  toggle_on
-                </i>
+                <IoToggleOutline className="text-green-500" />
                 {t("sections.status")}
               </h2>
 
@@ -784,9 +752,11 @@ export default function MenuSettingsPage({
                       htmlFor="isActive"
                       className="text-base font-semibold text-gray-900 dark:text-white cursor-pointer flex items-center gap-2"
                     >
-                      <i className="material-symbols-outlined !text-[20px] text-green-500">
-                        {formData.isActive ? "check_circle" : "cancel"}
-                      </i>
+                      {formData.isActive ? (
+                        <IoCheckmarkCircle className="!text-[20px] text-green-500" />
+                      ) : (
+                        <IoCloseCircle className="!text-[20px] text-green-500" />
+                      )}
                       {t("fields.isActive")}
                     </label>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -795,9 +765,7 @@ export default function MenuSettingsPage({
                     {!formData.isActive && (
                       <div className="mt-2 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-2">
                         <p className="text-xs text-amber-700 dark:text-amber-300 flex items-center gap-1">
-                          <i className="material-symbols-outlined !text-[14px]">
-                            warning
-                          </i>
+                          <IoWarningOutline className="!text-[14px]" />
                           القائمة غير مرئية للعملاء حالياً
                         </p>
                       </div>
@@ -810,7 +778,7 @@ export default function MenuSettingsPage({
             {/* Favicon/Logo Section */}
             <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-blue-500">image</i>
+                <IoImageOutline className="text-blue-500" />
                 {locale === "ar"
                   ? "شعار القائمة (Favicon)"
                   : "Menu Logo (Favicon)"}
@@ -821,9 +789,7 @@ export default function MenuSettingsPage({
                 <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20 rounded-xl p-6 border-2 border-amber-300 dark:border-amber-700">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <i className="material-symbols-outlined text-white !text-[28px]">
-                        lock
-                      </i>
+                      <IoLockClosedOutline className="text-white !text-[28px]" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-amber-900 dark:text-amber-400 mb-2">
@@ -845,9 +811,7 @@ export default function MenuSettingsPage({
                         }
                         className="px-6 py-3 bg-amber-600 text-white rounded-xl hover:bg-amber-700 transition-all shadow-md hover:shadow-lg flex items-center gap-2 font-semibold"
                       >
-                        <i className="material-symbols-outlined !text-[20px]">
-                          upgrade
-                        </i>
+                        <IoArrowUpOutline className="!text-[20px]" />
                         {t("buttons.upgradePlan")}
                       </button>
                     </div>
@@ -880,9 +844,7 @@ export default function MenuSettingsPage({
                         onClick={handleRemoveLogo}
                         className="px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors flex items-center gap-2 text-sm font-semibold"
                       >
-                        <i className="material-symbols-outlined !text-[18px]">
-                          delete
-                        </i>
+                        <IoTrashOutline className="!text-[18px]" />
                         {t("buttons.remove")}
                       </button>
                     </div>
@@ -900,11 +862,10 @@ export default function MenuSettingsPage({
                     />
                     <label
                       htmlFor="logo-upload"
-                      className={`flex items-center justify-center gap-3 px-6 py-4 border-2 border-dashed rounded-xl transition-all cursor-pointer ${
-                        uploadingLogo
+                      className={`flex items-center justify-center gap-3 px-6 py-4 border-2 border-dashed rounded-xl transition-all cursor-pointer ${uploadingLogo
                           ? "border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 cursor-not-allowed"
                           : "border-primary-300 dark:border-primary-700 hover:border-primary-500 dark:hover:border-primary-500 bg-primary-50 dark:bg-primary-900/20 hover:bg-primary-100 dark:hover:bg-primary-900/30"
-                      }`}
+                        }`}
                     >
                       {uploadingLogo ? (
                         <>
@@ -915,17 +876,15 @@ export default function MenuSettingsPage({
                         </>
                       ) : (
                         <>
-                          <i className="material-symbols-outlined text-primary-500 !text-[28px]">
-                            upload
-                          </i>
+                          <IoCloudUploadOutline className="text-primary-500 !text-[28px]" />
                           <span className="text-primary-700 dark:text-primary-300 font-semibold">
                             {logoPreview
                               ? locale === "ar"
                                 ? "تغيير الشعار"
                                 : "Change Logo"
                               : locale === "ar"
-                              ? "رفع شعار"
-                              : "Upload Logo"}
+                                ? "رفع شعار"
+                                : "Upload Logo"}
                           </span>
                         </>
                       )}
@@ -935,9 +894,7 @@ export default function MenuSettingsPage({
                   {/* Info Box */}
                   <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
                     <div className="flex items-start gap-3">
-                      <i className="material-symbols-outlined text-blue-500 !text-[24px] mt-0.5">
-                        info
-                      </i>
+                      <IoInformationCircleOutline className="text-blue-500 !text-[24px] mt-0.5" />
                       <div className="flex-1">
                         <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-2">
                           {t("tips.titlePlural")}
@@ -975,9 +932,7 @@ export default function MenuSettingsPage({
             <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 rounded-xl p-6 border-2 border-red-300 dark:border-red-700 shadow-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <i className="material-symbols-outlined text-white !text-[28px]">
-                    warning
-                  </i>
+                  <IoWarningOutline className="text-white !text-[28px]" />
                 </div>
                 <div className="flex-1">
                   <h2 className="text-xl font-bold text-red-900 dark:text-red-400 mb-2 flex items-center gap-2">
@@ -991,9 +946,7 @@ export default function MenuSettingsPage({
                     onClick={handleDeleteClick}
                     className="px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all shadow-md hover:shadow-lg flex items-center gap-2 font-semibold"
                   >
-                    <i className="material-symbols-outlined !text-[20px]">
-                      delete
-                    </i>
+                    <IoTrashOutline className="!text-[20px]" />
                     {t("dangerZone.deleteButton")}
                   </button>
                 </div>
@@ -1009,9 +962,7 @@ export default function MenuSettingsPage({
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
-                  <i className="material-symbols-outlined text-white !text-[28px]">
-                    palette
-                  </i>
+                  <IoColorPaletteOutline className="text-white !text-[28px]" />
                 </div>
                 <div>
                   <h2 className="text-2xl font-black text-gray-900 dark:text-white">
@@ -1028,15 +979,14 @@ export default function MenuSettingsPage({
               {templates.map((template) => {
                 const isSelected = formData.theme === template.id;
                 const isPremium = template.id === "neon" || template.id === "sky";
-                
+
                 return (
                   <div
                     key={template.id}
-                    className={`relative group rounded-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 ${
-                      isSelected
+                    className={`relative group rounded-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-2 ${isSelected
                         ? "shadow-2xl shadow-primary-500/30 ring-4 ring-primary-500 scale-[1.02]"
                         : "shadow-lg hover:shadow-2xl"
-                    }`}
+                      }`}
                   >
                     {/* Main Card */}
                     <div className="bg-white dark:bg-gray-900 h-full flex flex-col">
@@ -1049,7 +999,7 @@ export default function MenuSettingsPage({
                             <div className="h-4 bg-gradient-to-r from-primary-300 to-primary-400 dark:from-primary-600 dark:to-primary-700 rounded-lg w-3/4 mb-2 animate-pulse"></div>
                             <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
                           </div>
-                          
+
                           {/* Mockup Content based on template */}
                           {template.id === "default" && (
                             <div className="grid grid-cols-3 gap-2.5 flex-1">
@@ -1086,11 +1036,10 @@ export default function MenuSettingsPage({
                               {[...Array(4)].map((_, i) => (
                                 <div
                                   key={i}
-                                  className={`rounded-lg shadow-lg transition-all ${
-                                    template.id === "neon"
+                                  className={`rounded-lg shadow-lg transition-all ${template.id === "neon"
                                       ? "bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-2 border-purple-400/30"
                                       : "bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border-2 border-blue-400/30"
-                                  }`}
+                                    }`}
                                 ></div>
                               ))}
                             </div>
@@ -1102,19 +1051,15 @@ export default function MenuSettingsPage({
                           {/* Premium Badge */}
                           {isPremium && (
                             <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
-                              <i className="material-symbols-outlined !text-[14px]">
-                                workspace_premium
-                              </i>
+                              <IoStarOutline className="!text-[14px]" />
                               {locale === "ar" ? "مميز" : "Premium"}
                             </div>
                           )}
-                          
+
                           {/* Selected Badge */}
                           {isSelected && (
                             <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg ml-auto">
-                              <i className="material-symbols-outlined !text-[14px]">
-                                check_circle
-                              </i>
+                              <IoCheckmarkCircle className="!text-[14px]" />
                               {locale === "ar" ? "محدد" : "Selected"}
                             </div>
                           )}
@@ -1122,11 +1067,10 @@ export default function MenuSettingsPage({
 
                         {/* Hover Overlay with Quick Actions */}
                         <div
-                          className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent backdrop-blur-[2px] transition-all duration-300 flex items-end justify-center pb-6 ${
-                            isSelected
+                          className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent backdrop-blur-[2px] transition-all duration-300 flex items-end justify-center pb-6 ${isSelected
                               ? "opacity-100"
                               : "opacity-0 group-hover:opacity-100"
-                          }`}
+                            }`}
                         >
                           <button
                             type="button"
@@ -1148,9 +1092,7 @@ export default function MenuSettingsPage({
                             }}
                             className="px-6 py-2.5 bg-white/95 hover:bg-white text-gray-900 rounded-full font-bold transition-all shadow-xl hover:shadow-2xl flex items-center gap-2 hover:scale-110 backdrop-blur-sm"
                           >
-                            <i className="material-symbols-outlined !text-[20px]">
-                              visibility
-                            </i>
+                            <IoEyeOutline className="!text-[20px]" />
                             {locale === "ar" ? "معاينة سريعة" : "Quick Preview"}
                           </button>
                         </div>
@@ -1163,9 +1105,7 @@ export default function MenuSettingsPage({
                           <h3 className="font-black text-xl text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                             {locale === "ar" ? template.nameAr : template.name}
                             {isPremium && (
-                              <i className="material-symbols-outlined text-amber-500 !text-[18px]">
-                                stars
-                              </i>
+                              <IoStarOutline className="text-amber-500 !text-[18px]" />
                             )}
                           </h3>
                           <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -1181,21 +1121,21 @@ export default function MenuSettingsPage({
                           <button
                             onClick={async (e) => {
                               e.stopPropagation();
-                              
+
                               // If already selected, do nothing
                               if (isSelected) return;
-                              
+
                               // Set saving state
                               setSavingTemplate(template.id);
-                              
+
                               try {
                                 // Save template immediately
                                 await updateMenuSettings(id, { theme: template.id });
-                                
+
                                 // Update form data and original data
                                 setFormData((prev) => ({ ...prev, theme: template.id }));
                                 setOriginalData((prev) => ({ ...prev, theme: template.id }));
-                                
+
                                 // Show success message
                                 toast.success(
                                   locale === "ar"
@@ -1206,7 +1146,7 @@ export default function MenuSettingsPage({
                                     duration: 3000,
                                   }
                                 );
-                                
+
                                 // Refresh to show updated data
                                 router.refresh();
                               } catch (error: any) {
@@ -1224,13 +1164,12 @@ export default function MenuSettingsPage({
                               }
                             }}
                             disabled={isSelected || savingTemplate !== null}
-                            className={`w-full py-3.5 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02] ${
-                              isSelected
+                            className={`w-full py-3.5 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02] ${isSelected
                                 ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white cursor-default"
                                 : savingTemplate === template.id
-                                ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white cursor-wait"
-                                : "bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white"
-                            }`}
+                                  ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white cursor-wait"
+                                  : "bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 text-white"
+                              }`}
                           >
                             {savingTemplate === template.id ? (
                               <>
@@ -1239,9 +1178,11 @@ export default function MenuSettingsPage({
                               </>
                             ) : (
                               <>
-                                <i className="material-symbols-outlined !text-[22px]">
-                                  {isSelected ? "check_circle" : "touch_app"}
-                                </i>
+                                {isSelected ? (
+                                  <IoCheckmarkCircle className="!text-[22px]" />
+                                ) : (
+                                  <IoHandLeftOutline className="!text-[22px]" />
+                                )}
                                 {isSelected
                                   ? (locale === "ar" ? "محدد حالياً" : "Currently Selected")
                                   : (locale === "ar" ? "اختر هذا القالب" : "Select This Template")}
@@ -1272,9 +1213,7 @@ export default function MenuSettingsPage({
                               }}
                               className="flex-1 py-2.5 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 border border-blue-200 dark:border-blue-800"
                             >
-                              <i className="material-symbols-outlined !text-[18px]">
-                                visibility
-                              </i>
+                              <IoEyeOutline className="!text-[18px]" />
                               {locale === "ar" ? "معاينة" : "Preview"}
                             </button>
 
@@ -1301,9 +1240,7 @@ export default function MenuSettingsPage({
                                 }}
                                 className="flex-1 py-2.5 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20 text-teal-600 dark:text-teal-400 hover:from-teal-100 hover:to-cyan-100 dark:hover:from-teal-900/30 dark:hover:to-cyan-900/30 border border-teal-200 dark:border-teal-800"
                               >
-                                <i className="material-symbols-outlined !text-[18px]">
-                                  tune
-                                </i>
+                                <IoSettings className="!text-[18px]" />
                                 {locale === "ar" ? "تخصيص" : "Customize"}
                               </button>
                             )}
@@ -1320,22 +1257,16 @@ export default function MenuSettingsPage({
             <div className="mt-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-2xl p-6 shadow-lg">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center shadow-lg shrink-0">
-                  <i className="material-symbols-outlined text-white !text-[26px]">
-                    lightbulb
-                  </i>
+                  <IoBulbOutline className="text-white !text-[26px]" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-bold text-lg text-blue-900 dark:text-blue-300 mb-2 flex items-center gap-2">
                     {locale === "ar" ? "نصائح مفيدة" : "Helpful Tips"}
-                    <i className="material-symbols-outlined text-yellow-500 !text-[20px]">
-                      auto_awesome
-                    </i>
+                    <IoSparklesOutline className="text-yellow-500 !text-[20px]" />
                   </h4>
                   <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-400">
                     <li className="flex items-start gap-2">
-                      <i className="material-symbols-outlined !text-[18px] mt-0.5 text-blue-600 dark:text-blue-500">
-                        check_circle
-                      </i>
+                      <IoCheckmarkCircle className="!text-[18px] mt-0.5 text-blue-600 dark:text-blue-500" />
                       <span>
                         {locale === "ar"
                           ? "اضغط على 'معاينة سريعة' لرؤية القالب بشكل كامل قبل التطبيق"
@@ -1343,9 +1274,7 @@ export default function MenuSettingsPage({
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <i className="material-symbols-outlined !text-[18px] mt-0.5 text-blue-600 dark:text-blue-500">
-                        check_circle
-                      </i>
+                      <IoCheckmarkCircle className="!text-[18px] mt-0.5 text-blue-600 dark:text-blue-500" />
                       <span>
                         {locale === "ar"
                           ? "القوالب المميزة توفر خيارات تخصيص متقدمة للمشتركين"
@@ -1353,9 +1282,7 @@ export default function MenuSettingsPage({
                       </span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <i className="material-symbols-outlined !text-[18px] mt-0.5 text-blue-600 dark:text-blue-500">
-                        check_circle
-                      </i>
+                      <IoCheckmarkCircle className="!text-[18px] mt-0.5 text-blue-600 dark:text-blue-500" />
                       <span>
                         {locale === "ar"
                           ? "لا تنسَ حفظ التغييرات بعد اختيار القالب المناسب"
@@ -1397,9 +1324,7 @@ export default function MenuSettingsPage({
                     </>
                   ) : (
                     <>
-                      <i className="material-symbols-outlined !text-[20px]">
-                        save
-                      </i>
+                      <IoSaveOutline className="!text-[20px]" />
                       {t("buttons.saveChanges")}
                     </>
                   )}
@@ -1426,9 +1351,7 @@ export default function MenuSettingsPage({
                   {/* Lock Icon with animation */}
                   <div className="relative mb-6">
                     <div className="w-24 h-24 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center shadow-2xl animate-bounce-slow">
-                      <i className="material-symbols-outlined text-white !text-[56px] drop-shadow-lg">
-                        lock
-                      </i>
+                      <IoLockClosedOutline className="text-white !text-[56px] drop-shadow-lg" />
                     </div>
                     {/* Glow effect */}
                     <div className="absolute inset-0 bg-amber-400 rounded-full blur-xl opacity-50 animate-pulse"></div>
@@ -1463,28 +1386,28 @@ export default function MenuSettingsPage({
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 text-left max-w-2xl">
                     {[
                       {
-                        icon: "image",
+                        icon: <IoImageOutline className="text-white !text-[20px]" />,
                         text:
                           locale === "ar"
                             ? "شعار مخصص للفوتر"
                             : "Custom Footer Logo",
                       },
                       {
-                        icon: "description",
+                        icon: <IoDocumentTextOutline className="text-white !text-[20px]" />,
                         text:
                           locale === "ar"
                             ? "وصف متعدد اللغات"
                             : "Multi-language Description",
                       },
                       {
-                        icon: "share",
+                        icon: <IoShareSocialOutline className="text-white !text-[20px]" />,
                         text:
                           locale === "ar"
                             ? "روابط السوشيال ميديا"
                             : "Social Media Links",
                       },
                       {
-                        icon: "verified",
+                        icon: <IoCheckmarkCircle className="text-white !text-[20px]" />,
                         text:
                           locale === "ar"
                             ? "مظهر احترافي"
@@ -1496,9 +1419,7 @@ export default function MenuSettingsPage({
                         className="flex items-center gap-3 bg-white/60 dark:bg-gray-800/60 rounded-xl px-4 py-3 shadow-md backdrop-blur-sm border border-amber-200 dark:border-amber-700"
                       >
                         <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-                          <i className="material-symbols-outlined text-white !text-[20px]">
-                            {feature.icon}
-                          </i>
+                          {feature.icon}
                         </div>
                         <span className="text-amber-900 dark:text-amber-100 font-semibold">
                           {feature.text}
@@ -1521,9 +1442,7 @@ export default function MenuSettingsPage({
                       {/* Button shine effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
 
-                      <i className="material-symbols-outlined !text-[32px] relative z-10 animate-bounce-slow">
-                        upgrade
-                      </i>
+                      <IoArrowUpOutline className="!text-[32px] relative z-10 animate-bounce-slow" />
                       <span className="relative z-10">
                         {locale === "ar" ? "ترقية الآن 🚀" : "Upgrade Now 🚀"}
                       </span>
@@ -1532,9 +1451,7 @@ export default function MenuSettingsPage({
 
                   {/* Small note */}
                   <p className="mt-6 text-sm text-amber-700 dark:text-amber-300 flex items-center gap-2">
-                    <i className="material-symbols-outlined !text-[16px]">
-                      info
-                    </i>
+                    <IoInformationCircleOutline className="!text-[16px]" />
                     {locale === "ar"
                       ? "ابدأ الآن بخطة Pro بأسعار تنافسية"
                       : "Start now with Pro plan at competitive prices"}
@@ -1544,14 +1461,11 @@ export default function MenuSettingsPage({
             )}
 
             <div
-              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${
-                !isPremiumUser ? "opacity-60 pointer-events-none" : ""
-              }`}
+              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${!isPremiumUser ? "opacity-60 pointer-events-none" : ""
+                }`}
             >
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-primary-500">
-                  web
-                </i>
+                <IoGlobeOutline className="text-primary-500" />
                 {locale === "ar" ? "إعدادات الميديا" : "Media Settings"}
                 <span className="text-xs bg-amber-500 text-white px-2 py-1 rounded-full font-bold ml-2">
                   PRO
@@ -1561,12 +1475,11 @@ export default function MenuSettingsPage({
 
             {/* Social Media Links */}
             <div
-              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${
-                !isPremiumUser ? "opacity-60 pointer-events-none" : ""
-              }`}
+              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${!isPremiumUser ? "opacity-60 pointer-events-none" : ""
+                }`}
             >
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-blue-500">share</i>
+                <IoShareSocialOutline className="text-blue-500" />
                 {locale === "ar"
                   ? "روابط التواصل الاجتماعي"
                   : "Social Media Links"}
@@ -1666,9 +1579,7 @@ export default function MenuSettingsPage({
 
               <div className="mt-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
                 <div className="flex items-start gap-3">
-                  <i className="material-symbols-outlined text-blue-500 !text-[24px] mt-0.5">
-                    info
-                  </i>
+                  <IoInformationCircleOutline className="text-blue-500 !text-[24px] mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-1">
                       {locale === "ar" ? "ملاحظة" : "Note"}
@@ -1685,14 +1596,11 @@ export default function MenuSettingsPage({
 
             {/* Contact Information */}
             <div
-              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${
-                !isPremiumUser ? "opacity-60 pointer-events-none" : ""
-              }`}
+              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${!isPremiumUser ? "opacity-60 pointer-events-none" : ""
+                }`}
             >
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-blue-500">
-                  contact_mail
-                </i>
+                <IoMailOutline className="text-blue-500" />
                 {locale === "ar" ? "معلومات التواصل" : "Contact Information"}
               </h2>
 
@@ -1700,9 +1608,7 @@ export default function MenuSettingsPage({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                      <i className="material-symbols-outlined !text-[18px] text-primary-500">
-                        language
-                      </i>
+                      <IoLanguageOutline className="!text-[18px] text-primary-500" />
                       {locale === "ar"
                         ? "العنوان (إنجليزي)"
                         : "Address (English)"}
@@ -1721,9 +1627,7 @@ export default function MenuSettingsPage({
 
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                      <i className="material-symbols-outlined !text-[18px] text-primary-500">
-                        translate
-                      </i>
+                      <IoLanguageOutline className="!text-[18px] text-primary-500" />
                       {locale === "ar" ? "العنوان (عربي)" : "Address (Arabic)"}
                     </label>
                     <input
@@ -1742,9 +1646,7 @@ export default function MenuSettingsPage({
 
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                    <i className="material-symbols-outlined !text-[18px] text-primary-500">
-                      phone
-                    </i>
+                    <IoCallOutline className="!text-[18px] text-primary-500" />
                     {locale === "ar" ? "رقم الهاتف" : "Phone Number"}
                   </label>
                   <input
@@ -1769,14 +1671,11 @@ export default function MenuSettingsPage({
 
             {/* Working Hours */}
             <div
-              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${
-                !isPremiumUser ? "opacity-60 pointer-events-none" : ""
-              }`}
+              className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700 ${!isPremiumUser ? "opacity-60 pointer-events-none" : ""
+                }`}
             >
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <i className="material-symbols-outlined text-purple-500">
-                  schedule
-                </i>
+                <IoTimeOutline className="text-purple-500" />
                 {locale === "ar" ? "مواعيد العمل" : "Working Hours"}
               </h2>
 
@@ -1829,7 +1728,7 @@ export default function MenuSettingsPage({
                             day.key as keyof typeof formData.workingHours
                           ] = {
                             ...newWorkingHours[
-                              day.key as keyof typeof formData.workingHours
+                            day.key as keyof typeof formData.workingHours
                             ],
                             closed: !e.target.checked,
                           };
@@ -1865,7 +1764,7 @@ export default function MenuSettingsPage({
                                 day.key as keyof typeof formData.workingHours
                               ] = {
                                 ...newWorkingHours[
-                                  day.key as keyof typeof formData.workingHours
+                                day.key as keyof typeof formData.workingHours
                                 ],
                                 open: e.target.value,
                               };
@@ -1881,9 +1780,7 @@ export default function MenuSettingsPage({
                             {locale === "ar" ? "من" : "From"}
                           </p>
                         </div>
-                        <i className="material-symbols-outlined text-gray-400">
-                          arrow_forward
-                        </i>
+                        <IoArrowForwardOutline className="text-gray-400" />
                         <div className="flex-1">
                           <input
                             type="time"
@@ -1900,7 +1797,7 @@ export default function MenuSettingsPage({
                                 day.key as keyof typeof formData.workingHours
                               ] = {
                                 ...newWorkingHours[
-                                  day.key as keyof typeof formData.workingHours
+                                day.key as keyof typeof formData.workingHours
                                 ],
                                 close: e.target.value,
                               };
@@ -1928,9 +1825,7 @@ export default function MenuSettingsPage({
 
               <div className="mt-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
                 <div className="flex items-start gap-3">
-                  <i className="material-symbols-outlined text-blue-500 !text-[24px] mt-0.5">
-                    info
-                  </i>
+                  <IoInformationCircleOutline className="text-blue-500 !text-[24px] mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-blue-900 dark:text-blue-300 mb-1">
                       {locale === "ar" ? "ملاحظة" : "Note"}
@@ -1962,7 +1857,7 @@ export default function MenuSettingsPage({
                 </>
               ) : (
                 <>
-                  <i className="material-symbols-outlined !text-[24px]">save</i>
+                  <IoSaveOutline className="!text-[24px]" />
                   {t("buttons.save")}
                 </>
               )}
@@ -1972,7 +1867,7 @@ export default function MenuSettingsPage({
               onClick={() => router.push(`/${locale}/dashboard/menus/${id}`)}
               className="px-8 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-semibold text-lg flex items-center justify-center gap-2"
             >
-              <i className="material-symbols-outlined !text-[24px]">close</i>
+              <IoCloseOutline className="!text-[24px]" />
               {t("buttons.cancel")}
             </button>
           </div>
@@ -1986,9 +1881,7 @@ export default function MenuSettingsPage({
             {/* Header */}
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                <i className="material-symbols-outlined text-red-600 dark:text-red-400 !text-[32px]">
-                  warning
-                </i>
+                <IoWarningOutline className="text-red-600 dark:text-red-400 !text-[32px]" />
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
@@ -2095,9 +1988,7 @@ export default function MenuSettingsPage({
                   </>
                 ) : (
                   <>
-                    <i className="material-symbols-outlined !text-[20px]">
-                      delete_forever
-                    </i>
+                    <IoTrashOutline className="!text-[20px]" />
                     {t("buttons.deleteForever")}
                   </>
                 )}
@@ -2119,9 +2010,7 @@ export default function MenuSettingsPage({
               <div className="relative flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
-                    <i className="material-symbols-outlined text-white !text-[32px]">
-                      visibility
-                    </i>
+                    <IoEyeOutline className="text-white !text-[32px]" />
                   </div>
                   <div className="flex-1">
                     <h2 className="text-2xl md:text-3xl font-black text-white mb-1 drop-shadow-lg">
@@ -2131,11 +2020,11 @@ export default function MenuSettingsPage({
                       <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-semibold">
                         {locale === "ar"
                           ? templates.find(
-                              (t) => t.id === previewModal.templateId
-                            )?.nameAr
+                            (t) => t.id === previewModal.templateId
+                          )?.nameAr
                           : templates.find(
-                              (t) => t.id === previewModal.templateId
-                            )?.name}
+                            (t) => t.id === previewModal.templateId
+                          )?.name}
                       </span>
                       <button
                         type="button"
@@ -2150,9 +2039,7 @@ export default function MenuSettingsPage({
                         className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-semibold hover:bg-white/30 transition-all flex items-center gap-1"
                         title={locale === "ar" ? "إعادة تحميل" : "Reload"}
                       >
-                        <i className="material-symbols-outlined !text-[16px]">
-                          refresh
-                        </i>
+                        <IoRefreshOutline className="!text-[16px]" />
                         {locale === "ar" ? "تحديث" : "Reload"}
                       </button>
                     </div>
@@ -2166,9 +2053,7 @@ export default function MenuSettingsPage({
                   }}
                   className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm hover:bg-white/20 flex items-center justify-center transition-all hover:scale-110 shadow-lg"
                 >
-                  <i className="material-symbols-outlined text-white !text-[24px]">
-                    close
-                  </i>
+                  <IoCloseOutline className="text-white !text-[24px]" />
                 </button>
               </div>
             </div>
@@ -2213,9 +2098,8 @@ export default function MenuSettingsPage({
                     typeof window !== "undefined" ? window.location.origin : "";
 
                   // Build URL with current host to maintain subdomain
-                  const iframeUrl = `${origin}/${locale}/menu/${menuSlug}?preview=true&theme=${
-                    previewModal.templateId
-                  }&_t=${Date.now()}`;
+                  const iframeUrl = `${origin}/${locale}/menu/${menuSlug}?preview=true&theme=${previewModal.templateId
+                    }&_t=${Date.now()}`;
 
                   return (
                     <iframe
@@ -2238,9 +2122,7 @@ export default function MenuSettingsPage({
                 {/* Info Note - Enhanced */}
                 <div className="mb-5 flex items-start gap-3 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
                   <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <i className="material-symbols-outlined text-white !text-[20px]">
-                      info
-                    </i>
+                    <IoInformationCircleOutline className="text-white !text-[20px]" />
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-medium text-blue-900 dark:text-blue-300">
@@ -2260,9 +2142,7 @@ export default function MenuSettingsPage({
                     }}
                     className="px-8 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 dark:hover:border-gray-500 transition-all transform hover:scale-105 flex items-center gap-2"
                   >
-                    <i className="material-symbols-outlined !text-[20px]">
-                      close
-                    </i>
+                    <IoCloseOutline className="!text-[20px]" />
                     {locale === "ar" ? "إلغاء" : "Cancel"}
                   </button>
 
@@ -2282,9 +2162,7 @@ export default function MenuSettingsPage({
                     }}
                     className="px-8 py-3.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 text-white font-bold rounded-xl transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 transform hover:scale-105"
                   >
-                    <i className="material-symbols-outlined !text-[24px]">
-                      check_circle
-                    </i>
+                    <IoCheckmarkCircle className="!text-[24px]" />
                     <span className="text-lg">
                       {locale === "ar" ? "تأكيد واستخدام" : "Confirm & Apply"}
                     </span>
@@ -2303,9 +2181,7 @@ export default function MenuSettingsPage({
             {/* Header */}
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                <i className="material-symbols-outlined text-amber-600 dark:text-amber-400 !text-[32px]">
-                  pause_circle
-                </i>
+                <IoPauseCircleOutline className="text-amber-600 dark:text-amber-400 !text-[32px]" />
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
@@ -2414,9 +2290,7 @@ export default function MenuSettingsPage({
                   </>
                 ) : (
                   <>
-                    <i className="material-symbols-outlined !text-[20px]">
-                      toggle_off
-                    </i>
+                    <IoToggleOutline className="!text-[20px]" />
                     {t("buttons.deactivateMenu")}
                   </>
                 )}

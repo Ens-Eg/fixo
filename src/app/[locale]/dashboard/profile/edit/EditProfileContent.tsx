@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import UserAvatar from "@/components/UserAvatar";
 import toast from "react-hot-toast";
 import { updateProfile, changePassword, uploadProfileImage } from "./actions";
+import { IoArrowBack, IoCloseCircleOutline } from "react-icons/io5";
 
 interface EditProfileContentProps {
   user: any;
@@ -410,9 +411,7 @@ export default function EditProfileContent({
             }
             className="px-4 py-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors flex items-center gap-2"
           >
-            <i className="material-symbols-outlined !text-[20px]">
-              arrow_back
-            </i>
+            <IoArrowBack className="!text-[20px]" />
             {t("backToProfile")}
           </button>
         </div>
@@ -705,9 +704,7 @@ export default function EditProfileContent({
               />
               {passwordErrors.currentPassword && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                  <i className="material-symbols-outlined !text-[16px]">
-                    error
-                  </i>
+                  <IoCloseCircleOutline className="!text-[16px]" />
                   {passwordErrors.currentPassword}
                 </p>
               )}
@@ -743,9 +740,7 @@ export default function EditProfileContent({
               />
               {passwordErrors.newPassword ? (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                  <i className="material-symbols-outlined !text-[16px]">
-                    error
-                  </i>
+                  <IoCloseCircleOutline className="!text-[16px]" />
                   {passwordErrors.newPassword}
                 </p>
               ) : (
@@ -785,9 +780,7 @@ export default function EditProfileContent({
               />
               {passwordErrors.confirmPassword && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
-                  <i className="material-symbols-outlined !text-[16px]">
-                    error
-                  </i>
+                  <IoCloseCircleOutline className="!text-[16px]" />
                   {passwordErrors.confirmPassword}
                 </p>
               )}

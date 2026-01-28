@@ -8,6 +8,8 @@ import ProfileMenu from "./ProfileMenu";
 import NotificationBell from "../../Notifications/NotificationBell";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
+import { IoMenu } from "react-icons/io5";
+import { IoLanguage } from "react-icons/io5";
 
 interface HeaderProps {
   toggleActive: () => void;
@@ -64,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({ toggleActive }) => {
                   className="hide-sidebar-toggle transition-all inline-block hover:text-primary-500"
                   onClick={toggleActive}
                 >
-                  <i className="material-symbols-outlined !text-[20px]">menu</i>
+                  <IoMenu className="!text-[20px]" />
                 </button>
               </div>
             )}
@@ -89,9 +91,7 @@ const Header: React.FC<HeaderProps> = ({ toggleActive }) => {
                   locale === "ar" ? "Switch to English" : "التبديل إلى العربية"
                 }
               >
-                <i className="material-symbols-outlined !text-[20px] md:!text-[22px]">
-                  translate
-                </i>
+                <IoLanguage className="!text-[20px] md:!text-[22px]" />
               </button>
             </div>
 

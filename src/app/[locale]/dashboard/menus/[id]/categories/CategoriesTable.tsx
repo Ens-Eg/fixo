@@ -8,13 +8,16 @@ import { useParams, notFound } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
 import { uploadImage } from "@/app/[locale]/actions/upload.actions";
-import { 
-  getCategories, 
+import {
+  getCategories,
   getCategory,
   createCategory,
   updateCategory,
   deleteCategory
 } from "./actions";
+import { IoAddOutline, IoImageOutline, IoPencilOutline, IoSearchOutline, IoTrashOutline, IoWarningOutline, IoCheckmarkOutline, IoHourglassOutline } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 
 // Define the data structure
 interface Category {
@@ -68,9 +71,9 @@ const CategoriesTable: React.FC = () => {
   } = useQuery({
     queryKey: ["categories", menuId],
     queryFn: async () => {
-      
+
       const result = await getCategories(Number(menuId));
-      
+
       return result;
     },
     enabled: !!menuId,
@@ -97,27 +100,27 @@ const CategoriesTable: React.FC = () => {
     mutationFn: async (data: CategoryFormData) => {
       let imageUrl = "";
 
-      
+
 
       // Upload image if selected
       if (data.image) {
-        
+
         const uploadFormData = new FormData();
         uploadFormData.append("file", data.image);
         uploadFormData.append("type", "categories");
 
-        
+
 
         const uploadResponse = await uploadImage(uploadFormData);
-        
-       
-        
+
+
+
         if (!uploadResponse.success) {
           throw new Error(uploadResponse.error || "Failed to upload image");
         }
-        
+
         imageUrl = uploadResponse.data?.url || "";
-     
+
       } else {
         console.log("⚠️ No image selected for category");
       }
@@ -129,17 +132,17 @@ const CategoriesTable: React.FC = () => {
         sortOrder: 0,
       };
 
-     
+
 
       const result = await createCategory(Number(menuId), categoryData);
 
-     
+
 
       if (!result.success) {
         throw new Error(result.error || "Failed to create category");
       }
 
-      
+
 
       return result.data;
     },
@@ -154,8 +157,8 @@ const CategoriesTable: React.FC = () => {
     onError: (error: Error) => {
       toast.error(
         error.message ||
-          t("Categories.saveError") ||
-          "Failed to create category"
+        t("Categories.saveError") ||
+        "Failed to create category"
       );
     },
   });
@@ -165,27 +168,27 @@ const CategoriesTable: React.FC = () => {
     mutationFn: async (data: { id: number; formData: CategoryFormData }) => {
       let imageUrl: string | undefined = undefined;
 
-  
+
 
       // Upload image if selected
       if (data.formData.image) {
-        
+
         const uploadFormData = new FormData();
         uploadFormData.append("file", data.formData.image);
         uploadFormData.append("type", "categories");
 
-        
+
 
         const uploadResponse = await uploadImage(uploadFormData);
-        
-        
-        
+
+
+
         if (!uploadResponse.success) {
           throw new Error(uploadResponse.error || "Failed to upload image");
         }
-        
+
         imageUrl = uploadResponse.data?.url || "";
-        
+
       } else {
         console.log("⚠️ No new image selected for category update");
       }
@@ -221,8 +224,8 @@ const CategoriesTable: React.FC = () => {
     onError: (error: Error) => {
       toast.error(
         error.message ||
-          t("Categories.saveError") ||
-          "Failed to update category"
+        t("Categories.saveError") ||
+        "Failed to update category"
       );
     },
   });
@@ -247,8 +250,8 @@ const CategoriesTable: React.FC = () => {
     onError: (error: Error) => {
       toast.error(
         error.message ||
-          t("Categories.deleteError") ||
-          "Failed to delete category"
+        t("Categories.deleteError") ||
+        "Failed to delete category"
       );
     },
   });
@@ -274,7 +277,7 @@ const CategoriesTable: React.FC = () => {
     );
   });
 
- 
+
   // Calculate the indices of the categories to show based on the current page
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
@@ -320,7 +323,7 @@ const CategoriesTable: React.FC = () => {
 
   // Function to delete a category
   const handleDelete = (category: Category) => {
-    const categoryName = locale === "ar" 
+    const categoryName = locale === "ar"
       ? category.nameAr || category.name || ""
       : category.nameEn || category.name || "";
     const id = category.id;
@@ -331,9 +334,7 @@ const CategoriesTable: React.FC = () => {
             <div className="flex items-start">
               <div className="flex-shrink-0">
                 <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-                  <i className="material-symbols-outlined text-red-600 dark:text-red-400">
-                    warning
-                  </i>
+                  <IoWarningOutline className=" !text-[20px] text-red-600 dark:text-red-400" />
                 </div>
               </div>
               <div className="ml-3 flex-1 rtl:mr-3 rtl:ml-0">
@@ -386,7 +387,7 @@ const CategoriesTable: React.FC = () => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
 
-      
+
 
       // Check file size (1MB = 1 * 1024 * 1024 bytes)
       const maxSize = 1 * 1024 * 1024; // 1MB
@@ -401,10 +402,10 @@ const CategoriesTable: React.FC = () => {
         return;
       }
 
-     
+
       setFormData((prev) => {
         const updated = { ...prev, image: file };
-        
+
         return updated;
       });
       setSelectedImages([file]);
@@ -423,9 +424,9 @@ const CategoriesTable: React.FC = () => {
     try {
       // Fetch full category data with both translations
       const response = await getCategory(Number(menuId), category.id);
-      
-      
-      
+
+
+
       // Handle different response formats
       let fullCategory: any = response;
       if (response && typeof response === 'object' && 'data' in response) {
@@ -434,26 +435,26 @@ const CategoriesTable: React.FC = () => {
       if (response && typeof response === 'object' && 'category' in response) {
         fullCategory = (response as any).category;
       }
-      
-     
-      
+
+
+
       setEditingCategory(category);
       setFormData({
         nameAr: fullCategory.nameAr || category.nameAr || "",
         nameEn: fullCategory.nameEn || category.nameEn || "",
-        isActive: fullCategory.isActive !== undefined 
-          ? fullCategory.isActive 
-          : category.isActive !== undefined 
-          ? category.isActive 
-          : true,
+        isActive: fullCategory.isActive !== undefined
+          ? fullCategory.isActive
+          : category.isActive !== undefined
+            ? category.isActive
+            : true,
         image: null,
       });
       setOpen(true);
     } catch (error) {
       console.error("❌ Error fetching category details:", error);
-      
+
       // Fallback: use category data from list
-     
+
       setEditingCategory(category);
       setFormData({
         nameAr: category.nameAr || "",
@@ -462,7 +463,7 @@ const CategoriesTable: React.FC = () => {
         image: null,
       });
       setOpen(true);
-      
+
       toast.error(
         locale === "ar"
           ? "تعذر تحميل بعض البيانات، سيتم استخدام البيانات المتاحة"
@@ -475,21 +476,21 @@ const CategoriesTable: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    
+
 
     if (!formData.nameAr.trim() || !formData.nameEn.trim()) {
       toast.error(
         t("Categories.requiredFields") ||
-          "Please enter category names in both Arabic and English"
+        "Please enter category names in both Arabic and English"
       );
       return;
     }
 
     if (editingCategory) {
-   
+
       updateCategoryMutation.mutate({ id: editingCategory.id, formData });
     } else {
-     
+
       createCategoryMutation.mutate(formData);
     }
   };
@@ -514,7 +515,7 @@ const CategoriesTable: React.FC = () => {
           <div className="ENS-card-title">
             <form className="relative sm:w-[265px]">
               <label className="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
-                <i className="material-symbols-outlined !text-[20px]">search</i>
+                <IoSearchOutline className=" !text-[20px]" />
               </label>
               <input
                 type="text"
@@ -535,9 +536,7 @@ const CategoriesTable: React.FC = () => {
               onClick={() => setOpen(true)}
             >
               <span className="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
-                <i className="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
-                  add
-                </i>
+                <IoAddOutline className=" !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2" />
                 {t("Categories.addCategory") || "Add New Category"}
               </span>
             </button>
@@ -591,7 +590,7 @@ const CategoriesTable: React.FC = () => {
                         <td className="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
                           {category.image ? (
                             <Image
-                              alt={locale === "ar" 
+                              alt={locale === "ar"
                                 ? category.nameAr || category.name || "Category"
                                 : category.nameEn || category.name || "Category"}
                               src={category.image}
@@ -601,26 +600,23 @@ const CategoriesTable: React.FC = () => {
                             />
                           ) : (
                             <div className="w-[50px] h-[50px] rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                              <i className="material-symbols-outlined text-gray-400">
-                                image
-                              </i>
+                              <IoImageOutline className=" !text-[20px] text-gray-400" />
                             </div>
                           )}
                         </td>
 
                         <td className="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
-                          {locale === "ar" 
+                          {locale === "ar"
                             ? category.nameAr || category.name || "-"
                             : category.nameEn || category.name || "-"}
                         </td>
 
                         <td className="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
                           <span
-                            className={`px-[8px] py-[3px] inline-block ${
-                              category.isActive
-                                ? "bg-primary-50 dark:bg-[#15203c] text-primary-500"
-                                : "bg-danger-50 dark:bg-[#15203c] text-danger-500"
-                            } rounded-sm font-medium text-xs`}
+                            className={`px-[8px] py-[3px] inline-block ${category.isActive
+                              ? "bg-primary-50 dark:bg-[#15203c] text-primary-500"
+                              : "bg-danger-50 dark:bg-[#15203c] text-danger-500"
+                              } rounded-sm font-medium text-xs`}
                           >
                             {category.isActive
                               ? t("Categories.active") || "Active"
@@ -636,9 +632,7 @@ const CategoriesTable: React.FC = () => {
                                 className="text-primary-500 leading-none"
                                 onClick={() => handleEdit(category)}
                               >
-                                <i className="material-symbols-outlined !text-md">
-                                  edit
-                                </i>
+                                <IoPencilOutline className=" !text-[20px] text-gray-400" />
                               </button>
 
                               {/* Tooltip */}
@@ -656,9 +650,7 @@ const CategoriesTable: React.FC = () => {
                                 onClick={() => handleDelete(category)}
                                 disabled={deleteCategoryMutation.isPending}
                               >
-                                <i className="material-symbols-outlined !text-md">
-                                  delete
-                                </i>
+                                <IoTrashOutline className=" !text-[20px] text-gray-400" />
                               </button>
 
                               {/* Tooltip */}
@@ -696,9 +688,7 @@ const CategoriesTable: React.FC = () => {
                       className="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="opacity-0">0</span>
-                      <i className="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                        chevron_right
-                      </i>
+                      <IoIosArrowForward className=" !text-[20px] left-0 right-0 absolute top-1/2 -translate-y-1/2" />
                     </button>
                   </li>
 
@@ -709,11 +699,10 @@ const CategoriesTable: React.FC = () => {
                     >
                       <button
                         onClick={() => handlePageChange(index + 1)}
-                        className={`w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border ${
-                          currentPage === index + 1
-                            ? "bg-primary-500 text-white"
-                            : "border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500"
-                        }`}
+                        className={`w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border ${currentPage === index + 1
+                          ? "bg-primary-500 text-white"
+                          : "border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500"
+                          }`}
                       >
                         {index + 1}
                       </button>
@@ -727,9 +716,7 @@ const CategoriesTable: React.FC = () => {
                       className="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="opacity-0">0</span>
-                      <i className="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                        chevron_left
-                      </i>
+                      <IoIosArrowBack className=" !text-[20px] left-0 right-0 absolute top-1/2 -translate-y-1/2" />
                     </button>
                   </li>
                 </ol>
@@ -915,22 +902,22 @@ const CategoriesTable: React.FC = () => {
                         }
                       >
                         <span className="inline-block relative ltr:pl-[25px] rtl:pr-[25px]">
-                          <i className="material-symbols-outlined !text-[20px] absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
+                          <span className="absolute ltr:left-0 rtl:right-0 top-1/2 -translate-y-1/2">
                             {createCategoryMutation.isPending ||
-                            updateCategoryMutation.isPending
-                              ? "hourglass_empty"
+                              updateCategoryMutation.isPending
+                              ? <IoHourglassOutline className="!text-[20px]" />
                               : editingCategory
-                              ? "check"
-                              : "add"}
-                          </i>
+                                ? <IoCheckmarkOutline className="!text-[20px]" />
+                                : <IoAddOutline className="!text-[20px]" />}
+                          </span>
                           {createCategoryMutation.isPending ||
-                          updateCategoryMutation.isPending
+                            updateCategoryMutation.isPending
                             ? editingCategory
                               ? t("Categories.updating") || "Updating..."
                               : t("Categories.creating") || "Creating..."
                             : editingCategory
-                            ? t("Categories.update") || "Update"
-                            : t("Categories.create") || "Create"}
+                              ? t("Categories.update") || "Update"
+                              : t("Categories.create") || "Create"}
                         </span>
                       </button>
                     </div>

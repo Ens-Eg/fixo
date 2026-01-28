@@ -8,6 +8,7 @@ import Image from "next/image";
 import { uploadImage } from "@/app/[locale]/actions/upload.actions";
 import { getAds, createAd, updateAd, deleteAd } from "./actions";
 import type { Ad } from "./actions";
+import { IoAddOutline, IoStarOutline, IoArrowUpOutline, IoMegaphoneOutline, IoPencilOutline, IoTrashOutline, IoLockClosedOutline, IoWarningOutline, IoInformationCircleOutline, IoCloseOutline, IoPricetagOutline, IoDocumentTextOutline, IoImageOutline, IoCloudUploadOutline, IoAddCircleOutline, IoSaveOutline } from "react-icons/io5";
 
 interface AdsContentProps {
   initialAds: Ad[];
@@ -103,7 +104,7 @@ export default function AdsContent({
                 onClick={() => setShowCreateModal(true)}
                 className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all flex items-center gap-2 shadow-lg hover:shadow-xl font-medium"
               >
-                <i className="material-symbols-outlined !text-[20px]">add</i>
+                <IoAddOutline className="!text-[20px]" />
                 {locale === "ar" ? "إضافة إعلان" : "Add Advertisement"}
               </button>
             )}
@@ -115,9 +116,7 @@ export default function AdsContent({
           <div className="mb-6 p-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl border-2 border-amber-200 dark:border-amber-800/50 shadow-sm">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                <i className="material-symbols-outlined text-amber-600 dark:text-amber-400 !text-[28px]">
-                  workspace_premium
-                </i>
+                <IoStarOutline className="text-amber-600 dark:text-amber-400 !text-[28px]" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
@@ -136,9 +135,7 @@ export default function AdsContent({
                   }
                   className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl hover:from-amber-600 hover:to-amber-700 transition-all font-medium shadow-md hover:shadow-lg flex items-center gap-2"
                 >
-                  <i className="material-symbols-outlined !text-[18px]">
-                    upgrade
-                  </i>
+                  <IoArrowUpOutline className="!text-[18px]" />
                   {locale === "ar" ? "ترقية الآن" : "Upgrade Now"}
                 </button>
               </div>
@@ -157,9 +154,7 @@ export default function AdsContent({
         ) : ads.length === 0 ? (
           <div className="ENS-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-12 text-center border border-gray-100 dark:border-gray-700">
             <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="material-symbols-outlined text-primary-500 dark:text-primary-400 !text-[48px]">
-                ads_click
-              </i>
+              <IoMegaphoneOutline className="text-primary-500 dark:text-primary-400 !text-[48px]" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
               {isFreePlan
@@ -184,7 +179,7 @@ export default function AdsContent({
                 onClick={() => setShowCreateModal(true)}
                 className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all font-medium shadow-lg hover:shadow-xl flex items-center gap-2 mx-auto"
               >
-                <i className="material-symbols-outlined !text-[20px]">add</i>
+                <IoAddOutline className="!text-[20px]" />
                 {locale === "ar" ? "إضافة إعلان مخصص" : "Add Custom Ad"}
               </button>
             )}
@@ -211,9 +206,7 @@ export default function AdsContent({
                     </div>
                   ) : (
                     <div className="w-24 h-24 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 flex items-center justify-center flex-shrink-0">
-                      <i className="material-symbols-outlined text-primary-500 dark:text-primary-400 !text-[40px]">
-                        ads_click
-                      </i>
+                      <IoMegaphoneOutline className="text-primary-500 dark:text-primary-400 !text-[40px]" />
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
@@ -269,9 +262,7 @@ export default function AdsContent({
                       onClick={() => setAdToEdit(ad)}
                       className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all text-sm font-medium shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                     >
-                      <i className="material-symbols-outlined !text-[18px]">
-                        edit
-                      </i>
+                      <IoPencilOutline className="!text-[18px]" />
                       {locale === "ar" ? "تعديل" : "Edit"}
                     </button>
                     <button
@@ -279,9 +270,7 @@ export default function AdsContent({
                       className="px-4 py-2.5 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/50 transition-all text-sm"
                       title={locale === "ar" ? "حذف" : "Delete"}
                     >
-                      <i className="material-symbols-outlined !text-[18px]">
-                        delete
-                      </i>
+                      <IoTrashOutline className="!text-[18px]" />
                     </button>
                   </div>
                 )}
@@ -290,9 +279,7 @@ export default function AdsContent({
                 {isFreePlan && (
                   <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800/50">
                     <p className="text-xs text-amber-700 dark:text-amber-300 flex items-center gap-2">
-                      <i className="material-symbols-outlined !text-[16px]">
-                        lock
-                      </i>
+                      <IoLockClosedOutline className="!text-[16px]" />
                       {locale === "ar"
                         ? "قم بالترقية إلى Pro للتحكم في الإعلانات"
                         : "Upgrade to Pro to control ads"}
@@ -324,9 +311,7 @@ export default function AdsContent({
             {/* Warning Icon */}
             <div className="flex justify-center mb-4">
               <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-                <i className="material-symbols-outlined text-red-600 dark:text-red-400 !text-[40px]">
-                  warning
-                </i>
+                <IoWarningOutline className="text-red-600 dark:text-red-400 !text-[40px]" />
               </div>
             </div>
 
@@ -355,9 +340,7 @@ export default function AdsContent({
             {/* Warning Message */}
             <div className="mb-6 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800/50">
               <p className="text-sm text-yellow-700 dark:text-yellow-300 font-medium flex items-start gap-2">
-                <i className="material-symbols-outlined !text-[18px] mt-0.5 flex-shrink-0">
-                  info
-                </i>
+                <IoInformationCircleOutline className="!text-[18px] mt-0.5 flex-shrink-0" />
                 <span>
                   {locale === "ar"
                     ? "هذا الإجراء لا يمكن التراجع عنه!"
@@ -389,9 +372,7 @@ export default function AdsContent({
                   </>
                 ) : (
                   <>
-                    <i className="material-symbols-outlined !text-[20px]">
-                      delete_forever
-                    </i>
+                    <IoTrashOutline className="!text-[20px]" />
                     {locale === "ar" ? "حذف" : "Delete"}
                   </>
                 )}
@@ -555,9 +536,7 @@ function CreateAdModal({ menuId, onClose, onSuccess }: CreateAdModalProps) {
         <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-              <i className="material-symbols-outlined text-white !text-[28px]">
-                ads_click
-              </i>
+              <IoMegaphoneOutline className="text-white !text-[28px]" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white !mb-0">
               {locale === "ar" ? "إضافة إعلان جديد" : "Add New Advertisement"}
@@ -567,9 +546,7 @@ function CreateAdModal({ menuId, onClose, onSuccess }: CreateAdModalProps) {
             onClick={onClose}
             className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110"
           >
-            <i className="material-symbols-outlined text-gray-500 dark:text-gray-400">
-              close
-            </i>
+            <IoCloseOutline className="text-gray-500 dark:text-gray-400" />
           </button>
         </div>
 
@@ -578,9 +555,7 @@ function CreateAdModal({ menuId, onClose, onSuccess }: CreateAdModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                <i className="material-symbols-outlined text-amber-500 dark:text-amber-400 !text-[20px]">
-                  label
-                </i>
+                <IoPricetagOutline className="text-amber-500 dark:text-amber-400 !text-[20px]" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white !mb-0">
                 {locale === "ar" ? "عنوان الإعلان" : "Ad Title"}
@@ -629,9 +604,7 @@ function CreateAdModal({ menuId, onClose, onSuccess }: CreateAdModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                <i className="material-symbols-outlined text-amber-500 dark:text-amber-400 !text-[20px]">
-                  description
-                </i>
+                <IoDocumentTextOutline className="text-amber-500 dark:text-amber-400 !text-[20px]" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white !mb-0">
                 {locale === "ar" ? "محتوى الإعلان" : "Ad Content"}
@@ -682,9 +655,7 @@ function CreateAdModal({ menuId, onClose, onSuccess }: CreateAdModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                <i className="material-symbols-outlined text-amber-500 dark:text-amber-400 !text-[20px]">
-                  image
-                </i>
+                <IoImageOutline className="text-amber-500 dark:text-amber-400 !text-[20px]" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white !mb-0">
                 {locale === "ar" ? "صورة الإعلان" : "Ad Image"}{" "}
@@ -716,17 +687,13 @@ function CreateAdModal({ menuId, onClose, onSuccess }: CreateAdModalProps) {
                   }}
                   className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all shadow-lg hover:scale-110"
                 >
-                  <i className="material-symbols-outlined !text-[16px]">
-                    close
-                  </i>
+                  <IoCloseOutline className="!text-[16px]" />
                 </button>
               </div>
             ) : (
               <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl cursor-pointer hover:border-amber-500 dark:hover:border-amber-500 transition-all bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <i className="material-symbols-outlined text-gray-400 dark:text-gray-500 !text-[48px] mb-2">
-                    cloud_upload
-                  </i>
+                  <IoCloudUploadOutline className="text-gray-400 dark:text-gray-500 !text-[48px] mb-2" />
                   <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
                     <span className="font-semibold">
                       {locale === "ar" ? "انقر للرفع" : "Click to upload"}
@@ -786,9 +753,7 @@ function CreateAdModal({ menuId, onClose, onSuccess }: CreateAdModalProps) {
                 </>
               ) : (
                 <>
-                  <i className="material-symbols-outlined !text-[20px]">
-                    add_circle
-                  </i>
+                  <IoAddCircleOutline className="!text-[20px]" />
                   {locale === "ar" ? "إضافة الإعلان" : "Create Ad"}
                 </>
               )}
@@ -927,9 +892,7 @@ function EditAdModal({ ad, menuId, onClose, onSuccess }: EditAdModalProps) {
         <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg">
-              <i className="material-symbols-outlined text-white !text-[28px]">
-                edit
-              </i>
+              <IoPencilOutline className="text-white !text-[28px]" />
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white !mb-0">
               {locale === "ar" ? "تعديل الإعلان" : "Edit Advertisement"}
@@ -939,9 +902,7 @@ function EditAdModal({ ad, menuId, onClose, onSuccess }: EditAdModalProps) {
             onClick={onClose}
             className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-all hover:scale-110"
           >
-            <i className="material-symbols-outlined text-gray-500 dark:text-gray-400">
-              close
-            </i>
+            <IoCloseOutline className="text-gray-500 dark:text-gray-400" />
           </button>
         </div>
 
@@ -950,9 +911,7 @@ function EditAdModal({ ad, menuId, onClose, onSuccess }: EditAdModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                <i className="material-symbols-outlined text-amber-500 dark:text-amber-400 !text-[20px]">
-                  label
-                </i>
+                <IoPricetagOutline className="text-amber-500 dark:text-amber-400 !text-[20px]" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white !mb-0">
                 {locale === "ar" ? "عنوان الإعلان" : "Ad Title"}
@@ -1001,9 +960,7 @@ function EditAdModal({ ad, menuId, onClose, onSuccess }: EditAdModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                <i className="material-symbols-outlined text-amber-500 dark:text-amber-400 !text-[20px]">
-                  description
-                </i>
+                <IoDocumentTextOutline className="text-amber-500 dark:text-amber-400 !text-[20px]" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white !mb-0">
                 {locale === "ar" ? "محتوى الإعلان" : "Ad Content"}
@@ -1054,9 +1011,7 @@ function EditAdModal({ ad, menuId, onClose, onSuccess }: EditAdModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                <i className="material-symbols-outlined text-amber-500 dark:text-amber-400 !text-[20px]">
-                  image
-                </i>
+                <IoImageOutline className="text-amber-500 dark:text-amber-400 !text-[20px]" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white !mb-0">
                 {locale === "ar" ? "صورة الإعلان" : "Ad Image"}
@@ -1081,17 +1036,13 @@ function EditAdModal({ ad, menuId, onClose, onSuccess }: EditAdModalProps) {
                   }}
                   className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-all shadow-lg hover:scale-110"
                 >
-                  <i className="material-symbols-outlined !text-[16px]">
-                    close
-                  </i>
+                  <IoCloseOutline className="!text-[16px]" />
                 </button>
               </div>
             ) : (
               <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl cursor-pointer hover:border-amber-500 dark:hover:border-amber-500 transition-all bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <i className="material-symbols-outlined text-gray-400 dark:text-gray-500 !text-[48px] mb-2">
-                    cloud_upload
-                  </i>
+                  <IoCloudUploadOutline className="text-gray-400 dark:text-gray-500 !text-[48px] mb-2" />
                   <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
                     <span className="font-semibold">
                       {locale === "ar" ? "انقر للرفع" : "Click to upload"}
@@ -1151,7 +1102,7 @@ function EditAdModal({ ad, menuId, onClose, onSuccess }: EditAdModalProps) {
                 </>
               ) : (
                 <>
-                  <i className="material-symbols-outlined !text-[20px]">save</i>
+                  <IoSaveOutline className="!text-[20px]" />
                   {locale === "ar" ? "حفظ التعديلات" : "Save Changes"}
                 </>
               )}

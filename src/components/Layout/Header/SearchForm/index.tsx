@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { IoSearchOutline } from "react-icons/io5";
 
 const SearchForm: React.FC = () => {
   return (
@@ -16,7 +17,7 @@ const SearchForm: React.FC = () => {
           type="button"
           className="absolute text-primary-500 mt-[2px] ltr:right-[13px] ltr:md:right-[15px] rtl:left-[13px] rtl:md:left-[15px] top-1/2 -translate-y-1/2"
         >
-          <i className="material-symbols-outlined !text-[20px]">search</i>
+          <IoSearchOutline className="!text-[20px]" />
         </button>
       </form>
     </>

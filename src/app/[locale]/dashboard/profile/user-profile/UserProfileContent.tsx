@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import UserAvatar from "@/components/UserAvatar";
+import { IoPencilOutline } from "react-icons/io5";
 
 interface UserProfileContentProps {
   user: any;
@@ -60,7 +61,7 @@ export default function UserProfileContent({
             onClick={() => router.push(editProfilePath)}
             className="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors flex items-center gap-2"
           >
-            <i className="material-symbols-outlined !text-[20px]">edit</i>
+            <IoPencilOutline className="!text-[20px]" />
             {t("editProfile")}
           </button>
         </div>

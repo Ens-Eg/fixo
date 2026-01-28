@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { IoIosExit, IoIosExpand } from "react-icons/io";
 
 const Fullscreen: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
@@ -34,11 +35,7 @@ const Fullscreen: React.FC = () => {
           onClick={handleToggleFullscreen}
           aria-label={isFullscreen ? "Exit full screen" : "Enter full screen"}
         >
-          <i
-            className="material-symbols-outlined !text-[22px] md:!text-[24px]" 
-          >
-            {isFullscreen ? "fullscreen_exit" : "fullscreen"}
-          </i>
+          {isFullscreen ? <IoIosExit className=" !text-[22px] md:!text-[24px]" /> : <IoIosExpand className=" !text-[22px] md:!text-[24px]" />}
         </button>
       </div>
     </>

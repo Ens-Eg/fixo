@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Logo } from "@/components/common/Logo";
+import { IoRefreshOutline } from "react-icons/io5";
 
 const LockScreenContent: React.FC = () => {
   return (
@@ -62,7 +63,7 @@ const LockScreenContent: React.FC = () => {
                 className="md:text-md block w-full text-center transition-all rounded-md font-medium mt-[20px] py-[12px] px-[25px] text-white bg-primary-500 hover:bg-primary-400"
               >
                 <span className="flex items-center justify-center gap-[5px]">
-                  <i className="material-symbols-outlined">autorenew</i>
+                  <IoRefreshOutline />
                   Sign In
                 </span>
               </button>

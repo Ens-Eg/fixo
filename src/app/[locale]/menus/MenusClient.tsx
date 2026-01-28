@@ -17,6 +17,7 @@ import { UpgradePlanModal } from "@/components/Modals/UpgradePlanModal";
 import CreateMenuModal from "./CreateMenuModal";
 import DeleteConfirmModal from "./DeleteConfirmModal";
 import { getMenus } from "@/services/menu.service";
+import { IoIosAdd, IoIosAlbums, IoIosCalendar, IoIosLink, IoIosOpen, IoIosPause, IoIosPlay, IoIosRestaurant, IoIosTrash } from "react-icons/io";
 
 interface MenusClientProps {
   initialMenus: Menu[];
@@ -124,7 +125,7 @@ export default function MenusClient({
 
   const handleMenuCreated = async (newMenu?: Menu) => {
     fetchSubscription();
-    
+
     // If new menu is provided, add it directly to the list immediately
     if (newMenu) {
       setMenus((prev) => {
@@ -134,10 +135,10 @@ export default function MenusClient({
         return [...prev, newMenu];
       });
     }
-    
+
     // Fetch menus from API to ensure we have the latest data
     await fetchMenus();
-    
+
     // Also refresh to update server-side data
     router.refresh();
   };
@@ -173,7 +174,7 @@ export default function MenusClient({
               }}
               className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all flex items-center gap-2 shadow-lg hover:shadow-xl font-medium"
             >
-              <i className="material-symbols-outlined !text-[20px]">add</i>
+              <IoIosAdd className="!text-[20px]" />
               {t("createMenu")}
             </button>
           </div>
@@ -181,9 +182,7 @@ export default function MenusClient({
         {menusList.length === 0 ? (
           <div className="ENS-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-12 text-center border border-gray-100 dark:border-gray-700">
             <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 rounded-full flex items-center justify-center mx-auto mb-6">
-              <i className="material-symbols-outlined text-primary-500 dark:text-primary-400 !text-[48px]">
-                restaurant_menu
-              </i>
+              <IoIosRestaurant className="text-primary-500 dark:text-primary-400 !text-[48px]" />
             </div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
               {t("noMenus")}
@@ -218,9 +217,8 @@ export default function MenusClient({
                     </div>
                   ) : (
                     <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 flex items-center justify-center flex-shrink-0">
-                      <i className="material-symbols-outlined text-primary-500 dark:text-primary-400 !text-[32px]">
-                        restaurant_menu
-                      </i>
+
+                      <IoIosRestaurant className="text-primary-500 dark:text-primary-400 !text-[32px]" />
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
@@ -229,11 +227,10 @@ export default function MenusClient({
                         {locale === "ar" ? menu.nameAr : menu.nameEn}
                       </h3>
                       <span
-                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap flex-shrink-0 ${
-                          menu.isActive
+                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap flex-shrink-0 ${menu.isActive
                             ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
                             : "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
-                        }`}
+                          }`}
                       >
                         {menu.isActive ? t("active") : t("inactive")}
                       </span>
@@ -247,15 +244,11 @@ export default function MenusClient({
                 {/* Menu Info */}
                 <div className="mb-4 space-y-2 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                   <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                    <i className="material-symbols-outlined !text-[16px]">
-                      link
-                    </i>
+                    <IoIosLink className="!text-[16px]" />
                     <span className="font-mono truncate">{menu.slug}.ensmenu.com</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                    <i className="material-symbols-outlined !text-[16px]">
-                      calendar_today
-                    </i>
+                    <IoIosCalendar className="!text-[16px]" />
                     <span>{new Date(menu.createdAt).toLocaleDateString()}</span>
                   </div>
                 </div>
@@ -268,32 +261,22 @@ export default function MenusClient({
                     }
                     className="flex-1 px-4 py-2.5 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all text-sm font-medium shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                   >
-                    <i className="material-symbols-outlined !text-[18px]">
-                      dashboard
-                    </i>
+                    <IoIosAlbums className=" !text-[18px]" />
                     {t("openDashboard")}
                   </button>
                   <button
                     onClick={() => handleToggleStatus(menu.id, menu.isActive)}
-                    className="px-4 py-2.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all text-sm"
+                    className={`px-4 py-2.5 ${menu.isActive ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'} rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all text-sm`}
                     title={menu.isActive ? t("pause") : t("activate")}
                   >
-                    <i
-                      className={`material-symbols-outlined !text-[18px] ${
-                        menu.isActive ? "text-yellow-600" : "text-green-600"
-                      }`}
-                    >
-                      {menu.isActive ? "pause" : "play_arrow"}
-                    </i>
+                    {menu.isActive ? <IoIosPause className=" !text-[18px]" /> : <IoIosPlay className=" !text-[18px]" />}
                   </button>
                   <button
                     onClick={() => handleDelete(menu)}
                     className="px-4 py-2.5 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-xl hover:bg-red-100 dark:hover:bg-red-900/50 transition-all text-sm"
                     title={t("delete")}
                   >
-                    <i className="material-symbols-outlined !text-[18px]">
-                      delete
-                    </i>
+                    <IoIosTrash className=" !text-[18px]" />
                   </button>
                 </div>
 
@@ -304,9 +287,7 @@ export default function MenusClient({
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-xl hover:bg-green-100 dark:hover:bg-green-900/30 transition-all text-sm font-medium border border-green-200 dark:border-green-800/50 hover:border-green-300 dark:hover:border-green-700"
                 >
-                  <i className="material-symbols-outlined !text-[18px]">
-                    open_in_new
-                  </i>
+                  <IoIosOpen className=" !text-[18px]" />
                   {t("viewPublic")}
                 </a>
               </div>

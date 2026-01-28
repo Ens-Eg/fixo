@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { IoSearchOutline, IoAddOutline, IoEyeOutline, IoPencilOutline, IoTrashOutline, IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 
 const users = [
   {
@@ -240,7 +241,7 @@ const UsersListTable: React.FC = () => {
           <div className="ENS-card-title">
             <form className="relative sm:w-[265px]">
               <label className="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
-                <i className="material-symbols-outlined !text-[20px]">search</i>
+                <IoSearchOutline className="!text-[20px]" />
               </label>
               <input
                 type="text"
@@ -257,9 +258,7 @@ const UsersListTable: React.FC = () => {
               className="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white"
             >
               <span className="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
-                <i className="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
-                  add
-                </i>
+                <IoAddOutline className="!text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2" />
                 Add New User
               </span>
             </Link>
@@ -348,27 +347,21 @@ const UsersListTable: React.FC = () => {
                           type="button"
                           className="text-primary-500 leading-none"
                         >
-                          <i className="material-symbols-outlined !text-md">
-                            visibility
-                          </i>
+                          <IoEyeOutline className="!text-md" />
                         </button>
 
                         <button
                           type="button"
                           className="text-gray-500 dark:text-gray-400 leading-none"
                         >
-                          <i className="material-symbols-outlined !text-md">
-                            edit
-                          </i>
+                          <IoPencilOutline className="!text-md" />
                         </button>
 
                         <button
                           type="button"
                           className="text-danger-500 leading-none"
                         >
-                          <i className="material-symbols-outlined !text-md">
-                            delete
-                          </i>
+                          <IoTrashOutline className="!text-md" />
                         </button>
                       </div>
                     </td>
@@ -393,9 +386,7 @@ const UsersListTable: React.FC = () => {
                   className="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500"
                 >
                   <span className="opacity-0">0</span>
-                  <i className="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                    chevron_left
-                  </i>
+                  <IoChevronBackOutline className="left-0 right-0 absolute top-1/2 -translate-y-1/2" />
                 </button>
               </li>
 
@@ -424,9 +415,7 @@ const UsersListTable: React.FC = () => {
                   className="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500"
                 >
                   <span className="opacity-0">0</span>
-                  <i className="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                    chevron_right
-                  </i>
+                  <IoChevronForwardOutline className="left-0 right-0 absolute top-1/2 -translate-y-1/2" />
                 </button>
               </li>
             </ol>

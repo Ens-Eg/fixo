@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { templates } from "@/components/Templates";
 import { getMenuSettings, updateMenuSettings, deleteMenu } from "./actions";
+import { IoArrowBack, IoInformationCircleOutline, IoColorPaletteOutline, IoToggleOutline, IoSaveOutline, IoWarningOutline, IoTrashOutline } from "react-icons/io5";
 
 export default function MenuSettingsPage({
   params,
@@ -172,7 +173,7 @@ export default function MenuSettingsPage({
             onClick={() => router.push(`/${locale}/menus/${id}`)}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
           >
-            <i className="material-symbols-outlined">arrow_back</i>
+            <IoArrowBack />
           </button>
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
@@ -189,7 +190,7 @@ export default function MenuSettingsPage({
         {/* General Settings */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <i className="material-symbols-outlined text-primary-500">info</i>
+            <IoInformationCircleOutline className="text-primary-500" />
             {t("sections.general")}
           </h2>
 
@@ -285,9 +286,7 @@ export default function MenuSettingsPage({
         {/* Appearance Settings */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <i className="material-symbols-outlined text-primary-500">
-              palette
-            </i>
+            <IoColorPaletteOutline className="text-primary-500" />
             {t("sections.appearance")}
           </h2>
 
@@ -314,9 +313,7 @@ export default function MenuSettingsPage({
         {/* Status Settings */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 border border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <i className="material-symbols-outlined text-primary-500">
-              toggle_on
-            </i>
+            <IoToggleOutline className="text-primary-500" />
             {t("sections.status")}
           </h2>
 
@@ -356,7 +353,7 @@ export default function MenuSettingsPage({
               </>
             ) : (
               <>
-                <i className="material-symbols-outlined !text-[20px]">save</i>
+                <IoSaveOutline className="!text-[20px]" />
                 {t("buttons.save")}
               </>
             )}
@@ -373,7 +370,7 @@ export default function MenuSettingsPage({
         {/* Danger Zone */}
         <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-6 border-2 border-red-200 dark:border-red-800">
           <h2 className="text-xl font-bold text-red-900 dark:text-red-400 mb-2 flex items-center gap-2">
-            <i className="material-symbols-outlined">warning</i>
+            <IoWarningOutline />
             {t("dangerZone.title")}
           </h2>
           <p className="text-sm text-red-700 dark:text-red-300 mb-4">
@@ -384,7 +381,7 @@ export default function MenuSettingsPage({
             onClick={handleDelete}
             className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
           >
-            <i className="material-symbols-outlined !text-[20px]">delete</i>
+            <IoTrashOutline className="!text-[20px]" />
             {t("dangerZone.deleteButton")}
           </button>
         </div>

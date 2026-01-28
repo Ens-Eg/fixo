@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Star, Sparkles } from "@/components/icons/Icons";
 import { useState, useEffect } from "react";
 import { getPublicPlans } from "@/app/[locale]/actions";
+import { IoCheckmarkOutline, IoChatbubbleOutline } from "react-icons/io5";
 
 interface Plan {
   id: number;
@@ -303,9 +304,7 @@ const PricingSection = () => {
                         bg-purple-100 dark:bg-purple-500/20
                         inline-flex items-center justify-center leading-none"
                         >
-                          <i className="material-symbols-outlined text-purple-600 dark:text-purple-400 !text-[14px] !leading-none">
-                            check
-                          </i>
+                          <IoCheckmarkOutline className="text-purple-600 dark:text-purple-400 !text-[14px] !leading-none" />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300">
                           {feature}
@@ -339,9 +338,7 @@ const PricingSection = () => {
                         rel="noopener noreferrer"
                         className="flex items-center justify-center gap-2"
                       >
-                        <i className="material-symbols-outlined !text-[20px]">
-                          chat
-                        </i>
+                        <IoChatbubbleOutline className="!text-[20px]" />
                         {pkg.enterpriseCta}
                       </a>
                     ) : (

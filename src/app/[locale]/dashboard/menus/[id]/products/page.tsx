@@ -7,9 +7,9 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { getCategories } from "../categories/actions";
-import { 
-  getMenuItems, 
-  getMenuData, 
+import {
+  getMenuItems,
+  getMenuData,
   getMenuItem,
   createMenuItem,
   updateMenuItem,
@@ -20,6 +20,8 @@ import { toast } from "react-hot-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { getCurrencyByCode } from "@/constants/currencies";
 import { useToken } from "@/hooks/useToken";
+import { IoAddCircleOutline, IoAddOutline, IoCheckmarkCircleOutline, IoCloseOutline, IoCloudUploadOutline, IoListOutline, IoLockClosedOutline, IoPencilOutline, IoSearchOutline, IoTrashOutline, IoWarningOutline } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 interface MenuItem {
   id: number;
@@ -55,7 +57,7 @@ export default function ProductsPage() {
   const t = useTranslations();
   const locale = useLocale();
   const menuId = Number(params.id);
- 
+
 
   const [categories, setCategories] = useState<any[]>([]);
   const [notFoundError, setNotFoundError] = useState(false);
@@ -117,21 +119,21 @@ export default function ProductsPage() {
   // Fetch categories
   const fetchCategories = async () => {
     try {
-        const response: any = await getCategories(menuId);
-        
-        // Handle different response formats
-        let cats: any[] = [];
-        if (Array.isArray(response)) {
-          cats = response;
-        } else if (response && typeof response === 'object' && 'categories' in response) {
-          const resp = response as any;
-          cats = Array.isArray(resp.categories) ? resp.categories : [];
-        } else if (response && typeof response === 'object' && 'data' in response) {
-          const data = (response as any).data;
-          cats = Array.isArray(data?.categories) ? data.categories : Array.isArray(data) ? data : [];
-        }
-        
-        setCategories(cats);
+      const response: any = await getCategories(menuId);
+
+      // Handle different response formats
+      let cats: any[] = [];
+      if (Array.isArray(response)) {
+        cats = response;
+      } else if (response && typeof response === 'object' && 'categories' in response) {
+        const resp = response as any;
+        cats = Array.isArray(resp.categories) ? resp.categories : [];
+      } else if (response && typeof response === 'object' && 'data' in response) {
+        const data = (response as any).data;
+        cats = Array.isArray(data?.categories) ? data.categories : Array.isArray(data) ? data : [];
+      }
+
+      setCategories(cats);
     } catch (error: any) {
       if (error.message?.includes("not found") || error.message?.includes("404")) {
         setNotFoundError(true);
@@ -156,18 +158,18 @@ export default function ProductsPage() {
   // Handle product deletion
   const handleDeleteProduct = async (product: MenuItem) => {
     let productName = "";
-    
+
     // Support both formats: translations object and direct properties
     if (product.translations) {
-      productName = locale === "ar" 
+      productName = locale === "ar"
         ? product.translations.ar?.name || product.name || ""
         : product.translations.en?.name || product.name || "";
     } else {
-      productName = locale === "ar" 
+      productName = locale === "ar"
         ? product.nameAr || product.name || ""
         : product.nameEn || product.name || "";
     }
-    
+
     const id = product.id;
     toast.custom(
       (toastInstance) => (
@@ -176,9 +178,8 @@ export default function ProductsPage() {
             <div className="flex items-start">
               <div className="flex-shrink-0">
                 <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-                  <i className="material-symbols-outlined text-red-600 dark:text-red-400">
-                    warning
-                  </i>
+                  <IoWarningOutline className=" !text-[20px] text-red-600 dark:text-red-400">
+                  </IoWarningOutline>
                 </div>
               </div>
               <div className="ml-3 flex-1 rtl:mr-3 rtl:ml-0">
@@ -200,21 +201,21 @@ export default function ProductsPage() {
                         if (result.success) {
                           toast.success(
                             t("Products.deleteSuccess") ||
-                              "Product deleted successfully"
+                            "Product deleted successfully"
                           );
                           refetchProducts();
                         } else {
                           toast.error(
                             result.error ||
-                              t("Products.deleteError") ||
-                              "Failed to delete product"
+                            t("Products.deleteError") ||
+                            "Failed to delete product"
                           );
                         }
                       } catch (error) {
                         console.error("Error deleting product:", error);
                         toast.error(
                           t("Products.deleteError") ||
-                            "Failed to delete product"
+                          "Failed to delete product"
                         );
                       }
                     }}
@@ -265,11 +266,11 @@ export default function ProductsPage() {
         const nameMatch = (product.name || "")
           .toLowerCase()
           .includes(searchLower);
-        
+
         // Support both formats: translations object and direct properties
         let nameArMatch = false;
         let nameEnMatch = false;
-        
+
         if (product.translations) {
           nameArMatch = (product.translations.ar?.name || "")
             .toLowerCase()
@@ -285,11 +286,11 @@ export default function ProductsPage() {
             .toLowerCase()
             .includes(searchLower);
         }
-        
+
         const categoryMatch = (product.categoryName || "")
           .toLowerCase()
           .includes(searchLower);
-          
+
         if (!nameMatch && !nameArMatch && !nameEnMatch && !categoryMatch) return false;
       }
 
@@ -331,11 +332,10 @@ export default function ProductsPage() {
               >
                 <button
                   onClick={() => handleTabClick(index)}
-                  className={`nav-link block font-semibold transition-all rounded-md py-[10px] px-[22px] bg-gray-50 dark:bg-[#15203c] ${
-                    activeTab === index
-                      ? "bg-primary-500 text-white"
-                      : "text-black dark:text-white"
-                  }`}
+                  className={`nav-link block font-semibold transition-all rounded-md py-[10px] px-[22px] bg-gray-50 dark:bg-[#15203c] ${activeTab === index
+                    ? "bg-primary-500 text-white"
+                    : "text-black dark:text-white"
+                    }`}
                 >
                   {label}
                 </button>
@@ -349,9 +349,7 @@ export default function ProductsPage() {
                 {/* Search Input */}
                 <form className="relative sm:w-[265px]">
                   <label className="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2">
-                    <i className="material-symbols-outlined !text-[20px]">
-                      search
-                    </i>
+                    <IoSearchOutline className=" !text-[20px]" />
                   </label>
                   <input
                     type="text"
@@ -368,9 +366,7 @@ export default function ProductsPage() {
                 {/* Category Filter */}
                 <div className="relative sm:w-[200px]">
                   <label className="leading-none absolute ltr:left-[13px] rtl:right-[13px] text-black dark:text-white mt-px top-1/2 -translate-y-1/2 pointer-events-none">
-                    <i className="material-symbols-outlined !text-[20px]">
-                      category
-                    </i>
+                    <IoListOutline className=" !text-[20px]" />
                   </label>
                   <select
                     value={selectedCategoryId}
@@ -390,9 +386,7 @@ export default function ProductsPage() {
                         </option>
                       ))}
                   </select>
-                  <i className="material-symbols-outlined absolute ltr:right-[13px] rtl:left-[13px] top-1/2 -translate-y-1/2 text-black dark:text-white pointer-events-none !text-[20px]">
-                    expand_more
-                  </i>
+                  <IoIosArrowDown className=" !text-[20px] absolute ltr:right-[13px] rtl:left-[13px] top-1/2 -translate-y-1/2 text-black dark:text-white pointer-events-none" />
                 </div>
               </div>
 
@@ -402,9 +396,7 @@ export default function ProductsPage() {
                   className="inline-block transition-all rounded-md font-medium px-[13px] py-[6px] text-primary-500 border border-primary-500 hover:bg-primary-500 hover:text-white"
                 >
                   <span className="inline-block relative ltr:pl-[22px] rtl:pr-[22px]">
-                    <i className="material-symbols-outlined !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2">
-                      add
-                    </i>
+                    <IoAddOutline className=" !text-[22px] absolute ltr:-left-[4px] rtl:-right-[4px] top-1/2 -translate-y-1/2" />
                     {t("Products.addNew") || "Add New Product"}
                   </span>
                 </button>
@@ -417,7 +409,7 @@ export default function ProductsPage() {
                   <thead className="text-black dark:text-white">
                     <tr>
                       {[
-                        
+
                         t("Products.product") || "Product",
                         t("Products.category") || "Category",
                         t("Products.price") || "Price",
@@ -447,7 +439,7 @@ export default function ProductsPage() {
                     ) : (
                       paginatedProducts.map((product) => (
                         <tr key={product.id}>
-                          
+
 
                           <td className="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
                             <div className="flex items-center">
@@ -473,11 +465,11 @@ export default function ProductsPage() {
                                   {(() => {
                                     // Support both formats: translations object and direct properties
                                     if (product.translations) {
-                                      return locale === "ar" 
+                                      return locale === "ar"
                                         ? product.translations.ar?.name || product.name || ""
                                         : product.translations.en?.name || product.name || "";
                                     }
-                                    return locale === "ar" 
+                                    return locale === "ar"
                                       ? product.nameAr || product.name || ""
                                       : product.nameEn || product.name || "";
                                   })()}
@@ -485,9 +477,8 @@ export default function ProductsPage() {
                                 {product.description && (
                                   <div className="relative group inline-block">
                                     <span
-                                      className={`block text-sm text-gray-500 dark:text-gray-400 truncate max-w-[200px] ${
-                                        isFreeUser ? "cursor-help" : ""
-                                      }`}
+                                      className={`block text-sm text-gray-500 dark:text-gray-400 truncate max-w-[200px] ${isFreeUser ? "cursor-help" : ""
+                                        }`}
                                     >
                                       {isFreeUser
                                         ? "••••••••••"
@@ -497,9 +488,7 @@ export default function ProductsPage() {
                                       <div className="absolute hidden group-hover:block hover:block bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-xl p-4 z-50 w-[280px] ltr:left-0 rtl:right-0 top-full mt-2 transition-all before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                                         <div className="flex items-center gap-3 mb-2">
                                           <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <i className="material-symbols-outlined text-primary-500 text-[20px]">
-                                              lock
-                                            </i>
+                                            <IoLockClosedOutline className=" !text-[20px] text-primary-500" />
                                           </div>
                                           <div className="flex-1">
                                             <p className="font-semibold text-sm mb-1">
@@ -545,11 +534,10 @@ export default function ProductsPage() {
 
                           <td className="ltr:text-left rtl:text-right whitespace-nowrap px-[20px] py-[15px] border-b border-gray-100 dark:border-[#172036] ltr:first:border-l ltr:last:border-r rtl:first:border-r rtl:last:border-l">
                             <span
-                              className={`px-[8px] py-[3px] inline-block dark:bg-[#15203c] rounded-sm font-medium text-xs ${
-                                product.available
-                                  ? "bg-primary-50 text-primary-500"
-                                  : "bg-orange-100 text-orange-600"
-                              }`}
+                              className={`px-[8px] py-[3px] inline-block dark:bg-[#15203c] rounded-sm font-medium text-xs ${product.available
+                                ? "bg-primary-50 text-primary-500"
+                                : "bg-orange-100 text-orange-600"
+                                }`}
                             >
                               {product.available
                                 ? t("Products.available") || "Available"
@@ -565,9 +553,7 @@ export default function ProductsPage() {
                                 onClick={() => handleEditProduct(product)}
                                 title={t("Products.edit") || "Edit"}
                               >
-                                <i className="material-symbols-outlined !text-md">
-                                  edit
-                                </i>
+                                <IoPencilOutline className=" !text-[20px] text-gray-400" />
                               </button>
 
                               <button
@@ -578,9 +564,7 @@ export default function ProductsPage() {
                                 }
                                 title={t("Products.delete") || "Delete"}
                               >
-                                <i className="material-symbols-outlined !text-md">
-                                  delete
-                                </i>
+                                <IoTrashOutline className=" !text-[20px] text-danger-500" />
                               </button>
                             </div>
                           </td>
@@ -608,9 +592,7 @@ export default function ProductsPage() {
                         className="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span className="opacity-0">0</span>
-                        <i className="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                          chevron_left
-                        </i>
+                        <IoIosArrowBack className=" !text-[20px] left-0 right-0 absolute top-1/2 -translate-y-1/2" />
                       </button>
                     </li>
 
@@ -627,9 +609,8 @@ export default function ProductsPage() {
                         className="w-[31px] h-[31px] block leading-[29px] relative text-center rounded-md border border-gray-100 dark:border-[#172036] transition-all hover:bg-primary-500 hover:text-white hover:border-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <span className="opacity-0">0</span>
-                        <i className="material-symbols-outlined left-0 right-0 absolute top-1/2 -translate-y-1/2">
-                          chevron_right
-                        </i>
+                        <IoIosArrowForward className=" !text-[20px] left-0 right-0 absolute top-1/2 -translate-y-1/2" />
+
                       </button>
                     </li>
                   </ol>
@@ -715,19 +696,19 @@ function CreateProductModal({
     const fetchCategories = async () => {
       try {
         const response = await getCategories(menuId);
-        
-      // Handle different response formats
-      let cats: any[] = [];
-      if (Array.isArray(response)) {
-        cats = response;
-      } else if (response && typeof response === 'object' && 'categories' in response) {
-        const resp = response as any;
-        cats = Array.isArray(resp.categories) ? resp.categories : [];
-      } else if (response && typeof response === 'object' && 'data' in response) {
-        const data = (response as any).data;
-        cats = Array.isArray(data?.categories) ? data.categories : Array.isArray(data) ? data : [];
-      }
-        
+
+        // Handle different response formats
+        let cats: any[] = [];
+        if (Array.isArray(response)) {
+          cats = response;
+        } else if (response && typeof response === 'object' && 'categories' in response) {
+          const resp = response as any;
+          cats = Array.isArray(resp.categories) ? resp.categories : [];
+        } else if (response && typeof response === 'object' && 'data' in response) {
+          const data = (response as any).data;
+          cats = Array.isArray(data?.categories) ? data.categories : Array.isArray(data) ? data : [];
+        }
+
         setCategories(cats);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -767,7 +748,7 @@ function CreateProductModal({
       if (!formData.nameAr.trim() || !formData.nameEn.trim()) {
         toast.error(
           t("Products.nameRequired") ||
-            "Please enter product name in both Arabic and English"
+          "Please enter product name in both Arabic and English"
         );
         setLoading(false);
         return;
@@ -784,7 +765,7 @@ function CreateProductModal({
       if (!formData.categoryId || formData.categoryId === "") {
         toast.error(
           t("Products.categoryRequired") ||
-            "Please select a category for this product"
+          "Please select a category for this product"
         );
         setLoading(false);
         return;
@@ -800,11 +781,11 @@ function CreateProductModal({
           formData.append("type", "menu-items");
 
           const uploadResponse = await uploadImage(formData);
-          
+
           if (!uploadResponse.success) {
             throw new Error(uploadResponse.error || "Failed to upload image");
           }
-          
+
           imageUrl = uploadResponse.data?.url || "";
         } catch (error: any) {
           toast.error(error.message || "حدث خطأ في رفع الصورة");
@@ -853,7 +834,7 @@ function CreateProductModal({
         ) {
           toast.error(
             t("Products.categoryRequired") ||
-              "Please select a category for this product"
+            "Please select a category for this product"
           );
         } else {
           toast.error(result.error || t("Products.createError") || "Failed to create product");
@@ -874,16 +855,15 @@ function CreateProductModal({
         <div className="bg-gray-50 dark:bg-[#15203c] px-6 py-4 border-b border-gray-200 dark:border-[#172036]">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-black dark:text-white flex items-center gap-2">
-              <i className="material-symbols-outlined text-primary-500">
-                add_circle
-              </i>
+              <IoAddCircleOutline className=" !text-[20px] text-primary-500">
+              </IoAddCircleOutline>
               {t("Products.addNew") || "Add New Product"}
             </h2>
             <button
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
             >
-              <i className="material-symbols-outlined text-[28px]">close</i>
+              <IoCloseOutline className=" !text-[28px] text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" />
             </button>
           </div>
         </div>
@@ -936,9 +916,8 @@ function CreateProductModal({
                   <label className="block text-sm font-semibold text-black dark:text-white mb-2">
                     {t("Products.descriptionAr") || "Description (Arabic)"}
                     {isFreeUser && (
-                      <i className="material-symbols-outlined text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
-                        lock
-                      </i>
+                      <IoLockClosedOutline className=" !text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
+                      </IoLockClosedOutline>
                     )}
                   </label>
                   <div className="relative group">
@@ -958,17 +937,15 @@ function CreateProductModal({
                           ? "متاح للمشتركين فقط"
                           : "وصف المنتج بالعربية..."
                       }
-                      className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${
-                        isFreeUser ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${isFreeUser ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
                     />
                     {isFreeUser && (
                       <div className="absolute hidden group-hover:block hover:block bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-xl p-4 z-50 w-[280px] ltr:left-0 rtl:right-0 top-full mt-2 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                         <div className="flex items-center gap-3 mb-2">
                           <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i className="material-symbols-outlined text-primary-500 text-[20px]">
-                              lock
-                            </i>
+                            <IoLockClosedOutline className=" !text-[20px] text-primary-500">
+                            </IoLockClosedOutline>
                           </div>
                           <div className="flex-1">
                             <p className="font-semibold text-sm mb-1">
@@ -999,9 +976,8 @@ function CreateProductModal({
                   <label className="block text-sm font-semibold text-black dark:text-white mb-2">
                     {t("Products.descriptionEn") || "Description (English)"}
                     {isFreeUser && (
-                      <i className="material-symbols-outlined text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
-                        lock
-                      </i>
+                      <IoLockClosedOutline className=" !text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
+                      </IoLockClosedOutline>
                     )}
                   </label>
                   <div className="relative group">
@@ -1020,17 +996,15 @@ function CreateProductModal({
                           ? "Available for subscribers only"
                           : "Product description in English..."
                       }
-                      className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${
-                        isFreeUser ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${isFreeUser ? "opacity-50 cursor-not-allowed" : ""
+                        }`}
                     />
                     {isFreeUser && (
                       <div className="absolute hidden group-hover:block hover:block bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-xl p-4 z-50 w-[280px] ltr:left-0 rtl:right-0 top-full mt-2 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
                         <div className="flex items-center gap-3 mb-2">
                           <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i className="material-symbols-outlined text-primary-500 text-[20px]">
-                              lock
-                            </i>
+                            <IoLockClosedOutline className=" !text-[20px] text-primary-500">
+                            </IoLockClosedOutline>
                           </div>
                           <div className="flex-1">
                             <p className="font-semibold text-sm mb-1">
@@ -1140,9 +1114,8 @@ function CreateProductModal({
                     ) : (
                       <div className="flex flex-col items-center gap-2">
                         <div className="w-12 h-12 bg-gray-100 dark:bg-[#15203c] rounded-full flex items-center justify-center">
-                          <i className="material-symbols-outlined text-primary-500 text-[32px]">
-                            cloud_upload
-                          </i>
+                          <IoCloudUploadOutline className=" !text-[32px] text-primary-500">
+                          </IoCloudUploadOutline>
                         </div>
                         <div>
                           <p className="text-sm font-semibold text-black dark:text-white">
@@ -1163,21 +1136,15 @@ function CreateProductModal({
                 <label className="flex items-center justify-between cursor-pointer">
                   <div className="flex items-center gap-3">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                        formData.isAvailable
-                          ? "bg-primary-500/10"
-                          : "bg-gray-200 dark:bg-[#0c1427]"
-                      }`}
-                    >
-                      <i
-                        className={`material-symbols-outlined ${
-                          formData.isAvailable
-                            ? "text-primary-500"
-                            : "text-gray-400"
+                      className={`w-10 h-10 rounded-full flex items-center justify-center ${formData.isAvailable
+                        ? "bg-primary-500/10"
+                        : "bg-gray-200 dark:bg-[#0c1427]"
                         }`}
-                      >
-                        {formData.isAvailable ? "check_circle" : "cancel"}
-                      </i>
+                    >
+                      <IoCheckmarkCircleOutline className={` !text-[20px] ${formData.isAvailable
+                        ? "text-primary-500"
+                        : "text-gray-400"
+                        }`} />
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-black dark:text-white">
@@ -1186,9 +1153,9 @@ function CreateProductModal({
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         {formData.isAvailable
                           ? t("Products.availableForOrder") ||
-                            "Available for customers to order"
+                          "Available for customers to order"
                           : t("Products.unavailableForOrder") ||
-                            "Hidden from customers"}
+                          "Hidden from customers"}
                       </p>
                     </div>
                   </div>
@@ -1233,7 +1200,7 @@ function CreateProductModal({
                   </>
                 ) : (
                   <>
-                    <i className="material-symbols-outlined">add</i>
+                    <IoAddOutline className=" !text-[20px]" />
                     {t("Products.create") || "Create Product"}
                   </>
                 )}
@@ -1289,13 +1256,13 @@ function EditProductModal({
     // Fetch both product details and categories
     const fetchData = async () => {
       setLoadingData(true);
-     
-      
+
+
       try {
         // Fetch full product data with both translations
         const response = await getMenuItem(menuId, product.id);
-        
-        
+
+
         // Handle different response formats
         let fullProduct: any = response;
         if (response && typeof response === 'object' && 'data' in response) {
@@ -1304,15 +1271,15 @@ function EditProductModal({
         if (response && typeof response === 'object' && 'item' in response) {
           fullProduct = (response as any).item;
         }
-        
-        
-        
+
+
+
         // Extract data from translations object if it exists
         let nameAr = "";
         let nameEn = "";
         let descriptionAr = "";
         let descriptionEn = "";
-        
+
         if (fullProduct.translations) {
           // New format with translations object
           nameAr = fullProduct.translations.ar?.name || "";
@@ -1326,9 +1293,9 @@ function EditProductModal({
           descriptionAr = fullProduct.descriptionAr || "";
           descriptionEn = fullProduct.descriptionEn || "";
         }
-        
-      
-        
+
+
+
         // Handle categoryId - might come as categoryId or need to find from category name
         let categoryIdValue = "";
         if (fullProduct.categoryId) {
@@ -1336,7 +1303,7 @@ function EditProductModal({
         } else if (product.categoryId) {
           categoryIdValue = product.categoryId.toString();
         }
-        
+
         // Update form with full data
         setFormData({
           nameAr: nameAr,
@@ -1345,21 +1312,21 @@ function EditProductModal({
           descriptionEn: descriptionEn,
           price: fullProduct.price?.toString() || "0",
           categoryId: categoryIdValue,
-          isAvailable: fullProduct.available !== undefined 
-            ? fullProduct.available 
-            : fullProduct.isActive !== undefined 
-            ? fullProduct.isActive 
-            : product.available !== undefined 
-            ? product.available 
-            : true,
+          isAvailable: fullProduct.available !== undefined
+            ? fullProduct.available
+            : fullProduct.isActive !== undefined
+              ? fullProduct.isActive
+              : product.available !== undefined
+                ? product.available
+                : true,
         });
-        
+
         setImagePreview(fullProduct.image || fullProduct.imageUrl || product.image || "");
-        
+
         // Fetch categories
         const categoriesResponse = await getCategories(menuId);
-       
-        
+
+
         // Handle different response formats
         let cats: any[] = [];
         if (Array.isArray(categoriesResponse)) {
@@ -1371,21 +1338,21 @@ function EditProductModal({
           const data = (categoriesResponse as any).data;
           cats = Array.isArray(data?.categories) ? data.categories : Array.isArray(data) ? data : [];
         }
-        
-       
+
+
         setCategories(cats);
       } catch (error) {
         console.error("❌ Error fetching product data:", error);
-        
+
         // Fallback: use product data that we already have
         console.log("⚠️ Using fallback - product data from list:", product);
-        
+
         // Extract from translations if available
         let fallbackNameAr = "";
         let fallbackNameEn = "";
         let fallbackDescAr = "";
         let fallbackDescEn = "";
-        
+
         if ((product as any).translations) {
           fallbackNameAr = (product as any).translations.ar?.name || "";
           fallbackNameEn = (product as any).translations.en?.name || "";
@@ -1397,7 +1364,7 @@ function EditProductModal({
           fallbackDescAr = product.descriptionAr || product.description || "";
           fallbackDescEn = product.descriptionEn || product.description || "";
         }
-        
+
         setFormData({
           nameAr: fallbackNameAr,
           nameEn: fallbackNameEn,
@@ -1407,9 +1374,9 @@ function EditProductModal({
           categoryId: product.categoryId?.toString() || "",
           isAvailable: product.available !== undefined ? product.available : true,
         });
-        
+
         setImagePreview(product.image || "");
-        
+
         // Try to get categories anyway
         try {
           const categoriesResponse = await getCategories(menuId);
@@ -1423,7 +1390,7 @@ function EditProductModal({
         } catch (catError) {
           console.error("❌ Error fetching categories:", catError);
         }
-        
+
         toast.error(
           locale === "ar"
             ? "تعذر تحميل بعض البيانات، سيتم استخدام البيانات المتاحة"
@@ -1433,7 +1400,7 @@ function EditProductModal({
         setLoadingData(false);
       }
     };
-    
+
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -1468,7 +1435,7 @@ function EditProductModal({
       if (!formData.nameAr.trim() || !formData.nameEn.trim()) {
         toast.error(
           t("Products.nameRequired") ||
-            "Please enter product name in both Arabic and English"
+          "Please enter product name in both Arabic and English"
         );
         setLoading(false);
         return;
@@ -1485,7 +1452,7 @@ function EditProductModal({
       if (!formData.categoryId || formData.categoryId === "") {
         toast.error(
           t("Products.categoryRequired") ||
-            "Please select a category for this product"
+          "Please select a category for this product"
         );
         setLoading(false);
         return;
@@ -1501,11 +1468,11 @@ function EditProductModal({
           formDataUpload.append("type", "menu-items");
 
           const uploadResponse = await uploadImage(formDataUpload);
-          
+
           if (!uploadResponse.success) {
             throw new Error(uploadResponse.error || "Failed to upload image");
           }
-          
+
           imageUrl = uploadResponse.data?.url || "";
         } catch (error: any) {
           toast.error(error.message || "حدث خطأ في رفع الصورة");
@@ -1533,7 +1500,7 @@ function EditProductModal({
         descriptionEn: formData.descriptionEn,
         price: parseFloat(formData.price),
         categoryId: parseInt(formData.categoryId),
-        category: selectedCategory.nameAr, 
+        category: selectedCategory.nameAr,
         image: imageUrl,
         isAvailable: formData.isAvailable,
       };
@@ -1558,7 +1525,7 @@ function EditProductModal({
         ) {
           toast.error(
             t("Products.categoryRequired") ||
-              "Please select a category for this product"
+            "Please select a category for this product"
           );
         } else {
           toast.error(result.error || t("Products.updateError") || "Failed to update product");
@@ -1579,14 +1546,14 @@ function EditProductModal({
         <div className="bg-gray-50 dark:bg-[#15203c] px-6 py-4 border-b border-gray-200 dark:border-[#172036]">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-black dark:text-white flex items-center gap-2">
-              <i className="material-symbols-outlined text-primary-500">edit</i>
+              <IoPencilOutline className=" !text-[20px] text-primary-500" />
               {t("Products.edit") || "Edit Product"}
             </h2>
             <button
               onClick={onClose}
               className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
             >
-              <i className="material-symbols-outlined text-[28px]">close</i>
+              <IoCloseOutline className=" !text-[28px] text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors" />
             </button>
           </div>
         </div>
@@ -1606,353 +1573,340 @@ function EditProductModal({
             <form onSubmit={handleSubmit}>
               <div className="space-y-5">
                 {/* Product Names */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-black dark:text-white mb-2">
-                    {t("Products.nameAr") || "Name (Arabic)"}{" "}
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.nameAr}
-                    onChange={(e) =>
-                      setFormData({ ...formData, nameAr: e.target.value })
-                    }
-                    dir="rtl"
-                    placeholder="مثال: برجر دجاج"
-                    className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-black dark:text-white mb-2">
-                    {t("Products.nameEn") || "Name (English)"}{" "}
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.nameEn}
-                    onChange={(e) =>
-                      setFormData({ ...formData, nameEn: e.target.value })
-                    }
-                    placeholder="E.g. Chicken Burger"
-                    className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-                  />
-                </div>
-              </div>
-
-              {/* Product Descriptions */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <label className="block text-sm font-semibold text-black dark:text-white mb-2">
-                    {t("Products.descriptionAr") || "Description (Arabic)"}
-                    {isFreeUser && (
-                      <i className="material-symbols-outlined text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
-                        lock
-                      </i>
-                    )}
-                  </label>
-                  <div className="relative group">
-                    <textarea
-                      value={formData.descriptionAr}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-black dark:text-white mb-2">
+                      {t("Products.nameAr") || "Name (Arabic)"}{" "}
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.nameAr}
                       onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          descriptionAr: e.target.value,
-                        })
+                        setFormData({ ...formData, nameAr: e.target.value })
                       }
-                      disabled={isFreeUser}
                       dir="rtl"
-                      rows={3}
-                      placeholder={
-                        isFreeUser
-                          ? "متاح للمشتركين فقط"
-                          : "وصف المنتج بالعربية..."
-                      }
-                      className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${
-                        isFreeUser ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      placeholder="مثال: برجر دجاج"
+                      className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
                     />
-                    {isFreeUser && (
-                      <div className="absolute hidden group-hover:block hover:block bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-xl p-4 z-50 w-[280px] ltr:left-0 rtl:right-0 top-full mt-2 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i className="material-symbols-outlined text-primary-500 text-[20px]">
-                              lock
-                            </i>
-                          </div>
-                          <div className="flex-1">
-                            <p className="font-semibold text-sm mb-1">
-                              {locale === "ar"
-                                ? "ميزة متاحة للمشتركين"
-                                : "Premium Feature"}
-                            </p>
-                            <p className="text-xs text-gray-300">
-                              {locale === "ar"
-                                ? "اشترك لإضافة وصف للمنتجات"
-                                : "Subscribe to add product descriptions"}
-                            </p>
-                          </div>
-                        </div>
-                        <Link
-                          href={`/${locale}/dashboard/profile/user-profile`}
-                          className="block w-full text-center bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-md text-xs transition-colors"
-                        >
-                          {locale === "ar" ? "اشترك الآن" : "Subscribe Now"}
-                        </Link>
-                        <div className="absolute -top-2 ltr:left-4 rtl:right-4 w-4 h-4 bg-gray-900 dark:bg-gray-800 transform rotate-45"></div>
-                      </div>
-                    )}
                   </div>
-                </div>
 
-                <div className="relative">
-                  <label className="block text-sm font-semibold text-black dark:text-white mb-2">
-                    {t("Products.descriptionEn") || "Description (English)"}
-                    {isFreeUser && (
-                      <i className="material-symbols-outlined text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
-                        lock
-                      </i>
-                    )}
-                  </label>
-                  <div className="relative group">
-                    <textarea
-                      value={formData.descriptionEn}
+                  <div>
+                    <label className="block text-sm font-semibold text-black dark:text-white mb-2">
+                      {t("Products.nameEn") || "Name (English)"}{" "}
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.nameEn}
                       onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          descriptionEn: e.target.value,
-                        })
+                        setFormData({ ...formData, nameEn: e.target.value })
                       }
-                      disabled={isFreeUser}
-                      rows={3}
-                      placeholder={
-                        isFreeUser
-                          ? "Available for subscribers only"
-                          : "Product description in English..."
-                      }
-                      className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${
-                        isFreeUser ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      placeholder="E.g. Chicken Burger"
+                      className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
                     />
-                    {isFreeUser && (
-                      <div className="absolute hidden group-hover:block hover:block bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-xl p-4 z-50 w-[280px] ltr:left-0 rtl:right-0 top-full mt-2 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i className="material-symbols-outlined text-primary-500 text-[20px]">
-                              lock
-                            </i>
-                          </div>
-                          <div className="flex-1">
-                            <p className="font-semibold text-sm mb-1">
-                              {locale === "ar"
-                                ? "ميزة متاحة للمشتركين"
-                                : "Premium Feature"}
-                            </p>
-                            <p className="text-xs text-gray-300">
-                              {locale === "ar"
-                                ? "اشترك لإضافة وصف للمنتجات"
-                                : "Subscribe to add product descriptions"}
-                            </p>
-                          </div>
-                        </div>
-                        <Link
-                          href={`/${locale}/dashboard/profile/user-profile`}
-                          className="block w-full text-center bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-md text-xs transition-colors"
-                        >
-                          {locale === "ar" ? "اشترك الآن" : "Subscribe Now"}
-                        </Link>
-                        <div className="absolute -top-2 ltr:left-4 rtl:right-4 w-4 h-4 bg-gray-900 dark:bg-gray-800 transform rotate-45"></div>
-                      </div>
-                    )}
                   </div>
                 </div>
-              </div>
 
-              {/* Price and Category */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Product Descriptions */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="relative">
+                    <label className="block text-sm font-semibold text-black dark:text-white mb-2">
+                      {t("Products.descriptionAr") || "Description (Arabic)"}
+                      {isFreeUser && (
+                        <IoLockClosedOutline className=" !text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
+                        </IoLockClosedOutline>
+                      )}
+                    </label>
+                    <div className="relative group">
+                      <textarea
+                        value={formData.descriptionAr}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            descriptionAr: e.target.value,
+                          })
+                        }
+                        disabled={isFreeUser}
+                        dir="rtl"
+                        rows={3}
+                        placeholder={
+                          isFreeUser
+                            ? "متاح للمشتركين فقط"
+                            : "وصف المنتج بالعربية..."
+                        }
+                        className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${isFreeUser ? "opacity-50 cursor-not-allowed" : ""
+                          }`}
+                      />
+                      {isFreeUser && (
+                        <div className="absolute hidden group-hover:block hover:block bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-xl p-4 z-50 w-[280px] ltr:left-0 rtl:right-0 top-full mt-2 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                              <IoLockClosedOutline className=" !text-[20px] text-primary-500">
+                              </IoLockClosedOutline>
+                            </div>
+                            <div className="flex-1">
+                              <p className="font-semibold text-sm mb-1">
+                                {locale === "ar"
+                                  ? "ميزة متاحة للمشتركين"
+                                  : "Premium Feature"}
+                              </p>
+                              <p className="text-xs text-gray-300">
+                                {locale === "ar"
+                                  ? "اشترك لإضافة وصف للمنتجات"
+                                  : "Subscribe to add product descriptions"}
+                              </p>
+                            </div>
+                          </div>
+                          <Link
+                            href={`/${locale}/dashboard/profile/user-profile`}
+                            className="block w-full text-center bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-md text-xs transition-colors"
+                          >
+                            {locale === "ar" ? "اشترك الآن" : "Subscribe Now"}
+                          </Link>
+                          <div className="absolute -top-2 ltr:left-4 rtl:right-4 w-4 h-4 bg-gray-900 dark:bg-gray-800 transform rotate-45"></div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <label className="block text-sm font-semibold text-black dark:text-white mb-2">
+                      {t("Products.descriptionEn") || "Description (English)"}
+                      {isFreeUser && (
+                        <IoLockClosedOutline className=" !text-[16px] text-orange-500 ltr:ml-1 rtl:mr-1 align-text-bottom">
+                        </IoLockClosedOutline>
+                      )}
+                    </label>
+                    <div className="relative group">
+                      <textarea
+                        value={formData.descriptionEn}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            descriptionEn: e.target.value,
+                          })
+                        }
+                        disabled={isFreeUser}
+                        rows={3}
+                        placeholder={
+                          isFreeUser
+                            ? "Available for subscribers only"
+                            : "Product description in English..."
+                        }
+                        className={`w-full rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 py-3 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none ${isFreeUser ? "opacity-50 cursor-not-allowed" : ""
+                          }`}
+                      />
+                      {isFreeUser && (
+                        <div className="absolute hidden group-hover:block hover:block bg-gray-900 dark:bg-gray-800 text-white rounded-lg shadow-xl p-4 z-50 w-[280px] ltr:left-0 rtl:right-0 top-full mt-2 before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-3">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                              <IoLockClosedOutline className=" !text-[20px] text-primary-500">
+                              </IoLockClosedOutline>
+                            </div>
+                            <div className="flex-1">
+                              <p className="font-semibold text-sm mb-1">
+                                {locale === "ar"
+                                  ? "ميزة متاحة للمشتركين"
+                                  : "Premium Feature"}
+                              </p>
+                              <p className="text-xs text-gray-300">
+                                {locale === "ar"
+                                  ? "اشترك لإضافة وصف للمنتجات"
+                                  : "Subscribe to add product descriptions"}
+                              </p>
+                            </div>
+                          </div>
+                          <Link
+                            href={`/${locale}/dashboard/profile/user-profile`}
+                            className="block w-full text-center bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-md text-xs transition-colors"
+                          >
+                            {locale === "ar" ? "اشترك الآن" : "Subscribe Now"}
+                          </Link>
+                          <div className="absolute -top-2 ltr:left-4 rtl:right-4 w-4 h-4 bg-gray-900 dark:bg-gray-800 transform rotate-45"></div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Price and Category */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-black dark:text-white mb-2">
+                      {t("Products.price") || "Price"}{" "}
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        required
+                        value={formData.price}
+                        onChange={(e) =>
+                          setFormData({ ...formData, price: e.target.value })
+                        }
+                        placeholder="0.00"
+                        className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] pl-4 pr-16 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+                      />
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 font-medium">
+                        {getCurrencyByCode(menuCurrency)?.symbol || menuCurrency}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-black dark:text-white mb-2">
+                      {t("Products.category") || "Category"}{" "}
+                      <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      value={formData.categoryId}
+                      onChange={(e) =>
+                        setFormData({ ...formData, categoryId: e.target.value })
+                      }
+                      required
+                      className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 cursor-pointer"
+                    >
+                      <option value="">
+                        {t("Products.selectCategory") || "Select Category"}
+                      </option>
+                      {Array.isArray(categories) &&
+                        categories.map((cat) => (
+                          <option key={cat.id} value={cat.id}>
+                            {locale === "ar" ? cat.nameAr : cat.nameEn}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Product Image */}
                 <div>
                   <label className="block text-sm font-semibold text-black dark:text-white mb-2">
-                    {t("Products.price") || "Price"}{" "}
-                    <span className="text-red-500">*</span>
+                    {t("Products.image") || "Product Image"}
                   </label>
                   <div className="relative">
-                    <input
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      required
-                      value={formData.price}
-                      onChange={(e) =>
-                        setFormData({ ...formData, price: e.target.value })
-                      }
-                      placeholder="0.00"
-                      className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] pl-4 pr-16 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-                    />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 font-medium">
-                      {getCurrencyByCode(menuCurrency)?.symbol || menuCurrency}
-                    </span>
+                    <div className="border-2 border-dashed border-gray-300 dark:border-[#172036] rounded-lg p-6 text-center hover:border-primary-500 dark:hover:border-primary-500 transition-colors cursor-pointer">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                      />
+                      {imagePreview ? (
+                        <div className="flex flex-col items-center gap-3">
+                          <Image
+                            src={imagePreview}
+                            alt="Preview"
+                            width={120}
+                            height={120}
+                            className="rounded-md object-cover"
+                          />
+                          <p className="text-sm text-primary-500 font-medium">
+                            {t("Products.clickToChange") ||
+                              "Click to change image"}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-12 h-12 bg-gray-100 dark:bg-[#15203c] rounded-full flex items-center justify-center">
+                            <IoCloudUploadOutline className=" !text-[32px] text-primary-500">
+                            </IoCloudUploadOutline>
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold text-black dark:text-white">
+                              {t("Products.clickToUpload") || "Click to upload"}
+                            </p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                              PNG, JPG, WEBP (MAX. 1MB)
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-black dark:text-white mb-2">
-                    {t("Products.category") || "Category"}{" "}
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    value={formData.categoryId}
-                    onChange={(e) =>
-                      setFormData({ ...formData, categoryId: e.target.value })
-                    }
-                    required
-                    className="w-full h-[50px] rounded-md border border-gray-200 dark:border-[#172036] bg-white dark:bg-[#0c1427] px-4 text-black dark:text-white outline-0 transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 cursor-pointer"
-                  >
-                    <option value="">
-                      {t("Products.selectCategory") || "Select Category"}
-                    </option>
-                    {Array.isArray(categories) &&
-                      categories.map((cat) => (
-                        <option key={cat.id} value={cat.id}>
-                          {locale === "ar" ? cat.nameAr : cat.nameEn}
-                        </option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Product Image */}
-              <div>
-                <label className="block text-sm font-semibold text-black dark:text-white mb-2">
-                  {t("Products.image") || "Product Image"}
-                </label>
-                <div className="relative">
-                  <div className="border-2 border-dashed border-gray-300 dark:border-[#172036] rounded-lg p-6 text-center hover:border-primary-500 dark:hover:border-primary-500 transition-colors cursor-pointer">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageChange}
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    />
-                    {imagePreview ? (
-                      <div className="flex flex-col items-center gap-3">
-                        <Image
-                          src={imagePreview}
-                          alt="Preview"
-                          width={120}
-                          height={120}
-                          className="rounded-md object-cover"
-                        />
-                        <p className="text-sm text-primary-500 font-medium">
-                          {t("Products.clickToChange") ||
-                            "Click to change image"}
-                        </p>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center gap-2">
-                        <div className="w-12 h-12 bg-gray-100 dark:bg-[#15203c] rounded-full flex items-center justify-center">
-                          <i className="material-symbols-outlined text-primary-500 text-[32px]">
-                            cloud_upload
-                          </i>
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-black dark:text-white">
-                            {t("Products.clickToUpload") || "Click to upload"}
-                          </p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                            PNG, JPG, WEBP (MAX. 1MB)
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Availability Toggle */}
-              <div className="bg-gray-50 dark:bg-[#15203c] rounded-lg p-4 border border-gray-200 dark:border-[#172036]">
-                <label className="flex items-center justify-between cursor-pointer">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                        formData.isAvailable
+                {/* Availability Toggle */}
+                <div className="bg-gray-50 dark:bg-[#15203c] rounded-lg p-4 border border-gray-200 dark:border-[#172036]">
+                  <label className="flex items-center justify-between cursor-pointer">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-10 h-10 rounded-full flex items-center justify-center ${formData.isAvailable
                           ? "bg-primary-500/10"
                           : "bg-gray-200 dark:bg-[#0c1427]"
-                      }`}
-                    >
-                      <i
-                        className={`material-symbols-outlined ${
-                          formData.isAvailable
-                            ? "text-primary-500"
-                            : "text-gray-400"
-                        }`}
+                          }`}
                       >
-                        {formData.isAvailable ? "check_circle" : "cancel"}
-                      </i>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-black dark:text-white">
-                        {t("Products.availability") || "Product Availability"}
-                      </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
-                        {formData.isAvailable
-                          ? t("Products.availableForOrder") ||
+                        <IoCheckmarkCircleOutline className={` !text-[20px] ${formData.isAvailable
+                          ? "text-primary-500"
+                          : "text-gray-400"
+                          }`} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-black dark:text-white">
+                          {t("Products.availability") || "Product Availability"}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {formData.isAvailable
+                            ? t("Products.availableForOrder") ||
                             "Available for customers to order"
-                          : t("Products.unavailableForOrder") ||
+                            : t("Products.unavailableForOrder") ||
                             "Hidden from customers"}
-                      </p>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      id="isAvailableEdit"
-                      checked={formData.isAvailable}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          isAvailable: e.target.checked,
-                        })
-                      }
-                      className="sr-only peer"
-                    />
-                    <div className="w-11 h-6 bg-gray-200 dark:bg-[#0c1427] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-500/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-500"></div>
-                  </div>
-                </label>
+                    <div className="relative">
+                      <input
+                        type="checkbox"
+                        id="isAvailableEdit"
+                        checked={formData.isAvailable}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            isAvailable: e.target.checked,
+                          })
+                        }
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 dark:bg-[#0c1427] peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-500/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-500"></div>
+                    </div>
+                  </label>
+                </div>
               </div>
-            </div>
 
-            {/* Footer */}
-            <div className="flex gap-3 pt-6 border-t border-gray-200 dark:border-[#172036] mt-6">
-              <button
-                type="button"
-                onClick={onClose}
-                disabled={loading}
-                className="flex-1 h-[50px] rounded-md border-2 border-gray-300 dark:border-gray-600 text-black dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {t("Products.cancel") || "Cancel"}
-              </button>
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex-1 h-[50px] rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
-              >
-                {loading ? (
-                  <>
-                    <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                    {t("Products.updating") || "Updating..."}
-                  </>
-                ) : (
-                  <>
-                    <i className="material-symbols-outlined">check</i>
-                    {t("Products.update") || "Update Product"}
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
+              {/* Footer */}
+              <div className="flex gap-3 pt-6 border-t border-gray-200 dark:border-[#172036] mt-6">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  disabled={loading}
+                  className="flex-1 h-[50px] rounded-md border-2 border-gray-300 dark:border-gray-600 text-black dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {t("Products.cancel") || "Cancel"}
+                </button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="flex-1 h-[50px] rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+                >
+                  {loading ? (
+                    <>
+                      <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                      {t("Products.updating") || "Updating..."}
+                    </>
+                  ) : (
+                    <>
+                      <IoCheckmarkCircleOutline className=" !text-[20px] text-white"/>
+                      {t("Products.update") || "Update Product"}
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
           )}
         </div>
       </div>
