@@ -1,0 +1,1248 @@
+{
+  "nav*": {
+    "templates": "القوالب",
+    "features": "المزايا",
+    "packages": "الباقات",
+    "howItWorks": "كيف نعمل",
+    "contact": "تواصل معنا",
+    "login": "عميل حالي؟ تسجيل الدخول",
+    "startNow": "ابدأ الآن"
+  },
+  "navbar": {
+    "home": "الرئيسية",
+    "features": "المميزات",
+    "templates": "القائمة",
+    "useCases": "حالات الاستخدام",
+    "pricing": "الأسعار",
+    "team": "فريق العمل",
+    "faq": "الأسئلة الشائعة",
+    "contact": "تواصل معنا",
+    "login": "تسجيل الدخول",
+    "language": "English",
+    "theme": {
+      "light": "الوضع الفاتح",
+      "dark": "الوضع الداكن"
+    }
+  },
+  "heroSection": {
+    "badge": "ابدأ مجاناً الآن",
+    "title1": " حوّل منيو مطعمك إلى",
+    "title2": " منيو ذكي",
+    "description": "عصري، سريع، وسهل الإدارة، قابل للتحديث الفوري وبدون أي تعقيد. تحكم في منيو مطعمك وحدّثه في أي وقت بكل سهولة.",
+    "cta": "ابدأ الآن مجاناً",
+    "subtitle": "حوّل منيو مطعمك لتجربة رقمية سهلة وسريعة",
+    "trust": "بدون عمولات • إعداد سريع • دعم فني مستمر"
+  },
+  "trustedBy": {
+    "title": "موثوق به من قبل آلاف المطاعم ومراكز الضيافة",
+    "partners": [
+      "فندق الريتز",
+      "مطعم النخبة",
+      "كافيه لاونج",
+      "مطاعم السلطان",
+      "كوفي هاوس",
+      "مطعم الشرق",
+      "كافيه بلس",
+      "فندق الملكي"
+    ]
+  },
+  "templatesSection": {
+    "title": "أكثر من 90 قالب احترافي مصمم ليناسب أعمالك المميزة",
+    "description": "ابدأ بأحد القوالب القابلة للتخصيص أو صمم موقعك من الصفر بسهولة",
+    "viewAll": "تصفح جميع القوالب",
+    "categories": ["القالب العام", "القالب النيون", "القالب القهوة"]
+  },
+  "HomePage": {
+    "title": "مرحبا بك في موقعنا"
+  },
+  "Landing": {
+    "whatsapp": {
+      "title": "تواصل معنا عبر واتساب",
+      "description": "اتصل بنا على الرقم 01xxxxxxxxx للحصول على المساعدة",
+      "button": "تواصل معنا"
+    },
+    "hero": {
+      "title": "أنشئ قائمتك الرقمية",
+      "subtitle": "في دقائق",
+      "description": "حوّل قائمة مطعمك إلى تجربة رقمية جميلة وسهلة الاستخدام. بدون برمجة.",
+      "getStarted": "ابدأ مجاناً",
+      "viewPricing": "عرض الأسعار"
+    },
+    "features": {
+      "badge": "منتجاتنا",
+      "title": "ميزات صممت لخدمة الجيل القادم",
+      "titleHighlight": "ENS",
+      "titleEnd": "الإلكتروني",
+      "description": "نحن لا نقدم مجرد رمز QR، نحن نقدم منظومة كاملة لإدارة حضورك التجاري بأناقة وسهولة.",
+      "cta": "جرّب المنيو الإلكتروني دلوقتي",
+      "items": [
+        {
+          "title": "تحديثات فورية",
+          "description": "قم بتغيير الأصناف والأسعار في أي وقت دون الحاجة لتغيير الرمز نفسه المطبوع."
+        },
+        {
+          "title": "تحليلات الزوار",
+          "description": "تتبع عدد المسحات، والمناطق الجغرافية، والوجبات الأكثر بحثاً من قبل عملائك."
+        },
+        {
+          "title": "تجربة مثالية",
+          "description": "واجهات منيو تفتح بسرعة البرق ومتوافقة تماماً مع جميع أنواع الهواتف الذكية."
+        },
+        {
+          "title": "أمان وموثوقية",
+          "description": "بياناتك مشفرة ومحمية بأحدث التقنيات، مع ضمان استقرار الخدمة على مدار الساعة."
+        },
+        {
+          "title": "تخصيص كامل",
+          "description": "مئات التصاميم الجاهزة أو قم ببناء تصميمك الخاص بما يتناسب مع هويتك البصرية."
+        },
+        {
+          "title": "روابط متعددة",
+          "description": "اربط رمزك بصفحات السوشيال ميديا، أو موقعك الخاص، أو حتى نظام دفع مباشر."
+        }
+       
+      ]
+    },
+    "whyUs": {
+      "title": "ليه تختار ENS؟",
+      "badge": "لماذا نحن؟",
+      "items": [
+        "مفيش عمولات على الطلبات",
+        "مناسب لكل المطاعم والكافيهات",
+        "تصميم بسيط وسهل الاستخدام",
+        "تحديثات فورية بدون تكلفة إضافية"
+      ]
+    },
+    "howItWorks": {
+      "badge": "كيف نعمل",
+      "title": "ثلاث خطوات بسيطة للانطلاق",
+      "titleHighlight": "ENS",
+      "description": "نحن نسهل عليك الانتقال من المنيو الورقي القديم إلى العصر الرقمي في دقائق.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "سجل الآن",
+          "description": "أنشئ حسابك مجاناً بخطوات بسيطة وميسرة أو سجل دخولك مباشرة وبسرعة باستخدام حساب جوجل."
+        },
+        {
+          "number": "02",
+          "title": "خصص تصميمك",
+          "description":"اختر الألوان، اللوجو، وأسلوب الـ QR والمنيو الذي يناسب هويتك التجارية."
+        },
+        {
+          "number": "03",
+          "title": "انشر الرمز",
+          "description": "قم بتحميل الرمز بجودة عالية واطبعه على الطاولات أو في مدخل مطعمك."
+        }
+      ]
+    },
+    "pricing": {
+      "title": "اختر الباقة",
+      "titleHighlight": "المناسبة",
+      "description": "اختر الباقة التي تناسب مطعمك من بين حلولنا الذكية",
+      "yearly": "سنوياً",
+      "egp": "درهم",
+      "contactUs": "تواصل معنا",
+      "mostPopular": "الأكثر طلباً",
+      "save40": "وفر 40%",
+      "loading": "جاري التحميل...",
+      "packages": [
+        {
+          "name": "أساسي",
+          "originalPrice": "1700",
+          "price": "1080",
+          "features": [
+            "قائمة إلكترونية ديناميكية",
+            "تصميم كيو أر كود ورابط موقع إلكتروني",
+            "لوحة تحكّم مُتكاملة مع واجهة تقارير",
+            "ترجمة القائمة إلى العديد من اللغات",
+            "دعم فني على مدار الساعة"
+          ],
+          "enterpriseCta": "اختر الباقة"
+        },
+        {
+          "name": "احترافي",
+          "originalPrice": "2500",
+          "price": "1370",
+          "features": [
+            "جميع مزايا باقة أساسي",
+            "الطلب من الطاولة من الكيو آر كود",
+            "طلبات التوصيل، الاستلام وطلبات السيارات",
+            "معالجة المدفوعات",
+            "إدارة العملاء"
+          ],
+          "enterpriseCta": "اختر الباقة"
+        },
+        {
+          "name": "مُخصّص",
+          "originalPrice": "",
+          "price": "",
+
+          "features": [
+            "طلب الويتر (النادل)",
+            "طلب الفاتورة ",
+            "نظام الطلب أونلاين",
+            "نظام دليفري بالخرائط المتقدم",
+            "إضافة لغات جديدة (ألماني، فرنسي، هندي)",
+            "الدفع أونلاين المتكامل"
+          ],
+          "enterpriseCta": "اطلب عرض سعر"
+        }
+      ]
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "description": "كل ما تحتاج لمعرفته حول منصة ENS في مكان واحد.",
+      "items": [
+        {
+          "question": "هل أقدر أعمل منيو QR مجانًا؟",
+          "answer": "نعم، تقدر تنشئ منيو إلكتروني مجاني بالكامل لمطعمك أو كافيهك في دقائق، وتضيف الأصناف والأسعار والصور، وتحصل على QR Code جاهز للاستخدام بدون أي تعقيد."
+        },
+        {
+          "question": "إيه الفرق بين الخطة المجانية والاشتراك المدفوع؟",
+          "answer": "الخطة المجانية بتديك كل الأساسيات اللي محتاجها لتشغيل منيو احترافي، أما الاشتراك المدفوع (100 درهم سنويًا) بيوفر لك مميزات إضافية زي: التحكم الكامل في شكل وتصميم المنيو، تغيير الألوان بما يناسب هوية البراند، إضافة إعلانات أو عروض خاصة، وتجربة مميزة واحترافية لعملائك."
+        },
+        {
+          "question": "هل المنيو بيدعم اللغة العربية والإنجليزية؟",
+          "answer": "المنصة بتدعم العربية والإنجليزية، وبتقدر تختار اللغة المناسبة لعملائك بسهولة، وده بيخلي المنيو مناسب للسياح والعملاء المحليين."
+        },
+        {
+          "question": "هل استخدام لوحة التحكم سهل؟",
+          "answer": "صممنا لوحة تحكم بسيطة وسريعة تقدر من خلالها: تضيف أو تعدل الأصناف والأسعار، تحدث المنيو في أي وقت، وتشوف التغييرات فورًا بدون الحاجة لأي خبرة تقنية."
+        }
+      ]
+    },
+    "contact": {
+      "title1": "جاهز لنقلة نوعية في",
+      "title2": "تجربة عملائك؟",
+      "description": "احجز استشارتك مع ENS الآن واصنع منيو إلكتروني يُلهم عملاءك ويزيد من مبيعاتك.",
+      "whatsapp": "تواصل معنا عبر واتساب",
+      "restaurantName": "اسم المطعم",
+      "restaurantPlaceholder": "أدخل اسم المطعم أو المنشأة",
+      "phone": "رقم الهاتف",
+      "phonePlaceholder": "01xxxxxxxxx",
+      "submit": "ابدأ الآن",
+      "successTitle": "شكراً لك!",
+      "successDescription": "تم استلام معلوماتك بنجاح. سنتواصل معك قريباً.",
+      "note": "هنكلمك في أقرب وقت ونفهم احتياج مطعمك"
+    },
+
+    "cta": {
+      "title": "جاهز لتطوير مطعمك؟",
+      "description": "انضم إلى مئات المطاعم التي تحولت للمنيو الذكي. ابدأ تجربتك المجانية اليوم.",
+      "button": "ابدأ الآن مجاناً"
+    },
+    "footer": {
+      "description": "ENS تقدم لك أفضل حلول القوائم الرقمية للمطاعم والمقاهي عن طريق الكيو آر كود لتقديم تجربة طلب سلسة ومريحة لعملائك.",
+      "quickLinks": "روابط سريعة",
+      "contactUs": "تواصل معنا",
+      "location": "مصر",
+      "UnitedArabEmirates": "الإمارة العربية المتحدة",
+      "copyright": "جميع الحقوق محفوظة.",
+      "privacy": "سياسة الخصوصية",
+      "terms": "الشروط والأحكام"
+    }
+  },
+  "login": {
+    "title": "تسجيل الدخول",
+    "subtitle": "مرحباً بك في لوحة التحكم",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "rememberMe": "تذكرني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "loginButton": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟",
+    "createAccount": "أنشئ حساباً جديداً",
+    "backToHome": "العودة للصفحة الرئيسية"
+  },
+  "Dashboard": {
+    "title": "لوحة التحكم",
+    "welcomeBack": "مرحباً بعودتك",
+    "email": "البريد الإلكتروني",
+    "role": "الدور",
+    "logout": "تسجيل الخروج",
+    "loading": "جاري التحميل...",
+    "comingSoon": "قريباً",
+    "stats": {
+      "totalMenus": "إجمالي القوائم",
+      "activeMenus": "القوائم النشطة",
+      "totalViews": "إجمالي المشاهدات"
+    },
+    "quickActions": {
+      "title": "إجراءات سريعة",
+      "manageMenus": "إدارة القوائم",
+      "viewProfile": "عرض الملف الشخصي",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات"
+    },
+    "quickLinks": {
+      "manageMenus": "إدارة القوائم",
+      "manageMenusDesc": "عرض وإدارة جميع قوائمك",
+      "profile": "الملف الشخصي",
+      "profileDesc": "تعديل معلوماتك الشخصية"
+    }
+  },
+  "Menus": {
+    "title": "قوائمي",
+    "subtitle": "إدارة جميع قوائم مطعمك",
+    "backToDashboard": "العودة للوحة التحكم",
+    "createMenu": "إنشاء قائمة",
+    "noMenus": "لا توجد قوائم بعد",
+    "getStarted": "ابدأ بإنشاء قائمتك الأولى",
+    "createFirst": "أنشئ قائمتك الأولى",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "slug": "الرابط",
+    "created": "تاريخ الإنشاء",
+    "noDescription": "لا يوجد وصف",
+    "manageItems": "إدارة العناصر",
+    "openDashboard": "فتح لوحة التحكم",
+    "edit": "تعديل",
+    "activate": "تفعيل",
+    "deactivate": "إلغاء التفعيل",
+    "pause": "إيقاف مؤقت",
+    "delete": "حذف",
+    "viewPublic": "عرض الصفحة العامة",
+    "deleteConfirm": "هل أنت متأكد من حذف هذه القائمة؟",
+    "menuPaused": "تم إيقاف القائمة مؤقتاً",
+    "menuActivated": "تم تفعيل القائمة",
+    "toggleError": "حدث خطأ أثناء تغيير حالة القائمة",
+    "deleteSuccess": "تم حذف القائمة بنجاح",
+    "deleteError": "فشل حذف القائمة",
+    "loading": "جاري تحميل القوائم...",
+    "deleteModal": {
+      "title": "تأكيد الحذف النهائي",
+      "subtitle": "هذا الإجراء لا يمكن التراجع عنه",
+      "warning": "سيتم حذف القائمة وجميع المنتجات والفئات المرتبطة بها نهائياً",
+      "confirmPrompt": "للتأكيد، اكتب",
+      "confirmKeyword": "DELETE",
+      "confirmText": "بالأحرف الكبيرة:",
+      "placeholder": "DELETE",
+      "errorInvalid": "يجب كتابة DELETE بالأحرف الكبيرة بالضبط",
+      "successConfirmed": "تم التأكيد، يمكنك الآن الحذف",
+      "cancel": "إلغاء",
+      "delete": "حذف نهائي",
+      "deleting": "جاري الحذف..."
+    },
+    "createModal": {
+      "title": "إنشاء منيو جديد",
+      "menuNames": "اسم المنيو",
+      "descriptions": "الوصف",
+      "urlSettings": "إعدادات الرابط",
+      "nameEn": "اسم المنيو (إنجليزي)",
+      "nameAr": "اسم المنيو (عربي)",
+      "descriptionEn": "الوصف (إنجليزي)",
+      "descriptionAr": "الوصف (العربية)",
+      "slug": "الرابط (URL)",
+      "slugHint": "حروف إنجليزية صغيرة وأرقام وشرطات فقط. هذا سيكون رابط قائمتك العام:",
+      "logo": "شعار المنيو",
+      "logoUpload": "رفع الشعار",
+      "logoHint": "سيتم استخدام هذه الصورة كـ favicon للصفحة العامة للمنيو",
+      "currency": "العملة",
+      "currencyLabel": "اختر العملة",
+      "englishOnlyError": "يجب استخدام حروف وأرقام إنجليزية فقط",
+      "arabicOnlyError": "يجب استخدام حروف وأرقام عربية فقط",
+      "validationError": "يرجى التأكد من استخدام الحروف الصحيحة في كل حقل (عربية أو إنجليزية)",
+      "cancel": "إلغاء",
+      "create": "إنشاء المنيو",
+      "creating": "جاري الإنشاء...",
+      "createSuccess": "تم إنشاء القائمة بنجاح!",
+      "createError": "فشل إنشاء القائمة"
+    }
+  },
+  "Profile": {
+    "view": {
+      "title": "ملفي الشخصي",
+      "subtitle": "عرض معلومات حسابك",
+      "backToDashboard": "العودة للوحة التحكم",
+      "editProfile": "تعديل الملف الشخصي",
+      "personalInfo": "المعلومات الشخصية",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "country": "الدولة",
+      "dateOfBirth": "تاريخ الميلاد",
+      "gender": "الجنس",
+      "male": "ذكر",
+      "female": "أنثى",
+      "other": "آخر",
+      "address": "العنوان",
+      "notProvided": "غير مُدخل",
+      "role": "الدور",
+      "memberSince": "عضو منذ",
+      "accountStatus": "حالة الحساب",
+      "emailVerification": "التحقق من البريد",
+      "verified": "مُوثق",
+      "accountActive": "حالة الحساب",
+      "active": "نشط",
+      "subscription": "الاشتراك",
+      "manageSubscription": "إدارة الاشتراك",
+      "currentPlan": "الخطة الحالية",
+      "freePlan": "الخطة المجانية",
+      "starterPlan": "خطة المبتدئ",
+      "professionalPlan": "الخطة المحترفة",
+      "status": "الحالة",
+      "billingCycle": "دورة الفواتير",
+      "started": "تاريخ البداية",
+      "renews": "تاريخ التجديد",
+      "upgradeTitle": "ترقية خطتك",
+      "upgradeDescription": "احصل على المزيد من الميزات وأنشئ قوائم غير محدودة",
+      "viewPlans": "عرض الخطط"
+    },
+    "edit": {
+      "title": "تعديل الملف الشخصي",
+      "subtitle": "تحديث إعدادات حسابك",
+      "loading": "جاري التحميل...",
+      "backToProfile": "العودة للملف الشخصي",
+      "profilePicture": "صورة الملف الشخصي",
+      "clickToChange": "انقر على الصورة لتغييرها",
+      "uploadOrInitials": "ارفع صورة أو سيتم عرض الحرف الأول من اسمك",
+      "uploadPhoto": "رفع صورة",
+      "uploading": "جاري الرفع...",
+      "remove": "حذف",
+      "recommendedSize": "يُنصح: صورة مربعة، 400×400 بكسل على الأقل. الحد الأقصى: 5MB",
+      "personalInformation": "المعلومات الشخصية",
+      "personalInfo": "المعلومات الشخصية",
+      "fullName": "الاسم الكامل *",
+      "email": "البريد الإلكتروني",
+      "emailAddress": "البريد الإلكتروني",
+      "emailCannotChange": "لا يمكن تغيير البريد الإلكتروني",
+      "emailCannotBeChanged": "لا يمكن تغيير البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "phoneNumber": "رقم الهاتف",
+      "country": "الدولة",
+      "countryPlaceholder": "مثال: المملكة العربية السعودية",
+      "dateOfBirth": "تاريخ الميلاد",
+      "gender": "الجنس",
+      "selectGender": "اختر الجنس",
+      "male": "ذكر",
+      "female": "أنثى",
+      "other": "آخر",
+      "address": "العنوان",
+      "addressPlaceholder": "مثال: الرياض، المملكة العربية السعودية",
+      "saveChanges": "حفظ التغييرات",
+      "saving": "جاري الحفظ...",
+      "changePassword": "تغيير كلمة المرور",
+      "currentPassword": "كلمة المرور الحالية *",
+      "newPassword": "كلمة المرور الجديدة *",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة",
+      "confirmNewPassword": "تأكيد كلمة المرور الجديدة *",
+      "passwordHint": "8 أحرف على الأقل",
+      "passwordMinLength": "8 أحرف على الأقل",
+      "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
+      "passwordRequirements": "كلمة المرور يجب أن تحتوي على أحرف كبيرة وصغيرة وأرقام",
+      "passwordMismatch": "كلمة المرور غير متطابقة",
+      "changePasswordBtn": "تغيير كلمة المرور",
+      "changePasswordButton": "تغيير كلمة المرور",
+      "changing": "جاري التغيير...",
+      "manageSubscription": "إدارة الاشتراك",
+      "mostPopular": "الأكثر شعبية",
+      "upgradePlan": "ترقية الخطة",
+      "processing": "جاري المعالجة...",
+      "onFreePlan": "أنت على الخطة المجانية",
+      "paymentNote": "سيتم معالجة الدفع بعد التأكيد",
+      "paymentConfirmation": "سيتم معالجة الدفع بعد التأكيد",
+      "paymentPending": "ملاحظة: تكامل بوابة الدفع قيد التطوير. هذه ميزة تجريبية.",
+      "note": "ملاحظة",
+      "paymentGatewayNote": "تكامل بوابة الدفع قيد الانتظار. هذه ميزة تجريبية.",
+      "selected": "تم الاختيار",
+      "selectPlan": "اختر الخطة",
+      "imageTypeError": "يرجى اختيار ملف صورة",
+      "imageSizeError": "يجب أن يكون حجم الصورة أقل من 5MB",
+      "imageUploadSuccess": "تم تحديث صورة الملف الشخصي بنجاح!",
+      "imageUploadError": "فشل رفع الصورة",
+      "imageRemoveSuccess": "تم حذف صورة الملف الشخصي",
+      "dragDropOrClick": "اسحب وأفلت الصورة هنا أو انقر للرفع",
+      "dropImageHere": "أفلت الصورة هنا",
+      "supportedFormats": "PNG, JPG, GIF حتى 5MB",
+      "plans": {
+        "free": {
+          "name": "مجاني",
+          "period": "للأبد",
+          "features": {
+            "0": "قائمة واحدة",
+            "1": "حتى 20 عنصر",
+            "2": "تخصيص أساسي",
+            "3": "مدعوم بالإعلانات"
+          }
+        },
+        "starter": {
+          "name": "مبتدئ",
+          "period": "/شهر",
+          "features": {
+            "0": "3 قوائم",
+            "1": "عناصر غير محدودة",
+            "2": "تخصيص متقدم",
+            "3": "بدون إعلانات",
+            "4": "تحليلات"
+          }
+        },
+        "professional": {
+          "name": "احترافي",
+          "period": "/شهر",
+          "features": {
+            "0": "قوائم غير محدودة",
+            "1": "تخصيص كامل",
+            "2": "دعم ذو أولوية",
+            "3": "تحليلات متقدمة",
+            "4": "نطاق مخصص"
+          }
+        }
+      }
+    }
+  },
+  "SignIn": {
+    "title": "مرحباً بعودتك!",
+    "subtitle": "سجل الدخول للوصول إلى لوحة التحكم",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "example@domain.com",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "rememberMe": "تذكرني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "signInButton": "تسجيل الدخول",
+    "signingIn": "جاري تسجيل الدخول...",
+    "noAccount": "ليس لديك حساب؟",
+    "createAccount": "إنشاء حساب",
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "backToHome": "العودة للصفحة الرئيسية",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور",
+    "accountSuspended": "تم إيقاف هذا الحساب. برجاء التواصل مع الدعم.",
+    "accountLocked": "تم قفل حسابك مؤقتاً بسبب محاولات تسجيل دخول فاشلة متعددة.",
+    "accountLockedMinutes": "تم قفل حسابك لمدة {minutes} دقيقة بسبب محاولات تسجيل دخول فاشلة متعددة.",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة. يرجى التحقق والمحاولة مرة أخرى.",
+    "emailNotFound": "البريد الإلكتروني غير مسجل في النظام. يرجى التحقق من البريد الإلكتروني والمحاولة مرة أخرى.",
+    "invalidPassword": "كلمة المرور غير صحيحة. يرجى التحقق من كلمة المرور والمحاولة مرة أخرى.",
+    "remainingAttempts": "لديك {count} محاولة متبقية قبل قفل الحساب.",
+    "noRemainingAttempts": "تم استنفاد جميع المحاولات.",
+    "networkError": "فشل الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
+    "contactSupport": "تواصل مع الدعم",
+    "orContinueWith": "أو تابع باستخدام",
+    "signInWithGoogle": "تسجيل الدخول بـ Google",
+    "googleNotConfigured": "تسجيل الدخول بـ Google غير مُفعّل حالياً. يرجى إعداد Google OAuth في الباك إند",
+    "loginSuccess": "تم تسجيل الدخول بنجاح!",
+    "googleAuthFailed": "فشل في الحصول على بيانات Google",
+    "googleSignInFailed": "فشل تسجيل الدخول بـ Google",
+    "accountCreatedSuccess": "تم إنشاء حسابك بنجاح!",
+    "googleOAuthNotConfigured": "⚠️ تسجيل الدخول بـ Google غير مُفعّل."
+  },
+  "SignUp": {
+    "title": "إنشاء حساب جديد",
+    "subtitle": "أنشئ حسابك للبدء في إدارة قوائمك",
+    "name": "الاسم الكامل",
+    "namePlaceholder": "محمد أحمد",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "example@domain.com",
+    "phoneNumber": "رقم الهاتف",
+    "phoneNumberPlaceholder": "+20 10 **** ****",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "8 أحرف على الأقل",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "signUpButton": "إنشاء حساب",
+    "creatingAccount": "جاري إنشاء الحساب...",
+    "hasAccount": "لديك حساب بالفعل؟",
+    "signIn": "تسجيل الدخول",
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "passwordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+    "passwordMismatch": "كلمة المرور غير متطابقة",
+    "agreeTerms": "أوافق على",
+    "termsOfService": "شروط الخدمة",
+    "and": "و",
+    "privacyPolicy": "سياسة الخصوصية",
+    "agreeTermsRequired": "يجب الموافقة على الشروط والأحكام",
+    "accountCreated": "تم إنشاء الحساب بنجاح!",
+    "backToHome": "العودة للصفحة الرئيسية",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور",
+    "checking": "جاري التحقق...",
+    "emailAvailable": "البريد الإلكتروني متاح ✓",
+    "emailTaken": "البريد الإلكتروني مستخدم بالفعل",
+    "phoneAvailable": "رقم الهاتف متاح ✓",
+    "phoneTaken": "رقم الهاتف مستخدم بالفعل",
+    "waitingValidation": "الرجاء الانتظار حتى يتم التحقق من البيانات",
+    "signupError": "حدث خطأ أثناء إنشاء الحساب",
+    "passwordMinLengthRule": "8 أحرف على الأقل",
+    "passwordUppercaseRule": "حرف كبير (A-Z)",
+    "passwordLowercaseRule": "حرف صغير (a-z)",
+    "passwordNumberRule": "رقم واحد (0-9)",
+    "passwordSpecialRule": "رمز خاص (@$!%*?&#...)",
+    "orContinueWith": "أو تابع باستخدام",
+    "signUpWithGoogle": "إنشاء حساب بـ Google",
+    "googleAuthFailed": "فشل في الحصول على بيانات Google",
+    "googleSignInFailed": "فشل الإنشاء بـ Google",
+    "accountCreatedSuccess": "تم إنشاء حسابك بنجاح!",
+    "loginSuccess": "تم تسجيل الدخول بنجاح!",
+    "googleOAuthNotConfigured": "⚠️ إنشاء الحساب بـ Google غير مُفعّل."
+  },
+  "Common": {
+    "loading": "جاري التحميل...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "search": "بحث",
+    "filter": "تصفية",
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "Header": {
+    "myProfile": "ملفي الشخصي",
+    "billing": "الفواتير",
+    "manageMenus": "إدارة القوائم",
+    "settings": "الإعدادات",
+    "adminPanel": "لوحة الأدمن",
+    "logout": "تسجيل الخروج"
+  },
+  "Sidebar": {
+    "main": "الرئيسية",
+    "other": "أخرى",
+    "admin": "إدارة النظام",
+    "dashboard": "لوحة التحكم",
+    "menus": "قوائمي",
+    "overview": "نظرة عامة",
+    "categories": "الأصناف",
+    "products": "المنتجات",
+    "ads": "الإعلانات",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "accountSettings": "إعدادات الحساب",
+    "backToMenus": "العودة للقوائم",
+    "adminPanel": "لوحة الأدمن",
+    "adminDashboard": "لوحة التحكم",
+    "adminUsers": "المستخدمين",
+    "adminPlans": "الخطط",
+    "adminAds": "الإعلانات",
+    "adminAdmins": "المشرفين",
+    "needHelp": "تحتاج مساعدة؟",
+    "helpDescription": "تحقق من الوثائق أو تواصل مع الدعم",
+    "contactSupport": "تواصل مع الدعم"
+  },
+  "Products": {
+    "title": "المنتجات",
+    "subtitle": "إدارة المنتجات",
+    "backToDashboard": "العودة للوحة التحكم",
+    "allProducts": "جميع المنتجات",
+    "availableProducts": "المنتجات المتاحة",
+    "unavailableProducts": "المنتجات غير المتاحة",
+    "searchPlaceholder": "ابحث عن منتج...",
+    "filterByCategory": "تصفية حسب الفئة",
+    "allCategories": "جميع الفئات",
+    "addProduct": "إضافة منتج",
+    "addNew": "إضافة منتج جديد",
+    "editProduct": "تعديل المنتج",
+    "noProducts": "لا توجد منتجات",
+    "noProductsDesc": "ابدأ بإضافة منتجات لقائمتك",
+    "createSuccess": "تم إنشاء المنتج بنجاح!",
+    "updateSuccess": "تم تحديث المنتج بنجاح!",
+    "deleteSuccess": "تم حذف المنتج بنجاح!",
+    "toggleSuccess": "تم تحديث حالة المنتج بنجاح!",
+    "fetchError": "فشل تحميل المنتجات",
+    "saveError": "فشل حفظ المنتج",
+    "deleteError": "فشل حذف المنتج",
+    "loading": "جاري التحميل...",
+    "saving": "جاري الحفظ...",
+    "creating": "جاري الإنشاء...",
+    "updating": "جاري التحديث...",
+    "product": "منتج",
+    "products": "منتجات",
+    "results": "نتيجة",
+    "showing": "عرض",
+    "of": "من",
+    "page": "صفحة",
+    "previousPage": "السابق",
+    "nextPage": "التالي",
+    "id": "الرقم التعريفي",
+    "name": "الاسم",
+    "nameAr": "الاسم بالعربية",
+    "nameEn": "الاسم بالإنجليزية",
+    "description": "الوصف",
+    "descriptionAr": "الوصف بالعربية",
+    "descriptionEn": "الوصف بالإنجليزية",
+    "category": "الفئة",
+    "selectCategory": "اختر التصنيف",
+    "price": "السعر",
+    "currency": "ريال",
+    "image": "الصورة",
+    "clickToChange": "اضغط للتغيير",
+    "clickToUpload": "اضغط لرفع صورة",
+    "status": "الحالة",
+    "availability": "التوفر",
+    "availableForOrder": "متاح للطلب",
+    "actions": "الإجراءات",
+    "available": "متوفر",
+    "unavailable": "غير متوفر",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا المنتج؟",
+    "confirmDelete": "هل أنت متأكد من حذف هذا المنتج؟",
+    "nameRequired": "يرجى إدخال اسم المنتج باللغتين العربية والإنجليزية",
+    "priceRequired": "يرجى إدخال سعر صحيح للمنتج",
+    "categoryRequired": "يرجى اختيار تصنيف للمنتج",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "search": "بحث",
+    "sortOrder": "ترتيب العرض",
+    "createdAt": "تاريخ الإنشاء",
+    "updatedAt": "تاريخ التحديث"
+  },
+  "MenuItems": {
+    "title": "عناصر القائمة",
+    "subtitle": "إدارة عناصر القائمة",
+    "addItem": "إضافة عنصر",
+    "editItem": "تعديل العنصر",
+    "addFirstItem": "إضافة أول عنصر",
+    "noItems": "لا توجد عناصر بعد",
+    "noItemsDesc": "ابدأ بإضافة عناصر لقائمتك",
+    "nameAr": "الاسم بالعربي",
+    "nameEn": "الاسم بالإنجليزي",
+    "nameArPlaceholder": "مثال: كباب دجاج",
+    "nameEnPlaceholder": "مثال: Chicken Kebab",
+    "descriptionAr": "الوصف بالعربي",
+    "descriptionEn": "الوصف بالإنجليزي",
+    "descriptionPlaceholder": "اكتب وصف العنصر...",
+    "price": "السعر",
+    "category": "الفئة",
+    "image": "صورة المنتج",
+    "clickToUpload": "اضغط لرفع صورة",
+    "maxFileSize": "الحد الأقصى: 1 ميجابايت",
+    "imageHintUpload": "يدعم: JPG, PNG, GIF, WebP - الحد الأقصى 1 ميجابايت",
+    "uploading": "جاري الرفع...",
+    "imageUploaded": "تم رفع الصورة بنجاح",
+    "imageUploadError": "فشل رفع الصورة",
+    "invalidImageType": "يجب أن يكون الملف صورة",
+    "imageTooLarge": "حجم الصورة يجب أن يكون أقل من 1 ميجابايت",
+    "changeImage": "تغيير",
+    "removeImage": "حذف",
+    "available": "متوفر",
+    "notAvailable": "غير متوفر",
+    "categories": {
+      "starters": "المقبلات",
+      "main": "الأطباق الرئيسية",
+      "desserts": "الحلويات",
+      "drinks": "المشروبات",
+      "other": "أخرى"
+    },
+    "selectCategory": "اختر تصنيف",
+    "loadingCategories": "جاري تحميل التصنيفات...",
+    "noCategoriesHint": "لا توجد تصنيفات. يرجى إنشاء تصنيف أولاً من صفحة التصنيفات.",
+    "pricing": "التسعير",
+    "originalPrice": "السعر الأصلي",
+    "discountPercent": "نسبة الخصم",
+    "finalPrice": "السعر النهائي",
+    "calculatedPrice": "السعر محسوب تلقائياً",
+    "nameRequired": "الاسم مطلوب باللغتين",
+    "priceRequired": "السعر مطلوب",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "cancel": "إلغاء",
+    "saving": "جاري الحفظ...",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا العنصر؟",
+    "createSuccess": "تم إنشاء العنصر بنجاح!",
+    "updateSuccess": "تم تحديث العنصر بنجاح!",
+    "deleteSuccess": "تم حذف العنصر بنجاح!",
+    "saveError": "فشل حفظ العنصر",
+    "fetchError": "فشل تحميل العناصر",
+    "deleteError": "فشل حذف العنصر",
+    "loading": "جاري التحميل...",
+    "backToDashboard": "العودة للوحة التحكم",
+    "loginRequired": "يجب تسجيل الدخول أولاً",
+    "noPermission": "ليس لديك صلاحية للوصول لهذه القائمة"
+  },
+  "Categories": {
+    "title": "التصنيفات",
+    "subtitle": "إدارة تصنيفات القائمة",
+    "backToDashboard": "العودة للوحة التحكم",
+    "addCategory": "إضافة تصنيف",
+    "editCategory": "تعديل التصنيف",
+    "createFirst": "أنشئ أول تصنيف",
+    "noCategories": "لا توجد تصنيفات بعد",
+    "getStarted": "ابدأ بإنشاء تصنيفك الأول",
+    "name": "الاسم",
+    "nameAr": "الاسم (العربية)",
+    "nameEn": "الاسم (الإنجليزية)",
+    "image": "الصورة",
+    "sortOrder": "ترتيب العرض",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "status": "الحالة",
+    "actions": "الإجراءات",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "deleteConfirm": "هل أنت متأكد من حذف هذا التصنيف؟",
+    "createSuccess": "تم إنشاء التصنيف بنجاح!",
+    "updateSuccess": "تم تحديث التصنيف بنجاح!",
+    "deleteSuccess": "تم حذف التصنيف بنجاح!",
+    "saveError": "فشل حفظ التصنيف",
+    "fetchError": "فشل تحميل التصنيفات",
+    "deleteError": "فشل حذف التصنيف",
+    "imageUploadSuccess": "تم رفع الصورة بنجاح",
+    "imageUploadError": "فشل رفع الصورة",
+    "uploading": "جاري الرفع",
+    "loading": "جاري التحميل...",
+    "create": "إنشاء",
+    "creating": "جاري الإنشاء...",
+    "update": "تحديث",
+    "updating": "جاري التحديث...",
+    "cancel": "إلغاء",
+    "saving": "جاري الحفظ...",
+    "searchPlaceholder": "ابحث عن تصنيف...",
+    "clickToUpload": "اضغط لرفع صورة",
+    "yourFileHere": "ملفك هنا",
+    "dragAndDrop": "اسحب وأفلت الصورة هنا",
+    "or": "أو",
+    "browse": "تصفح",
+    "maxFileSize": "الحد الأقصى: 5 ميجابايت",
+    "supportedFormats": "الصيغ المدعومة: JPG, PNG, GIF"
+  },
+  "PublicMenu": {
+    "notFound": "القائمة غير موجودة",
+    "notFoundDescription": "هذه القائمة غير موجودة أو غير نشطة",
+    "fetchError": "فشل تحميل القائمة",
+    "rateUs": "قيّمنا",
+    "allCategories": "الكل",
+    "categories": {
+      "starters": "المقبلات",
+      "main": "الأطباق الرئيسية",
+      "desserts": "الحلويات",
+      "drinks": "المشروبات",
+      "other": "أخرى"
+    },
+    "noItems": "لا توجد عناصر متاحة",
+    "noItemsInCategory": "لا توجد عناصر في هذه الفئة بعد",
+    "ourBranches": "فروعنا",
+    "rating": {
+      "title": "قيّم هذه القائمة",
+      "rating": "تقييمك",
+      "name": "اسمك",
+      "namePlaceholder": "أدخل اسمك (اختياري)",
+      "comment": "تعليق",
+      "commentPlaceholder": "شارك تجربتك...",
+      "cancel": "إلغاء",
+      "submit": "إرسال",
+      "submitting": "جاري الإرسال...",
+      "selectStars": "الرجاء اختيار تقييم",
+      "submitSuccess": "شكراً لتقييمك!",
+      "submitError": "فشل إرسال التقييم"
+    }
+  },
+  "MenuDashboard": {
+    "subtitle": "إدارة القائمة بالكامل",
+    "loading": "جاري التحميل...",
+    "backToMenus": "العودة للقوائم",
+    "manageItems": "إدارة العناصر",
+    "categories": "التصنيفات",
+    "settings": "الإعدادات",
+    "viewPublic": "عرض المنيو ",
+    "navigation": {
+      "overview": "نظرة عامة",
+      "categories": "التصنيفات",
+      "products": "المنتجات"
+    },
+    "stats": {
+      "totalItems": "إجمالي العناصر",
+      "activeItems": "العناصر النشطة",
+      "categories": "الفئات",
+      "views": "المشاهدات"
+    },
+    "quickLinks": {
+      "items": "عناصر القائمة",
+      "itemsDesc": "إضافة وتعديل وحذف العناصر",
+      "settings": "إعدادات القائمة",
+      "settingsDesc": "تخصيص المظهر والإعدادات",
+      "preview": "معاينة عامة",
+      "previewDesc": "عرض القائمة كما يراها العملاء"
+    },
+    "recentActivity": {
+      "title": "النشاط الأخير",
+      "noActivity": "لا يوجد نشاط حديث",
+      "product": "منتج",
+      "category": "تصنيف",
+      "added": "تمت الإضافة في",
+      "view": "عرض"
+    },
+    "qrCode": {
+      "title": "رمز QR للمنيو",
+      "description": "شارك هذا الرمز مع عملائك للوصول السريع إلى المنيو",
+      "download": "تحميل كصورة"
+    }
+  },
+  "MenuSettings": {
+    "title": "إعدادات القائمة",
+    "subtitle": "تخصيص إعدادات القائمة والمظهر",
+    "loading": "جاري التحميل...",
+    "backToDashboard": "العودة للوحة التحكم",
+    "fetchError": "فشل تحميل الإعدادات",
+    "saveSuccess": "تم حفظ التغييرات بنجاح!",
+    "saveError": "فشل حفظ التغييرات",
+    "deleteConfirm": "هل أنت متأكد من حذف هذه القائمة؟ لا يمكن التراجع عن هذا الإجراء!",
+    "deleteSuccess": "تم حذف القائمة بنجاح",
+    "deleteError": "فشل حذف القائمة",
+    "sections": {
+      "general": "إعدادات عامة",
+      "appearance": "المظهر",
+      "currency": "العملة",
+      "status": "الحالة"
+    },
+    "fields": {
+      "nameEn": "الاسم بالإنجليزية",
+      "nameAr": "الاسم بالعربية",
+      "descriptionEn": "الوصف بالإنجليزية",
+      "descriptionAr": "الوصف بالعربية",
+      "slug": "الرابط المخصص",
+      "slugHint": "سيظهر في رابط القائمة: yoursite.com/menu/slug",
+      "theme": "المظهر",
+      "currency": "العملة",
+      "currencyHint": "اختر العملة التي سيتم عرض الأسعار بها",
+      "isActive": "تفعيل القائمة",
+      "isActiveHint": "عند التفعيل، ستكون القائمة مرئية للعامة"
+    },
+    "themes": {
+      "classic": "كلاسيكي",
+      "classicDescription": "تصميم بسيط ونظيف مناسب لجميع المطاعم",
+      "modern": "عصري",
+      "modernDescription": "تصميم حديث وأنيق مع تأثيرات بصرية جذابة",
+      "elegant": "أنيق",
+      "elegantDescription": "تصميم فاخر وراقي للمطاعم الراقية"
+    },
+    "buttons": {
+      "save": "حفظ التغييرات",
+      "saveChanges": "حفظ التغييرات",
+      "saving": "جاري الحفظ...",
+      "cancel": "إلغاء",
+      "select": "اختيار",
+      "selected": "محدد",
+      "edit": "تعديل",
+      "remove": "إزالة",
+      "uploadLogo": "رفع شعار",
+      "uploading": "جاري الرفع...",
+      "upgradePlan": "ترقية الخطة",
+      "deleteForever": "حذف نهائياً",
+      "deleting": "جاري الحذف...",
+      "deactivateMenu": "تعطيل القائمة",
+      "deactivating": "جاري التعطيل..."
+    },
+    "messages": {
+      "noChanges": "لا توجد تغييرات لحفظها",
+      "logoUploaded": "تم رفع الشعار بنجاح",
+      "logoUploadFailed": "فشل رفع الشعار",
+      "logoRemoved": "تم إزالة الشعار",
+      "currentLogo": "الشعار الحالي"
+    },
+    "tabs": {
+      "general": "عام",
+      "appearance": "الشكل والتصميم",
+      "footer": "إعدادات الفوتر"
+    },
+    "tips": {
+      "title": "نصيحة",
+      "titlePlural": "نصائح",
+      "appearanceHint": "اضغط على أي تصميم لمعاينته. التصميم المحدد سيظهر مباشرة في قائمتك العامة.",
+      "note": "ملاحظة"
+    },
+    "dangerZone": {
+      "title": "منطقة الخطر",
+      "description": "حذف هذه القائمة سيؤدي إلى حذف جميع العناصر المرتبطة بها. لا يمكن التراجع عن هذا الإجراء!",
+      "deleteButton": "حذف القائمة نهائياً"
+    }
+  },
+  "ForgotPassword": {
+    "title": "نسيت كلمة المرور؟",
+    "subtitle": "أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة التعيين",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "example@domain.com",
+    "sendButton": "إرسال رابط إعادة التعيين",
+    "sending": "جاري الإرسال...",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "rememberPassword": "تذكرت كلمة المرور؟",
+    "login": "تسجيل الدخول",
+    "enterEmail": "يرجى إدخال البريد الإلكتروني",
+    "successMessage": "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك",
+    "checkEmail": "تم إرسال الرابط! تحقق من بريدك الإلكتروني",
+    "successTitle": "تم الإرسال بنجاح!",
+    "successDescription": "تحقق من صندوق الوارد واضغط على الرابط لإعادة تعيين كلمة المرور"
+  },
+  "ConfirmEmail": {
+    "title": "التحقق من البريد الإلكتروني",
+    "subtitle": "تحقق من بريدك الإلكتروني واضغط على الرابط",
+    "verifying": "جاري التحقق...",
+    "verificationSuccess": "تم التحقق من البريد بنجاح!",
+    "successTitle": "تم التحقق بنجاح!",
+    "successDescription": "تم التحقق من بريدك الإلكتروني بنجاح. يمكنك الآن تسجيل الدخول والبدء في استخدام التطبيق.",
+    "loginButton": "تسجيل الدخول",
+    "errorTitle": "فشل التحقق",
+    "errorMessage": "حدث خطأ في التحقق. يرجى طلب رابط جديد.",
+    "didntReceive": "لم تستلم البريد؟",
+    "checkSpam": "تحقق من مجلد الرسائل غير المرغوب فيها، أو يمكنك طلب إرسال الرابط مرة أخرى",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "resendButton": "إعادة إرسال الرابط",
+    "sending": "جاري الإرسال...",
+    "enterEmail": "يرجى إدخال البريد الإلكتروني",
+    "resendSuccess": "تم إرسال رابط التحقق مرة أخرى",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "backToLoginLink": "العودة لتسجيل الدخول"
+  },
+  "ResetPassword": {
+    "title": "إعادة تعيين كلمة المرور",
+    "subtitle": "أدخل كلمة المرور الجديدة",
+    "newPassword": "كلمة المرور الجديدة",
+    "newPasswordPlaceholder": "8 أحرف على الأقل",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أعد إدخال كلمة المرور",
+    "changeButton": "تغيير كلمة المرور",
+    "changing": "جاري التغيير...",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "backToLoginLink": "العودة لتسجيل الدخول",
+    "invalidLink": "رابط غير صالح",
+    "invalidLinkTitle": "رابط غير صالح",
+    "invalidLinkDescription": "الرابط منتهي الصلاحية أو غير صحيح",
+    "requestNewLink": "طلب رابط جديد",
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "passwordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+    "passwordMismatch": "كلمة المرور غير متطابقة",
+    "successMessage": "تم تغيير كلمة المرور بنجاح",
+    "successTitle": "تم التغيير بنجاح!",
+    "redirecting": "سيتم تحويلك لصفحة تسجيل الدخول...",
+    "canNowLogin": "يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة"
+  },
+  "AdminUsers": {
+    "title": "إدارة المستخدمين",
+    "subtitle": "عرض وإدارة جميع المستخدمين في النظام",
+    "backButton": "رجوع",
+    "searchPlaceholder": "بحث بالاسم أو البريد الإلكتروني...",
+    "stats": {
+      "totalUsers": "إجمالي المستخدمين",
+      "activeUsers": "المستخدمين النشطين",
+      "suspendedUsers": "المستخدمين الموقوفين"
+    },
+    "table": {
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "plan": "الخطة",
+      "status": "الحالة",
+      "actions": "إجراءات"
+    },
+    "roles": {
+      "admin": "أدمن",
+      "user": "مستخدم"
+    },
+    "plans": {
+      "yearly": "سنوي",
+      "monthly": "شهري",
+      "free": "مجاني"
+    },
+    "status": {
+      "active": "نشط",
+      "suspended": "موقوف"
+    },
+    "actions": {
+      "view": "عرض",
+      "suspend": "إيقاف",
+      "activate": "تفعيل"
+    },
+    "noResults": "لا توجد نتائج",
+    "loading": "جاري التحميل...",
+    "pagination": {
+      "showing": "عرض {start} إلى {end} من {total}",
+      "previous": "السابق",
+      "next": "التالي"
+    },
+    "confirmModal": {
+      "title": "تأكيد العملية",
+      "activateMessage": "هل أنت متأكد من تفعيل حساب المستخدم",
+      "suspendMessage": "هل أنت متأكد من إيقاف حساب المستخدم",
+      "suspendWarning": "؟ لن يتمكن من الوصول إلى حسابه بعد ذلك.",
+      "cancel": "إلغاء",
+      "confirm": "تأكيد"
+    }
+  },
+  "AdminPlans": {
+    "title": "إدارة الخطط",
+    "subtitle": "عرض وإدارة خطط الاشتراك المتاحة",
+    "backButton": "رجوع",
+    "loading": "جاري التحميل...",
+    "popular": "الأكثر طلباً",
+    "perMonth": "/ شهرياً",
+    "day": "يوم",
+    "days": "يوم",
+    "features": {
+      "unlimitedMenus": "قوائم غير محدودة",
+      "menus": "قائمة",
+      "menusPlural": "قوائم",
+      "unlimitedProducts": "منتجات غير محدودة",
+      "products": "منتج لكل قائمة",
+      "productsPlural": "منتج لكل قائمة",
+      "customDomain": "نطاق مخصص",
+      "noAds": "بدون إعلانات"
+    },
+    "status": {
+      "active": "نشط",
+      "inactive": "غير نشط"
+    },
+    "actions": {
+      "edit": "تعديل",
+      "activate": "تفعيل",
+      "deactivate": "تعطيل"
+    },
+    "editModal": {
+      "title": "تعديل الخطة",
+      "price": "السعر ($)",
+      "maxMenus": "الحد الأقصى للقوائم (-1 = غير محدود)",
+      "maxProducts": "الحد الأقصى للمنتجات لكل قائمة (-1 = غير محدود)",
+      "allowCustomDomain": "السماح بنطاق مخصص",
+      "hasAds": "يحتوي على إعلانات",
+      "isActive": "الخطة نشطة",
+      "save": "حفظ التعديلات",
+      "cancel": "إلغاء",
+      "updateSuccess": "تم تحديث الخطة بنجاح",
+      "updateError": "فشل تحديث الخطة"
+    }
+  },
+  "TermsAndConditions": {
+    "backToHome": "العودة إلى الصفحة الرئيسية",
+    "title": "الشروط والأحكام وسياسة الخصوصية",
+    "lastUpdated": "آخر تحديث",
+    "updateDate": "يناير 2026",
+    "introduction": "مرحبًا بك في ENSMENU. باستخدامك لموقعنا أو أي من خدماتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. يرجى قراءتها بعناية قبل استخدام المنصة.",
+    "privacyPolicy": {
+      "backToHome": "العودة إلى الصفحة الرئيسية",
+      "title": "سياسة الخصوصية",
+      "lastUpdated": "آخر تحديث",
+      "updateDate": "يناير 2026",
+      "intro": "مرحبًا بك في *ENSMENU*. نحن نقدر خصوصيتك ونلتزم بحماية بياناتك الشخصية. توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية المعلومات عند استخدامك لموقع ENSMENU وخدمات إنشاء قوائم الطعام الرقمية (QR Menu) للمطاعم والمقاهي، بما في ذلك الخدمات المجانية والاشتراكات المدفوعة.",
+      "section1": {
+        "title": "المعلومات التي نقوم بجمعها",
+        "subsectionA": {
+          "title": "أ) معلومات الحساب",
+          "name": "الاسم",
+          "email": "البريد الإلكتروني",
+          "phone": "رقم الهاتف (إن وجد)",
+          "loginData": "بيانات تسجيل الدخول"
+        },
+        "subsectionB": {
+          "title": "ب) معلومات النشاط والاستخدام",
+          "menuData": "بيانات إنشاء وإدارة قوائم الطعام",
+          "visits": "عدد الزيارات على المنيو",
+          "settings": "إعدادات التصميم والتخصيص"
+        },
+        "subsectionC": {
+          "title": "ج) معلومات الدفع والاشتراكات",
+          "subscriptionType": "نوع الاشتراك",
+          "paymentStatus": "حالة الدفع (لا نقوم بتخزين بيانات بطاقات الدفع، ويتم التعامل معها عبر مزودي دفع معتمدين)"
+        },
+        "subsectionD": {
+          "title": "د) معلومات تقنية",
+          "content": "معلومات تقنية مثل عنوان IP، نوع المتصفح، نظام التشغيل، وغيرها من البيانات التقنية الضرورية لتشغيل الخدمة."
+        }
+      },
+      "contact": {
+        "title": "تواصل معنا",
+        "description": "لأي استفسارات متعلقة بسياسة الخصوصية، يمكن التواصل معنا عبر:"
+      },
+      "footerNote": "© 2026 ENSMENU. جميع الحقوق محفوظة."
+    },
+    "terms": {
+      "title": "الشروط والأحكام",
+      "introduction": "مرحبًا بك في ENSMENU. باستخدامك لموقعنا أو أي من خدماتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. يرجى قراءتها بعناية قبل استخدام المنصة.",
+      "sections": {
+        "definitions": {
+          "title": "1. التعريفات",
+          "content": [
+            "ENSMENU: منصة إلكترونية لإنشاء وإدارة قوائم الطعام الرقمية (QR Menu).",
+            "المستخدم: أي شخص يقوم بإنشاء حساب أو استخدام خدمات ENSMENU.",
+            "الخدمة: جميع الأدوات والميزات التي يقدمها الموقع، سواء المجانية أو المدفوعة.",
+            "الاشتراك: الخطط المدفوعة التي تتيح مزايا إضافية للمستخدم."
+          ]
+        },
+        "serviceTerms": {
+          "title": "2. شروط استخدام الخدمة",
+          "content": [
+            "يجب أن يكون عمر المستخدم 18 عامًا أو أكثر.",
+            "يلتزم المستخدم بتقديم معلومات صحيحة وحديثة عند التسجيل.",
+            "يمنع استخدام المنصة لأي أغراض غير قانونية أو مخالفة للآداب العامة.",
+            "يتحمل المستخدم المسؤولية الكاملة عن المحتوى الذي يقوم بإضافته إلى المنيو."
+          ]
+        },
+        "accounts": {
+          "title": "3. الحسابات",
+          "content": [
+            "المستخدم مسؤول عن الحفاظ على سرية بيانات الدخول.",
+            "يحق لـ ENSMENU إيقاف أو تعليق أي حساب في حال الاشتباه في نشاط غير قانوني أو مخالف لهذه الشروط.",
+            "لا يجوز مشاركة الحساب مع أطراف أخرى دون إذن."
+          ]
+        },
+        "content": {
+          "title": "4. المحتوى وقوائم الطعام",
+          "content": [
+            "يحتفظ المستخدم بكامل حقوق المحتوى الذي يقوم برفعه.",
+            "يمنح المستخدم ENSMENU ترخيصًا غير حصري لاستخدام المحتوى فقط لغرض تشغيل وتحسين الخدمة.",
+            "يمنع إضافة أي محتوى مسيء أو مخالف للقوانين أو ينتهك حقوق الملكية الفكرية للغير."
+          ]
+        },
+        "subscriptions": {
+          "title": "5. الاشتراكات والخطط المدفوعة",
+          "content": [
+            "يوفر ENSMENU خطط مجانية ومدفوعة.",
+            "يتم توضيح أسعار الاشتراكات ومدة كل خطة داخل الموقع.",
+            "جميع المدفوعات غير قابلة للاسترداد إلا في حال وجود خطأ تقني مثبت من طرف المنصة.",
+            "يحق لـ ENSMENU تعديل أسعار الاشتراكات مع إشعار مسبق للمستخدمين."
+          ]
+        },
+        "payment": {
+          "title": "6. الدفع والفوترة",
+          "content": [
+            "تتم عمليات الدفع عبر مزودي خدمات دفع معتمدين.",
+            "ENSMENU لا يحتفظ ببيانات بطاقات الدفع.",
+            "المستخدم مسؤول عن سداد الرسوم في مواعيدها لتجنب إيقاف الخدمة."
+          ]
+        },
+        "serviceTermination": {
+          "title": "7. إيقاف أو إنهاء الخدمة",
+          "content": [
+            "يحق لـ ENSMENU تعليق أو إيقاف الخدمة مؤقتًا لأغراض الصيانة أو التحديث.",
+            "يحق لـ ENSMENU إنهاء حساب المستخدم في حال مخالفة الشروط دون إشعار مسبق.",
+            "يحق لـ ENSMENU حذف المحتوى المخالف دون الرجوع للمستخدم."
+          ]
+        },
+        "liability": {
+          "title": "8. حدود المسؤولية",
+          "content": [
+            "يتم تقديم الخدمة \"كما هي\" دون أي ضمانات صريحة أو ضمنية.",
+            "ENSMENU غير مسؤول عن أي خسائر مباشرة أو غير مباشرة ناتجة عن استخدام الخدمة.",
+            "لا نضمن خلو المنصة من الأخطاء أو التوقف المؤقت."
+          ]
+        },
+        "externalLinks": {
+          "title": "9. الروابط الخارجية",
+          "content": "قد يحتوي الموقع على روابط لمواقع خارجية. ENSMENU غير مسؤول عن محتوى أو سياسات تلك المواقع."
+        },
+        "modifications": {
+          "title": "10. التعديلات على الشروط والأحكام",
+          "content": "يحتفظ ENSMENU بالحق في تعديل هذه الشروط في أي وقت. يتم نشر التعديلات على هذه الصفحة ويعد استمرار الاستخدام موافقة ضمنية عليها."
+        },
+        "governingLaw": {
+          "title": "11. القانون المعمول به",
+          "content": "تخضع هذه الشروط والأحكام وتفسر وفقًا للقوانين المعمول بها في الدولة التي يتم تشغيل المنصة منها."
+        },
+        "contact": {
+          "title": "12. التواصل معنا",
+          "content": "لأي استفسارات متعلقة بالشروط والأحكام، يمكن التواصل معنا عبر البريد الإلكتروني: support@ensmenu.com"
+        }
+      }
+    },
+    "contact": {
+      "title": "تواصل معنا",
+      "description": "لأي استفسارات متعلقة بالشروط والأحكام، يمكن التواصل معنا عبر:"
+    },
+    "footerNote": "© 2026 ENSMENU. جميع الحقوق محفوظة."
+  }
+}

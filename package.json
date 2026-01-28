@@ -1,0 +1,52 @@
+{
+  "name": "ENS",
+  "version": "3.6.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p 3000",
+    "lint": "next lint",
+    "build:production": "NODE_ENV=production next build",
+    "start:production": "NODE_ENV=production next start",
+    "docker:build": "docker build -t saas-menu-frontend .",
+    "docker:run": "docker run -p 3000:3000 saas-menu-frontend",
+    "docker:compose": "docker-compose up --build",
+    "clean": "rm -rf .next out dist node_modules/.cache"
+  },
+  "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^2.0.2",
+    "@headlessui/react": "^2.2.2",
+    "@iconify/react": "^6.0.2",
+    "@react-oauth/google": "^0.13.4",
+    "@tanstack/react-query": "^5.90.12",
+    "@tanstack/react-query-devtools": "^5.91.1",
+    "crypto-js": "^4.2.0",
+    "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^12.27.0",
+    "hcaptcha": "^0.2.0",
+    "material-symbols": "^0.31.2",
+    "next": "16.0.7",
+    "next-intl": "^4.6.1",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "react-hot-toast": "^2.6.0",
+    "remixicon": "^4.6.0",
+    "tailwind-scrollbar": "^4.0.2",
+    "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.7",
+    "sass": "^1.87.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

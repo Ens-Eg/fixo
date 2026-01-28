@@ -1,0 +1,156 @@
+diff --git a/src/app/[locale]/layout.tsx b/src/app/[locale]/layout.tsx
+index 0000000..1111111 100644
+--- a/src/app/[locale]/layout.tsx
++++ b/src/app/[locale]/layout.tsx
+@@ -0,0 +1,70 @@
++import "./globals.css";
++
++import ReactQueryProvider from "@/providers/ReactQueryProvider";
++import GoogleOAuthProvider from "@/providers/GoogleOAuthProvider";
++import { AuthProvider } from "@/contexts/AuthContext";
++import type { Metadata } from "next";
++import { Tajawal } from "next/font/google";
++import { hasLocale, NextIntlClientProvider } from "next-intl";
++import { setRequestLocale } from "next-intl/server";
++import { notFound } from "next/navigation";
++import { routing } from "@/i18n/routing";
++import { Toaster } from "react-hot-toast";
++import HomeApp from "@/components/HomeApp";
++import Script from "next/script";
++
++const tajawal = Tajawal({
++  variable: "--font-body",
++  subsets: ["arabic", "latin"],
++  weight: ["200", "300", "400", "500", "700", "800", "900"],
++});
++
++export const metadata: Metadata = {
++  title: "ENS - ensmenu",
++  description: "ensmenu",
++};
++
++type Props = {
++  children: React.ReactNode;
++  params: Promise<{ locale: string }>;
++};
++
++export default async function RootLayout({ children, params }: Props) {
++  const { locale } = await params;
++  if (!hasLocale(routing.locales, locale)) {
++    notFound();
++  }
++
++  // Set the request locale for static rendering
++  setRequestLocale(locale);
++
++  // Load messages for the current locale directly
++  const messages = (await import(`../../../messages/${locale}.json`)).default;
++
++  // Set direction based on locale (RTL for Arabic, LTR for others)
++  const dir = locale === "ar" ? "rtl" : "ltr";
++
++  return (
++    <html lang={locale} dir={dir} id={dir}>
++      <body
++        className={`${tajawal.variable} antialiased`}
++        suppressHydrationWarning
++      >
++        <ReactQueryProvider>
++          <NextIntlClientProvider locale={locale} messages={messages}>
++            <GoogleOAuthProvider>
++              <AuthProvider>
++                {children}
++                <Toaster position="top-center" />
++              </AuthProvider>
++            </GoogleOAuthProvider>
++          </NextIntlClientProvider>
++        </ReactQueryProvider>
++        <Script
++          src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
++          strategy="afterInteractive"
++        />
++      </body>
++    </html>
++  );
++}
++
++--- a/src/app/[locale]/page.tsx
++++ b/src/app/[locale]/page.tsx
+@@ -1,15 +1,19 @@
+-import "material-symbols";
+-import "remixicon/fonts/remixicon.css";
++import dynamic from "next/dynamic";
+ import ContactSection from "@/components/FrontPage/ContactSection";
+-import PricingSection from "@/components/FrontPage/PricingSection";
+-
+ import Footer from "@/components/FrontPage/Footer";
+ import HeroBanner from "@/components/FrontPage/HeroBanner";
+ import HowItWorks from "@/components/FrontPage/HowItWorks";
+ import FeaturesSection from "@/components/FrontPage/FeaturesSection";
+-
+ import { routing } from "@/i18n/routing";
+-import TemplatesShow from "@/components/FrontPage/TemplatesShow";
+ import Navbar from "@/components/FrontPage/Navbar";
+-import FAQ from "@/components/FrontPage/FAQ";
+ import CTA from "@/components/FrontPage/Cta";
++
++// Dynamically import heavy components to reduce initial CSS bundle
++const PricingSection = dynamic(() => import("@/components/FrontPage/PricingSection"), {
++  ssr: true, // Keep SSR for SEO
++});
++const TemplatesShow = dynamic(() => import("@/components/FrontPage/TemplatesShow"), {
++  ssr: true,
++});
++const FAQ = dynamic(() => import("@/components/FrontPage/FAQ"), {
++  ssr: true,
++});
+ 
+ export default function Home() {
+   return (
+@@ -30,4 +34,4 @@ export default function Home() {
+       </div>
+     </>
+   );
+-}
++}
+\ No newline at end of file
+
+--- a/src/components/FrontPage/Navbar.tsx
++++ b/src/components/FrontPage/Navbar.tsx
+@@ -1,5 +1,6 @@
+ "use client";
+ 
++import "remixicon/fonts/remixicon.css";
+ import React, { useEffect, useState } from "react";
+ import Link from "next/link";
+ import { usePathname } from "next/navigation";
+@@ -15,6 +16,7 @@ import {
+ } from "@/components/icons/Icons";
+ import { Logo } from "@/components/common/Logo";
+ import { Icon } from "@iconify/react";
++
+ // ... rest of component unchanged ...
+
+--- a/src/components/FrontPage/PricingSection.tsx
++++ b/src/components/FrontPage/PricingSection.tsx
+@@ -1,5 +1,6 @@
+ "use client";
+ 
++import "material-symbols";
+ import { useTranslations, useLocale } from "next-intl";
+ import { Button } from "@/components/ui/button";
+ import { Star, Sparkles } from "@/components/icons/Icons";
+@@ -7,6 +8,7 @@ import { useState, useEffect } from "react";
+ import { getPublicPlans } from "@/app/[locale]/actions";
++
+ // ... rest of component unchanged ...
+
+--- a/src/components/FrontPage/LightDarkModeButton.tsx
++++ b/src/components/FrontPage/LightDarkModeButton.tsx
+@@ -1,4 +1,5 @@
+ "use client";
+ 
++import "material-symbols";
+ import React, { useState, useEffect } from "react";
++
+ // ... rest of component unchanged ...

@@ -1,0 +1,531 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { checkSlugAvailability, createMenu } from "./actions";
+import { uploadImage } from "@/app/[locale]/actions/upload.actions";
+import CurrencySelector from "@/components/CurrencySelector";
+import toast from "react-hot-toast";
+
+interface CreateMenuModalProps {
+  onClose: () => void;
+  onMenuCreated?: (newMenu?: any) => void;
+}
+
+export default function CreateMenuModal({ onClose, onMenuCreated }: CreateMenuModalProps) {
+  const t = useTranslations("Menus.createModal");
+  const locale = useLocale();
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: "",
+    nameAr: "",
+    description: "",
+    descriptionAr: "",
+    slug: "",
+    logo: null as File | null,
+    currency: "SAR", // Default currency
+  });
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [slugStatus, setSlugStatus] = useState<{
+    checking: boolean;
+    available: boolean | null;
+    suggestions: string[];
+  }>({
+    checking: false,
+    available: null,
+    suggestions: [],
+  });
+
+  const [isCreating, setIsCreating] = useState(false);
+
+  // Debounced slug check
+  useEffect(() => {
+    if (!formData.slug || formData.slug.length < 3) {
+      setSlugStatus({ checking: false, available: null, suggestions: [] });
+      return;
+    }
+
+    const timeoutId = setTimeout(async () => {
+      setSlugStatus({ checking: true, available: null, suggestions: [] });
+      try {
+        const result = await checkSlugAvailability(formData.slug);
+        setSlugStatus({
+          checking: false,
+          available: result.isAvailable ?? false,
+          suggestions: result.suggestions ?? [],
+        });
+      } catch (error) {
+        console.error("Error checking slug:", error);
+        setSlugStatus({ checking: false, available: null, suggestions: [] });
+      }
+    }, 500); // 500ms delay
+
+    return () => clearTimeout(timeoutId);
+  }, [formData.slug]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Check slug availability before submitting
+    if (formData.slug && slugStatus.available === false) {
+      toast.error("هذا الرابط مستخدم بالفعل. يرجى اختيار رابط آخر.");
+      return;
+    }
+
+    try {
+      setIsCreating(true);
+      
+      // Upload logo first if exists
+      let logoUrl: string | null = null;
+      if (formData.logo) {
+        const logoFormData = new FormData();
+        logoFormData.append("file", formData.logo);
+        logoFormData.append("type", "logos");
+        
+        const uploadResult = await uploadImage(logoFormData);
+        
+        if (!uploadResult.success || !uploadResult.data) {
+          console.error("Logo upload error:", uploadResult.error);
+          toast.error(uploadResult.error || "فشل رفع الشعار");
+          setIsCreating(false);
+          return;
+        }
+        
+        logoUrl = uploadResult.data.url;
+      }
+      
+      // Create menu with logo URL
+      const menuData = {
+        nameEn: formData.name,
+        nameAr: formData.nameAr,
+        descriptionEn: formData.description,
+        descriptionAr: formData.descriptionAr,
+        slug: formData.slug,
+        currency: formData.currency,
+        ...(logoUrl && { logo: logoUrl }),
+      };
+
+      const result = await createMenu(menuData);
+
+      toast.success(t("createSuccess") || "تم إنشاء القائمة بنجاح");
+
+      // Refresh subscription data after creating menu and pass the new menu
+      if (onMenuCreated) {
+        onMenuCreated(result);
+      }
+
+      onClose();
+
+      // Redirect to dashboard after creation
+      if (result?.id) {
+        router.push(`/${locale}/dashboard/menus/${result.id}`);
+      }
+    } catch (error: any) {
+      console.error("Error creating menu:", error);
+      toast.error(error.message || t("createError") || "فشل إنشاء القائمة");
+    } finally {
+      setIsCreating(false);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setFormData({ ...formData, slug: suggestion });
+  };
+
+  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Check file type
+    const validTypes = ["image/png", "image/x-icon", "image/vnd.microsoft.icon", "image/jpeg", "image/jpg"];
+    if (!validTypes.includes(file.type)) {
+      toast.error("يرجى اختيار صورة بصيغة PNG أو ICO");
+      return;
+    }
+
+    // Check file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("حجم الصورة يجب أن يكون أقل من 2 ميجابايت");
+      return;
+    }
+
+    setFormData({ ...formData, logo: file });
+
+    // Create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setLogoPreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemoveLogo = () => {
+    setFormData({ ...formData, logo: null });
+    setLogoPreview(null);
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-3xl w-full p-8 max-h-[90vh] overflow-y-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg">
+              <i className="material-symbols-outlined text-white !text-[28px]">
+                restaurant_menu
+              </i>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+              {t("title")}
+            </h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          >
+            <i className="material-symbols-outlined text-gray-500 dark:text-gray-400">
+              close
+            </i>
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Names Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-3">
+              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
+                label
+              </i>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white !mb-0">
+                {t("menuNames")}
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t("nameEn")} *
+                </label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  placeholder="e.g., My Restaurant Menu"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t("nameAr")} *
+                </label>
+                <input
+                  type="text"
+                  value={formData.nameAr}
+                  onChange={(e) =>
+                    setFormData({ ...formData, nameAr: e.target.value })
+                  }
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+                  placeholder="مثال: قائمة مطعمي"
+                  dir="rtl"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Descriptions Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-3">
+              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
+                description
+              </i>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t("descriptions")}
+              </h3>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t("descriptionEn")}
+                </label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) =>
+                    setFormData({ ...formData, description: e.target.value })
+                  }
+                  rows={3}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all resize-none"
+                  placeholder="Describe your menu in English..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {t("descriptionAr")}
+                </label>
+                <textarea
+                  value={formData.descriptionAr}
+                  onChange={(e) =>
+                    setFormData({ ...formData, descriptionAr: e.target.value })
+                  }
+                  rows={3}
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all resize-none"
+                  placeholder="اكتب وصف القائمة بالعربية..."
+                  dir="rtl"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Logo Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-3">
+              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
+                image
+              </i>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t("logo")}
+              </h3>
+            </div>
+
+            <div className="flex flex-col items-center gap-4">
+              {/* Logo Preview */}
+              <div className="relative">
+                <div className="w-32 h-32 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center bg-gray-50 dark:bg-gray-700/30 overflow-hidden">
+                  {logoPreview ? (
+                    <img
+                      src={logoPreview}
+                      alt="Logo preview"
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <i className="material-symbols-outlined text-gray-400 !text-[48px]">
+                      restaurant
+                    </i>
+                  )}
+                </div>
+                {logoPreview && (
+                  <button
+                    type="button"
+                    onClick={handleRemoveLogo}
+                    className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg transition-colors"
+                  >
+                    <i className="material-symbols-outlined !text-[18px]">close</i>
+                  </button>
+                )}
+              </div>
+
+              {/* Upload Button */}
+              <div className="flex flex-col items-center gap-2 w-full">
+                <label className="cursor-pointer">
+                  <input
+                    type="file"
+                    accept=".png,.ico,.jpg,.jpeg,image/png,image/x-icon,image/vnd.microsoft.icon,image/jpeg"
+                    onChange={handleLogoChange}
+                    className="hidden"
+                  />
+                  <div className="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded-lg transition-colors flex items-center gap-2">
+                    <i className="material-symbols-outlined !text-[20px]">upload</i>
+                    <span className="text-sm font-medium">{t("logoUpload")}</span>
+                  </div>
+                </label>
+                <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                  {t("logoHint")}
+                </p>
+                <p className="text-xs text-gray-400 dark:text-gray-500">
+                  الصيغ المدعومة: PNG, ICO, JPG - الحد الأقصى: 2MB
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Currency Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-3">
+              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
+                payments
+              </i>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t("currency")}
+              </h3>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t("currencyLabel")} *
+              </label>
+              <CurrencySelector
+                value={formData.currency}
+                onChange={(currency) =>
+                  setFormData({ ...formData, currency })
+                }
+                showArabOnly={true}
+              />
+            </div>
+          </div>
+
+          {/* Slug Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 mb-3">
+              <i className="material-symbols-outlined text-primary-500 !text-[20px]">
+                link
+              </i>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t("urlSettings")}
+              </h3>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                {t("slug")} *
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  value={formData.slug}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      slug: e.target.value
+                        .toLowerCase()
+                        .replace(/[^a-z0-9-]/g, "-"),
+                    })
+                  }
+                  className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all font-mono ${
+                    slugStatus.available === false
+                      ? "border-red-300 dark:border-red-600 focus:ring-red-500"
+                      : slugStatus.available === true
+                      ? "border-green-300 dark:border-green-600 focus:ring-green-500"
+                      : "border-gray-300 dark:border-gray-600 focus:ring-primary-500"
+                  }`}
+                  placeholder="my-restaurant-menu"
+                  required
+                />
+                {slugStatus.checking && (
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-500"></div>
+                  </div>
+                )}
+                {!slugStatus.checking && slugStatus.available === true && (
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <i className="material-symbols-outlined text-green-500 !text-[20px]">
+                      check_circle
+                    </i>
+                  </div>
+                )}
+                {!slugStatus.checking && slugStatus.available === false && (
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
+                    <i className="material-symbols-outlined text-red-500 !text-[20px]">
+                      cancel
+                    </i>
+                  </div>
+                )}
+              </div>
+
+              {/* Status Message */}
+              {slugStatus.checking && (
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                  جاري التحقق من الرابط...
+                </p>
+              )}
+              {!slugStatus.checking && slugStatus.available === true && (
+                <p className="mt-2 text-sm text-green-600 dark:text-green-400 flex items-center gap-2">
+                  <i className="material-symbols-outlined !text-[16px]">
+                    check_circle
+                  </i>
+                  هذا الرابط متاح
+                </p>
+              )}
+              {!slugStatus.checking && slugStatus.available === false && (
+                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-2">
+                  <i className="material-symbols-outlined !text-[16px]">
+                    cancel
+                  </i>
+                  هذا الرابط مستخدم بالفعل
+                </p>
+              )}
+
+              {/* Suggestions */}
+              {!slugStatus.checking &&
+                slugStatus.available === false &&
+                slugStatus.suggestions.length > 0 && (
+                  <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      اقتراحات مشابهة:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {slugStatus.suggestions.map((suggestion, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          onClick={() => handleSuggestionClick(suggestion)}
+                          className="px-3 py-1.5 text-xs font-mono bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:border-primary-300 dark:hover:border-primary-600 text-gray-700 dark:text-gray-300 transition-all"
+                        >
+                          {suggestion}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+              <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div className="flex items-start gap-2">
+                  <i className="material-symbols-outlined text-blue-500 !text-[18px] mt-0.5">
+                    info
+                  </i>
+                  <div className="flex-1">
+                    <p className="text-xs text-blue-700 dark:text-blue-300 font-medium mb-1">
+                      {t("slugHint")}
+                    </p>
+                    <p className="text-xs text-blue-600 dark:text-blue-400 font-mono">
+                      {formData.slug
+                        ? `${formData.slug}.ensmenu.com`
+                        : "your-slug.ensmenu.com"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex gap-3 pt-6 border-t border-gray-200 dark:border-gray-700">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isCreating}
+            >
+              {t("cancel")}
+            </button>
+            <button
+              type="submit"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all font-medium shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              disabled={isCreating}
+            >
+              {isCreating ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  {t("creating")}
+                </>
+              ) : (
+                <>
+                  <i className="material-symbols-outlined !text-[20px]">
+                    add_circle
+                  </i>
+                  {t("create")}
+                </>
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
