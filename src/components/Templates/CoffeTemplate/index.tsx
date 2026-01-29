@@ -38,7 +38,7 @@ function index({ menuData }: TemplateProps) {
             nameAr: item.nameAr || item.name || "",
             description: item.descriptionEn || item.description || "",
             descriptionAr: item.descriptionAr || item.description || "",
-            price: `${menuData.menu.currency || "SAR"} ${item.price || 0}`,
+            price: `${menuData.menu.currency || "AED"} ${item.price || 0}`,
             image: item.image || "",
             tag: item.tag || "",
             tagAr: item.tagAr || "",

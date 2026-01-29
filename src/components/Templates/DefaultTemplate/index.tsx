@@ -70,7 +70,7 @@ export default function DefaultTemplate({
           items={menuData.items}
           selectedCategory={selectedCategory}
           onCategoryChange={onCategoryChange}
-          currency={menuData.menu.currency || "SAR"}
+          currency={menuData.menu.currency || "AED"}
         />
 
         {/*

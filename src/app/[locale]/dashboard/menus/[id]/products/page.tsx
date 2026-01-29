@@ -91,7 +91,7 @@ export default function ProductsPage() {
     retry: 1,
   });
 
-  const menuCurrency = menuData?.currency || "SAR";
+  const menuCurrency = menuData?.currency || "AED";
 
   // Fetch products using React Query
   const { data: productsData, isLoading: loadingProducts, refetch: refetchProducts } = useQuery({

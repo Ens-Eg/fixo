@@ -18,7 +18,7 @@ export const TemplatesSection: React.FC<TemplatesSectionProps> = ({
     null
   );
 
-  const currency = menuData.menu.currency || "SAR";
+  const currency = menuData.menu.currency || "AED";
   const isProPlan =
     menuData.menu.ownerPlanType !== "free" && !!menuData.menu.ownerPlanType;
 

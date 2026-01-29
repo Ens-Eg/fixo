@@ -5,6 +5,7 @@ import { Icon as IconifyIcon } from "@iconify/react";
 import { Icon } from "./Icon";
 import { MenuItem } from "../../types";
 import { useLanguage } from "../context";
+import { arabCurrencies, Currency } from "@/constants/currencies";
 
 
 interface MenuCardProps {
@@ -12,11 +13,11 @@ interface MenuCardProps {
     index: number;
     currency?: string;
     onClick: () => void;
-    isModalOpen: boolean;
-    setIsModalOpen: (isModalOpen: boolean) => void;
+    isModalOpen: number;
+    setIsModalOpen: (isModalOpen: number) => void;
 }
 
-export const MenuCardDefault = ({ item, isModalOpen, setIsModalOpen, currency = "SAR", onClick }: MenuCardProps) => {
+export const MenuCardDefault = ({ item, isModalOpen, setIsModalOpen, currency = "AED", onClick }: MenuCardProps) => {
     const { locale, t, direction } = useLanguage();
     const [isClosing, setIsClosing] = useState(false);
 
@@ -32,12 +33,16 @@ export const MenuCardDefault = ({ item, isModalOpen, setIsModalOpen, currency = 
         : (item as any).categoryNameEn || item.categoryName;
 
     const getCurrency = () => {
-        // Fix for: Element implicitly has an 'any' type error
-        if (typeof t === "object" && t !== null && Object.prototype.hasOwnProperty.call(t, currency)) {
-            // @ts-ignore
-            return t[currency];
+        let currencySymbol: string = currency;
+        if (locale === "ar") {
+            const foundCurrency = arabCurrencies.find(
+                (currencyList: Currency) => currencyList.code === currency
+            );
+            if (foundCurrency && foundCurrency.symbol) {
+                currencySymbol = foundCurrency.symbol;
+            }
         }
-        return currency;
+        return currencySymbol;
     }
 
     useEffect(() => {
@@ -52,7 +57,7 @@ export const MenuCardDefault = ({ item, isModalOpen, setIsModalOpen, currency = 
     }, [isModalOpen]);
 
     const handleCardClick = () => {
-        setIsModalOpen(true);
+        setIsModalOpen(item.id);
         setIsClosing(false);
         onClick();
     };
@@ -60,7 +65,7 @@ export const MenuCardDefault = ({ item, isModalOpen, setIsModalOpen, currency = 
     const handleClose = () => {
         setIsClosing(true);
         setTimeout(() => {
-            setIsModalOpen(false);
+            setIsModalOpen(0);
             setIsClosing(false);
         }, 300); // Match animation duration
     };
@@ -115,7 +120,7 @@ export const MenuCardDefault = ({ item, isModalOpen, setIsModalOpen, currency = 
                             </span>
 
                             <span className="text-xs sm:text-sm font-medium text-gray-500">
-                                {currency}
+                                {getCurrency()}
                             </span>
                         </span>
 
@@ -135,7 +140,7 @@ export const MenuCardDefault = ({ item, isModalOpen, setIsModalOpen, currency = 
             </div>
 
             {/* Popup Modal */}
-            {isModalOpen && (
+            {isModalOpen === item.id && (
                 <div
                     className={`fixed inset-0 z-[11111111111] flex items-center justify-center p-4 transition-opacity duration-300 ${isClosing ? "opacity-0" : "opacity-100"
                         }`}

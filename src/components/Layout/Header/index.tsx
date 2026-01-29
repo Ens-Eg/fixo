@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ toggleActive }) => {
         id="header"
         className="header-area bg-white dark:bg-[#0c1427] py-[13px] px-[20px] md:px-[25px] fixed top-0 z-[6] rounded-b-md transition-all"
       >
-        <div className="md:flex md:items-center md:justify-between">
+        <div className=" flex items-center justify-between">
           <div className="flex items-center justify-center md:justify-normal">
             {!shouldHideSidebarToggle && (
               <div className="relative leading-none top-px ltr:mr-[13px] ltr:md:mr-[18px] ltr:lg:mr-[23px] rtl:ml-[13px] rtl:md:ml-[18px] rtl:lg:ml-[23px]">

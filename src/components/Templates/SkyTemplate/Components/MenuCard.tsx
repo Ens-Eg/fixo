@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Icon } from "../../DefaultTemplate/components/Icon";
 import { useLanguage } from "../../DefaultTemplate/context";
 import { MenuItem } from "../../types";
+import { arabCurrencies, Currency } from "@/constants/currencies";
 
 interface MenuCardProps {
     item: MenuItem;
@@ -10,29 +11,35 @@ interface MenuCardProps {
     onClick: () => void;
 }
 
-export default function MenuCard({ item, index, currency = "SAR", onClick }: MenuCardProps) {
+export default function MenuCard({ item, index, currency = "AED", onClick }: MenuCardProps) {
     const { locale, t, direction } = useLanguage();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
     // Get translated name and description based on locale
-    const itemName = locale === "ar" 
-        ? (item as any).nameAr || item.name 
+    const itemName = locale === "ar"
+        ? (item as any).nameAr || item.name
         : (item as any).nameEn || item.name;
-    const itemDescription = locale === "ar" 
-        ? (item as any).descriptionAr || item.description 
+    const itemDescription = locale === "ar"
+        ? (item as any).descriptionAr || item.description
         : (item as any).descriptionEn || item.description;
     const itemCategoryName = locale === "ar"
         ? (item as any).categoryNameAr || item.categoryName
         : (item as any).categoryNameEn || item.categoryName;
 
     const getCurrency = () => {
-        // Fix for: Element implicitly has an 'any' type error
-        if (typeof t === "object" && t !== null && Object.prototype.hasOwnProperty.call(t, currency)) {
-            // @ts-ignore
-            return t[currency];
+        let currencySymbol: string = currency;
+        console.log(locale);
+        if (locale === "ar") {
+            const foundCurrency = arabCurrencies.find(
+                (currencyList: Currency) => currencyList.code === currency
+            );
+            if (foundCurrency && foundCurrency.symbol) {
+                currencySymbol = foundCurrency.symbol;
+            }
         }
-        return currency;
+        return currencySymbol;
+
     }
 
     useEffect(() => {
@@ -134,22 +141,19 @@ export default function MenuCard({ item, index, currency = "SAR", onClick }: Men
             {/* Popup Modal */}
             {isModalOpen && (
                 <div
-                    className={`fixed inset-0 z-[1111111111] flex items-center justify-center p-4 transition-opacity duration-300 ${
-                        isClosing ? "opacity-0" : "opacity-100"
-                    }`}
+                    className={`fixed inset-0 z-[1111111111] flex items-center justify-center p-4 transition-opacity duration-300 ${isClosing ? "opacity-0" : "opacity-100"
+                        }`}
                     onClick={handleClose}
                 >
                     {/* Backdrop */}
-                    <div className={`absolute inset-0 bg-black/80  backdrop-blur-md transition-opacity duration-300 ${
-                        isClosing ? "opacity-0" : "opacity-100"
-                    }`} />
+                    <div className={`absolute inset-0 bg-black/80  backdrop-blur-md transition-opacity duration-300 ${isClosing ? "opacity-0" : "opacity-100"
+                        }`} />
 
                     {/* Modal Content */}
                     <div
                         dir={direction}
-                        className={`relative w-full max-w-2xl bg-white rounded-[2.5rem] overflow-hidden border border-[var(--bg-main)]/20 shadow-2xl transition-all duration-300 ${
-                            isClosing ? "animate-modal-out" : "animate-modal-in"
-                        }`}
+                        className={`relative w-full max-w-2xl bg-white rounded-[2.5rem] overflow-hidden border border-[var(--bg-main)]/20 shadow-2xl transition-all duration-300 ${isClosing ? "animate-modal-out" : "animate-modal-in"
+                            }`}
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Close Button */}

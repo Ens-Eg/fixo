@@ -10,7 +10,7 @@ export const FoodItemModal: React.FC<FoodItemModalProps> = ({
   onClose,
   item,
   isProPlan = false,
-  currency = "SAR",
+  currency = "AED",
 }) => {
   const locale = useLocale();
   const isRTL = locale === "ar";

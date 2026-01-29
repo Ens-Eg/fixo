@@ -9,7 +9,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Toaster } from "react-hot-toast";
+import Toast from "@/components/common/Toast";
 import HomeApp from "@/components/HomeApp";
 import Script from "next/script";
 
@@ -57,7 +57,7 @@ export default async function RootLayout({ children, params }: Props) {
             <GoogleOAuthProvider>
               <AuthProvider>
                 {children}
-                <Toaster position="top-center" />
+                <Toast />
               </AuthProvider>
             </GoogleOAuthProvider>
           </NextIntlClientProvider>

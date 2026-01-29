@@ -17,7 +17,7 @@ interface ModalProps {
   currency?: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, currency = "SAR" }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, item, currency = "AED" }) => {
   const { locale, direction } = useLanguage();
   const rtl = direction === "rtl";
   const currencySymbol = getCurrencyByCode(currency)?.symbol || currency;

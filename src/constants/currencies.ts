@@ -9,7 +9,7 @@ export interface Currency {
 
 export const arabCurrencies: Currency[] = [
   {
-    code: "SAR",
+    code: "AED",
     nameAr: "الريال السعودي",
     nameEn: "Saudi Riyal",
     symbol: "ر.س",

@@ -100,7 +100,7 @@ export default function SkyTemplate({ menuData }: TemplateProps) {
                                 >
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                                         {category.items.map((item: MenuItem, index: number) => (
-                                            <MenuCard key={item.id} item={item} index={index} currency={menuData?.menu?.currency || "SAR"} onClick={() => { }} />
+                                            <MenuCard key={item.id} item={item} index={index} currency={menuData?.menu?.currency || "AED"} onClick={() => { }} />
                                         ))}
                                     </div>
                                 </div>

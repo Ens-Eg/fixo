@@ -25,7 +25,7 @@ export default function CreateMenuModal({ onClose, onMenuCreated }: CreateMenuMo
     descriptionAr: "",
     slug: "",
     logo: null as File | null,
-    currency: "SAR", // Default currency
+    currency: "AED", // Default currency
   });
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [slugStatus, setSlugStatus] = useState<{

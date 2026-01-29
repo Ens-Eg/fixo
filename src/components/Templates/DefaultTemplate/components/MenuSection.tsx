@@ -34,7 +34,7 @@ import SwiperCategory from "../../SkyTemplate/SwiperCategory";
 //   items: apiItems,
 //   selectedCategory,
 //   onCategoryChange,
-//   currency = "SAR",
+//   currency = "AED",
 // }) => {
 //   const { t, direction, locale } = useLanguage();
 //   const [searchQuery, setSearchQuery] = useState("");
@@ -309,11 +309,11 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
   items: apiItems,
   selectedCategory,
   onCategoryChange,
-  currency = "SAR",
+  currency = "AED",
 }) => {
   const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<number>(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(0);
   const itemsByCategory = new Map()
 
   apiItems.forEach((item: MenuItem) => {
@@ -379,7 +379,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
                 key={item.id}
                 item={item}
                 index={index}
-                currency={category.currency || "SAR"}
+                currency={currency}
                 onClick={() => { }}
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
@@ -388,7 +388,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({
           </div>
         </div>
       ))}
-
+      
 
     </div>
   )

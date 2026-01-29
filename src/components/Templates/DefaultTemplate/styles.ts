@@ -125,6 +125,17 @@ export const globalStyles = `
     }
   }
 
+  @keyframes modalOut {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.96) translateY(16px);
+    }
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -133,6 +144,9 @@ export const globalStyles = `
   }
   .animate-modal-in {
     animation: modalIn 0.35s ease-out forwards;
+  }
+  .animate-modal-out {
+    animation: modalOut 0.3s ease-in forwards;
   }
 
   /* ============================

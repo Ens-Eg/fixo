@@ -17,7 +17,7 @@ interface MenuCardProps {
   onClick: () => void;
 }
 
-export const MenuCard = memo<MenuCardProps>(({ item, index, currency = "SAR", onClick }) => {
+export const MenuCard = memo<MenuCardProps>(({ item, index, currency = "AED", onClick }) => {
   const { locale, direction } = useLanguage();
   const rtl = direction === "rtl";
 
